@@ -16,10 +16,10 @@ class Historial extends Model
     public $timestamps = false;
 
     public function eventos(){
-        return $this->hasMany->eventos;
+        return $this->hasMany(Eventos::class);
     }
     public function alumnos(){
-        return $this->belongsTo->alumnos;
+        return $this->belongsTo(Alumnos::class);
     }
 }
 

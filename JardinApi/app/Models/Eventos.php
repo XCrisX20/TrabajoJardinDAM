@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Eventos extends Model
 {
-    use HasFactorym, SoftDeletes;
+    use HasFactory, SoftDeletes;
     protected $table = 'eventos';
     protected $primaryKey = 'cod_evento';
     public $incrementing = true;
@@ -16,7 +16,7 @@ class Eventos extends Model
     public $timestamps = false;
 
     function historial() {
-        return $this->belongsTo -> historial;
+        return $this->belongsTo(Historial::class);
     
     }
 }
