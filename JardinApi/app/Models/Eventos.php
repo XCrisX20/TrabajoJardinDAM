@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Eventos extends Model
 {
@@ -13,4 +14,10 @@ class Eventos extends Model
     public $incrementing = true;
     protected $keyType = 'int';
     public $timestamps = false;
+
+    function historial() {
+        return $this->belongsTo -> historial;
+    
+    }
 }
+
