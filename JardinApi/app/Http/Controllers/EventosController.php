@@ -35,7 +35,14 @@ class EventosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $eventos = new eventos();
+        $eventos->descripcion = $request->descripcion;
+        $eventos->tipo_evento = $request->tipo_evento;
+        $eventos->fecha = $request->fecha;
+        $eventos->hora = $request->hora;
+        
+        $eventos->save();
+        return  $eventos;
     }
 
     /**
@@ -46,7 +53,7 @@ class EventosController extends Controller
      */
     public function show(Eventos $eventos)
     {
-        //
+        return $eventos;
     }
 
     /**
@@ -69,7 +76,14 @@ class EventosController extends Controller
      */
     public function update(Request $request, Eventos $eventos)
     {
-        //
+        $eventos = new eventos();
+        $eventos->descripcion = $request->descripcion;
+        $eventos->tipo_evento = $request->tipo_evento;
+        $eventos->fecha = $request->fecha;
+        $eventos->hora = $request->hora;
+        
+        $eventos->save();
+        return  $eventos;
     }
 
     /**
@@ -80,6 +94,6 @@ class EventosController extends Controller
      */
     public function destroy(Eventos $eventos)
     {
-        //
+        $eventos->delete();
     }
 }
