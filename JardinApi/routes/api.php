@@ -18,3 +18,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::apiResource('/alumnos',AlumnosController::class);
+Route::apiResource('/educadores',EducadoresController::class);
+Route::apiResource('/eventos',EventosController::class);
+Route::apiResource('/historial',HistorialController::class);
+Route::apiResource('/nivel',NivelesController::class);
+
