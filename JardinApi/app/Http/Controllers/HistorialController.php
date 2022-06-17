@@ -14,7 +14,7 @@ class HistorialController extends Controller
      */
     public function index()
     {
-        //
+        return historial::all();
     }
 
     /**

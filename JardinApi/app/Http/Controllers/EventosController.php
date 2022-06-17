@@ -14,7 +14,7 @@ class EventosController extends Controller
      */
     public function index()
     {
-        //
+        return eventos::all();
     }
 
     /**
@@ -76,7 +76,6 @@ class EventosController extends Controller
      */
     public function update(Request $request, Eventos $eventos)
     {
-        $eventos = new eventos();
         $eventos->descripcion = $request->descripcion;
         $eventos->tipo_evento = $request->tipo_evento;
         $eventos->fecha = $request->fecha;
