@@ -52,8 +52,9 @@ class EducadoresController extends Controller
      * @param  \App\Models\Educadores  $educadores
      * @return \Illuminate\Http\Response
      */
-    public function show(Educadores $educadores)
+    public function show(Request $request)
     {
+        $educadores = Educadores::where('rut',$request->rut)->first();
         return $educadores;
     }
 
