@@ -92,6 +92,6 @@ class AlumnosController extends Controller
      */
     public function destroy(Alumnos $alumnos)
     {
-        $producto->delete();
+        $alumnos->delete();
     }
 }

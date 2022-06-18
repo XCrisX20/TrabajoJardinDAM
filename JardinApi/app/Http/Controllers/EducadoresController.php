@@ -14,7 +14,7 @@ class EducadoresController extends Controller
      */
     public function index()
     {
-        Educadores::all();
+        return Educadores::all();
     }
 
     /**
