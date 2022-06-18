@@ -49,7 +49,7 @@ class EducadoresController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Educadores  $educadores
+     * @param  \App\Models\Educadores $educadores
      * @return \Illuminate\Http\Response
      */
     public function show(Request $request)
