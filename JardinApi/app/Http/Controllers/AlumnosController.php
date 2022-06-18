@@ -35,7 +35,14 @@ class AlumnosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $alumnos = new Alumnos();
+        $alumnos->rut = $request->rut;
+        $alumnos->nombre = $request->nombre;
+        $alumnos->fechaNacimiento = $request->fechaNacimiento;
+        $alumnos->foto = $request->foto;
+        $alumnos->nombre_nivel = $request->nombre_nivel;
+        $alumnos->save();
+        return  $alumnos;
     }
 
     /**
@@ -46,7 +53,7 @@ class AlumnosController extends Controller
      */
     public function show(Alumnos $alumnos)
     {
-        //
+        return  $alumnos;
     }
 
     /**
@@ -69,7 +76,12 @@ class AlumnosController extends Controller
      */
     public function update(Request $request, Alumnos $alumnos)
     {
-        //
+        $alumnos->nombre = $request->nombre;
+        $alumnos->fechaNacimiento = $request->fechaNacimiento;
+        $alumnos->foto = $request->foto;
+        $alumnos->nombre_nivel = $request->nombre_nivel;
+        $alumnos->save();
+        return  $alumnos;
     }
 
     /**
@@ -80,6 +92,6 @@ class AlumnosController extends Controller
      */
     public function destroy(Alumnos $alumnos)
     {
-        //
+        $alumnos->delete();
     }
 }
