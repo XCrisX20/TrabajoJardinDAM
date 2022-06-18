@@ -35,7 +35,13 @@ class HistorialController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $historial = new historial();
+        $historial->rut_evento = $request->cod_evento;
+        $historial->rut_alumno = $request->rut_alumno;
+       
+        
+        $historial->save();
+        return  $historial;
     }
 
     /**
@@ -46,7 +52,7 @@ class HistorialController extends Controller
      */
     public function show(Historial $historial)
     {
-        //
+        return $historial;
     }
 
     /**
@@ -69,7 +75,7 @@ class HistorialController extends Controller
      */
     public function update(Request $request, Historial $historial)
     {
-        //
+        
     }
 
     /**
@@ -80,6 +86,6 @@ class HistorialController extends Controller
      */
     public function destroy(Historial $historial)
     {
-        //
+        $historial->delete();
     }
 }
