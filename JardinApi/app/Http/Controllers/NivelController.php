@@ -14,7 +14,7 @@ class NivelController extends Controller
      */
     public function index()
     {
-        //
+        return Nivel::all();
     }
 
     /**
@@ -35,7 +35,10 @@ class NivelController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $nivel = new Nivel();
+        $nivel->nombre_nivel = $request->nombre_nivel;
+        $nivel->save();
+        return $nivel;
     }
 
     /**
@@ -46,7 +49,7 @@ class NivelController extends Controller
      */
     public function show(Nivel $nivel)
     {
-        //
+        return $nivel;
     }
 
     /**
@@ -57,7 +60,7 @@ class NivelController extends Controller
      */
     public function edit(Nivel $nivel)
     {
-        //
+        
     }
 
     /**
@@ -69,7 +72,9 @@ class NivelController extends Controller
      */
     public function update(Request $request, Nivel $nivel)
     {
-        //
+        $nivel->nombre_nivel = $request->nombre_nivel;
+        $nivel->save();
+        return $nivel;
     }
 
     /**
@@ -80,6 +85,6 @@ class NivelController extends Controller
      */
     public function destroy(Nivel $nivel)
     {
-        //
+        $nivel->delete();
     }
 }

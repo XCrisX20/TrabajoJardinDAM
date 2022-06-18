@@ -14,7 +14,7 @@ class EducadoresController extends Controller
      */
     public function index()
     {
-        //
+        Educadores::all();
     }
 
     /**
@@ -35,7 +35,15 @@ class EducadoresController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $educadores = new Educadores();
+        $educadores->rut = $request->rut;
+        $educadores->nombre = $request->nombre;
+        $educadores->fechaNacimiento = $request->fechaNacimiento;
+        $educadores->telefono = $request->telefono;
+        $educadores->email = $request->email;
+        $educadores->nombre_nivel = $request->nombre_nivel;
+        $educadores->save();
+        return $educadores;
     }
 
     /**
@@ -46,7 +54,7 @@ class EducadoresController extends Controller
      */
     public function show(Educadores $educadores)
     {
-        //
+        return $educadores;
     }
 
     /**
@@ -69,7 +77,14 @@ class EducadoresController extends Controller
      */
     public function update(Request $request, Educadores $educadores)
     {
-        //
+        $educadores->nombre = $request->nombre;
+        $educadores->fechaNacimiento = $request->fechaNacimiento;
+        $educadores->telefono = $request->telefono;
+        $educadores->email = $request->email;
+        $educadores->nombre_nivel = $request->nombre_nivel;
+        $educadores->save();
+        return  $educadores;
+
     }
 
     /**
@@ -80,6 +95,6 @@ class EducadoresController extends Controller
      */
     public function destroy(Educadores $educadores)
     {
-        //
+        $educadores->delete();
     }
 }
