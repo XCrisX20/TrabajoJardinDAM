@@ -14,7 +14,7 @@ class EventosController extends Controller
      */
     public function index()
     {
-        return eventos::all();
+        return Eventos::all();
     }
 
     /**
@@ -35,7 +35,7 @@ class EventosController extends Controller
      */
     public function store(Request $request)
     {
-        $eventos = new eventos();
+        $eventos = new Eventos();
         $eventos->descripcion = $request->descripcion;
         $eventos->tipo_evento = $request->tipo_evento;
         $eventos->fecha = $request->fecha;

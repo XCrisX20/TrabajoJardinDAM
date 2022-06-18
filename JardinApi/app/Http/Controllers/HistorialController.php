@@ -14,7 +14,7 @@ class HistorialController extends Controller
      */
     public function index()
     {
-        return historial::all();
+        return Historial::all();
     }
 
     /**
@@ -35,7 +35,7 @@ class HistorialController extends Controller
      */
     public function store(Request $request)
     {
-        $historial = new historial();
+        $historial = new Historial();
         $historial->rut_evento = $request->cod_evento;
         $historial->rut_alumno = $request->rut_alumno;
        
