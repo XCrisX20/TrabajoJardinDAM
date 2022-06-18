@@ -94,8 +94,9 @@ class EducadoresController extends Controller
      * @param  \App\Models\Educadores  $educadores
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Educadores $educadores)
+    public function destroy(Request $request)
     {
+        $educadores = Educadores::where('rut',$request->rut)->first();
         $educadores->delete();
     }
 }
