@@ -14,7 +14,7 @@ class AlumnosController extends Controller
      */
     public function index()
     {
-        return Alumnos::orderBy('nombre')->get();
+        return Alumnos::all();
     }
 
     /**
