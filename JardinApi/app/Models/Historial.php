@@ -11,13 +11,11 @@ class Historial extends Model
     use HasFactory, SoftDeletes;
 
     protected $table = 'historial';
-    public $incrementing = false;
-    protected $keyType = 'string';
+    protected $primaryKey = 'cod_historial';
+    public $incrementing = true;
+    protected $keyType = 'int';
     public $timestamps = false;
 
-    public function eventos(){
-        return $this->hasMany(Eventos::class);
-    }
     public function alumnos(){
         return $this->belongsTo(Alumnos::class);
     }

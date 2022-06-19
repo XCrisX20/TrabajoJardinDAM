@@ -20,5 +20,5 @@ class Alumnos extends Model
     public function nivel(){
         return $this->belongsTo(Nivel::class);}
     public function historial(){
-            return $this->belongsTo(Historial::class);}
+            return $this->hasMany(Historial::class);}
 }
