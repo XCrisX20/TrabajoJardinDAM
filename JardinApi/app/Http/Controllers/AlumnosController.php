@@ -51,9 +51,8 @@ class AlumnosController extends Controller
      * @param  \App\Models\Alumnos  $alumnos
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request)
+    public function show(Alumnos $alumnos)
     {
-        $alumnos = Alumnos::where('rut',$request->rut)->first();
         return $alumnos;
     }
 
@@ -91,9 +90,8 @@ class AlumnosController extends Controller
      * @param  \App\Models\Alumnos  $alumnos
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request)
+    public function destroy(Alumnos $alumnos)
     {   
-        $alumnos = Alumnos::where('rut',$request->rut)->first();
         $alumnos->delete();
     }
 }
