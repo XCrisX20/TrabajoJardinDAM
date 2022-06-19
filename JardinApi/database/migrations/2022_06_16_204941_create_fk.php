@@ -22,7 +22,6 @@ return new class extends Migration
         });
 
         Schema::table('historial', function (Blueprint $table) {
-            $table->foreign('cod_evento')->references('cod_evento')->on('eventos');
             $table->foreign('rut_alumno')->references('rut')->on('alumnos');
         });
 

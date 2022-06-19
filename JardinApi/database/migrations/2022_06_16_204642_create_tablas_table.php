@@ -22,15 +22,15 @@ return new class extends Migration
             $table->softDeletes();     
         });
 
-        Schema::create('eventos', function (Blueprint $table) {
-            $table->increments('cod_evento');
+        Schema::create('historial', function (Blueprint $table) {
+            $table->increments('cod_historial');
             $table->string('descripcion');
             $table->string('tipo_evento');
             $table->date('fecha');  
-            $table->time('hora');     
+            $table->time('hora');
+            $table->string('rut_alumno');      
             $table->softDeletes();   
         });
-
         Schema::create('educadores', function (Blueprint $table) {
             $table->string('rut')->primary();
             $table->string('nombre');
@@ -39,18 +39,9 @@ return new class extends Migration
             $table->string('email');
             $table->string('nombre_nivel');
             $table->softDeletes();
-
-
         });
-
         Schema::create('nivel', function (Blueprint $table) {
             $table->string('nombre_nivel')->primary(); 
-            $table->softDeletes();        
-        });
-
-        Schema::create('historial', function (Blueprint $table) {
-            $table->integer('cod_evento')->unsigned()->nullable(); 
-            $table->string('rut_alumno'); 
             $table->softDeletes();        
         });
 
