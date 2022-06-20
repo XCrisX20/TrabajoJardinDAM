@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Educadores;
 use Illuminate\Http\Request;
 use App\Http\Requests\EducadoresRequest;
+
 class EducadoresController extends Controller
 {
     /**
