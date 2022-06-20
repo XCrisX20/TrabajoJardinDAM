@@ -54,6 +54,9 @@ class EducadoresController extends Controller
      */
     public function show(Educadores $educadores)
     {
+        $url = url()->current();
+        $rut = explode("/", $url)[5];
+        $educadores = Educadores::find($rut);
         return $educadores;
     }
 
@@ -77,6 +80,9 @@ class EducadoresController extends Controller
      */
     public function update(Request $request, Educadores $educadores)
     {
+        $url = url()->current();
+        $rut = explode("/", $url)[5];
+        $educadores = Educadores::find($rut);
         $educadores->nombre = $request->nombre;
         $educadores->fechaNacimiento = $request->fechaNacimiento;
         $educadores->telefono = $request->telefono;
@@ -95,6 +101,9 @@ class EducadoresController extends Controller
      */
     public function destroy(Educadores $educadores)
     {
+        $url = url()->current();
+        $rut = explode("/", $url)[5];
+        $educadores = Educadores::find($rut);
         $educadores->delete();
     }
 }

@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Database\DBAL\TimestampType;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -13,7 +12,6 @@ class Educadores extends Model
 
     protected $tables = 'educadores';
     protected $primaryKey = 'rut';
-    public $incrementing = false;
     protected $keyType = 'string';
     public $timestamps = false;
 
