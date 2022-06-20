@@ -33,7 +33,7 @@ class EducadoresController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(EducadoresRequest $request)
     {
         $educadores = new Educadores();
         $educadores->rut = $request->rut;
@@ -78,7 +78,7 @@ class EducadoresController extends Controller
      * @param  \App\Models\Educadores  $educadores
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Educadores $educadores)
+    public function update(EducadoresRequest $request, Educadores $educadores)
     {
         $url = url()->current();
         $rut = explode("/", $url)[5];
