@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AlumnosRequest;
 use App\Models\Alumnos;
 use Illuminate\Http\Request;
 
@@ -33,7 +34,7 @@ class AlumnosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AlumnosRequest $request)
     {
         $alumnos = new Alumnos();
         $alumnos->rut = $request->rut;
