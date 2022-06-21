@@ -1,12 +1,15 @@
+import 'dart:collection';
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
+import 'package:image_picker/image_picker.dart';
 
 class AlumnosProvider {
-  final String apiUrl = 'http://10.0.0.2:8000/api';
+  final String apiUrl = 'http://10.0.0.2:8000/api/alumnos';
 
+  //Listar todos los Alumnos
   Future<List<dynamic>> getAlumnos() async {
-    var url = Uri.parse("$apiUrl/alumnos");
+    var url = Uri.parse(apiUrl);
     var respuesta = await http.get(url);
 
     if (respuesta.statusCode == 200) {
@@ -15,4 +18,47 @@ class AlumnosProvider {
       return [];
     }
   }
+
+  //Listar un alumno por Rut
+  Future<LinkedHashMap<String, dynamic>> getAlumno(String rut) async {
+    var url = Uri.parse('$apiUrl/$rut');
+    var respuesta = await http.get(url);
+
+    if (respuesta.statusCode == 200) {
+      return json.decode(respuesta.body);
+    } else {
+      return new LinkedHashMap();
+    }
+  }
+
+  //Agregar un Alumno
+  Future<LinkedHashMap<String, dynamic>> alumnoAgregar
+    (String rut, String nombre, DateTime fechaNacimiento, ImagePicker foto, String nombre_nivel) async{
+    var url = Uri.parse('$apiUrl');
+    var respuesta = await http.post(url,
+        headers: <String, String>{'Content-Type': 'application/json; charset=UTF-8', 'Accept': 'application/json'},
+        body: jsonEncode(<String, dynamic>{'rut' : rut, 'nombre' : nombre, 'fechaNacimiento' : fechaNacimiento, 'foto' : foto, 'nombre_nivel' : nombre_nivel}));
+    return json.decode(respuesta.body);
+  }
+
+  //Actualizar un Nivel
+  Future<LinkedHashMap<String, dynamic>> nivelsEditar(String nombre_nivel) async {
+    var url = Uri.parse('$apiUrl/$nombre_nivel');
+    var respuesta = await http.put(url,
+        headers: <String, String>{'Content-Type': 'application/json; charset=UTF-8', 'Accept': 'application/json'},
+        body: jsonEncode(<String, dynamic>{'nombre_nivel': nombre_nivel}));
+    return json.decode(respuesta.body);
+  }
+
+  //borra un nivel
+  Future<bool> nivelBorrar(String nombre_nivel) async {
+    var url = Uri.parse('$apiUrl/$nombre_nivel');
+    var respuesta = await http.delete(url);
+    return respuesta.statusCode == 200;
+  }
+
+
+
+
+
 }
