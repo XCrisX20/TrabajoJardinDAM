@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 class CardWidgets extends StatelessWidget {
   final String texto;
   final String imagen;
-
   const CardWidgets({
     this.texto = '',
     this.imagen ='',
@@ -33,9 +32,7 @@ class CardWidgets extends StatelessWidget {
               height: 200,
               width: double.infinity,
               // Como queremos traer una imagen desde un url usamos NetworkImage
-              image: NetworkImage(
-                //Cambiar por 'imagen' el link
-                  'https://www.yourtrainingedge.com/wp-content/uploads/2019/05/background-calm-clouds-747964.jpg'),
+              image: NetworkImage(imagen),
             ),
 
             // Usamos Container para el contenedor de la descripción

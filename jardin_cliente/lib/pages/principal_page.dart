@@ -21,9 +21,9 @@ class _PrincipalPageState extends State<PrincipalPage> {
       ),
       body: Column(
         children: [
-          CardWidgets(texto: 'Play Group'),
-          CardWidgets(texto: 'Medio Menor'),
-          CardWidgets(texto: 'Medio Mayor'),
+          CardWidgets(texto: 'Play Group',imagen:'https://images.pexels.com/photos/8613366/pexels-photo-8613366.jpeg?cs=srgb&dl=pexels-yan-krukov-8613366.jpg&fm=jpg'),
+          CardWidgets(texto: 'Medio Menor',imagen:'https://images.pexels.com/photos/8363119/pexels-photo-8363119.jpeg?cs=srgb&dl=pexels-rodnae-productions-8363119.jpg&fm=jpg'),
+          CardWidgets(texto: 'Medio Mayor',imagen: 'https://images.pexels.com/photos/8363102/pexels-photo-8363102.jpeg?cs=srgb&dl=pexels-rodnae-productions-8363102.jpg&fm=jpg'),
         ],
       )
     );
