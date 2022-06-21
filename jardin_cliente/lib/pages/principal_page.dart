@@ -10,6 +10,12 @@ class PrincipalPage extends StatefulWidget {
 class _PrincipalPageState extends State<PrincipalPage> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Jardin Infantil'),
+        leading: Icon(Icons.child_care),
+      ),
+      body: Center(child: Text('Jardin Payasito', style: TextStyle(fontSize: 30),),)
+    );
   }
 }
