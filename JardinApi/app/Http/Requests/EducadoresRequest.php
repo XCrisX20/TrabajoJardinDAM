@@ -27,7 +27,7 @@ class EducadoresRequest extends FormRequest
             'rut'=> 'required|numeric|digits:9|unique:educadores,rut',
             'nombre'=> 'required|alpha',
             'nombre_nivel'=> 'required',
-            'email' => 'required|email|unique:',
+            'email' => 'required|email|unique:educadores,email',
             'telefono'=> 'required|numeric|digits:9|unique:educadores,telefono',
         ];
     }
