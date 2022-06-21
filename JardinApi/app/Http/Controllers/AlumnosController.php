@@ -78,7 +78,7 @@ class AlumnosController extends Controller
      * @param  \App\Models\Alumnos  $alumnos
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Alumnos $alumnos)
+    public function update(AlumnosRequest $request, Alumnos $alumnos)
     {
         $url = url()->current();
         $rut = explode("/", $url)[5];
