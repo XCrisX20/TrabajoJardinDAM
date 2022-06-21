@@ -52,7 +52,7 @@ class AlumnosProvider {
   }
 
   //borra un alumno
-  Future<bool> nivelBorrar(String rut) async {
+  Future<bool> alumnoBorrar(String rut) async {
     var url = Uri.parse('$apiUrl/$rut');
     var respuesta = await http.delete(url);
     return respuesta.statusCode == 200;
