@@ -24,7 +24,7 @@ class AlumnosRequest extends FormRequest
     public function rules()
     {
         return [
-            'rut' => 'required|numeric|min:9|max:9|unique:alumnos,rut',
+            'rut' => 'required|numeric|digits:9|unique:alumnos,rut',
             'nombre' => 'required|alpha',
             'nombre_nivel' => 'required'
         ];
@@ -34,8 +34,7 @@ class AlumnosRequest extends FormRequest
     {
         return [
             'rut.required' => 'Indique rut del Alumno',
-            'rut.min' => 'El Rut debe tener un largo de 9',
-            'rut.max' => 'El Rut debe tener un largo de 9',
+            'rut.digits' => 'El Rut debe tener un largo de 9',
             'rut.unique' => 'El rut ya existe',
             'nombre.required' => 'Indique nombre del Alumno',
             'nombre.alpha' => 'El nombre no puede contener caracteres que no sean letras',
