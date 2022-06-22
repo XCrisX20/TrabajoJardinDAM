@@ -2,7 +2,6 @@ import 'dart:collection';
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:image_picker/image_picker.dart';
 
 class EducadoresProvider {
   final String apiUrl = 'http://10.0.0.2:8000/api/educadores';

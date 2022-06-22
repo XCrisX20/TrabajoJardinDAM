@@ -3,7 +3,6 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:image_picker/image_picker.dart';
 
 class HistorialProvider {
   final String apiUrl = 'http://10.0.0.2:8000/api/historial';
