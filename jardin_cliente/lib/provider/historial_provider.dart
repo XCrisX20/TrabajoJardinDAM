@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class HistorialProvider {
-  final String apiUrl = 'http://10.0.0.2:8000/api/historial';
+  final String apiUrl = 'http://10.0.2.2:8000/api/historial';
 
   //Listar todos los historiales
   Future<List<dynamic>> getHistoriales() async {
@@ -49,14 +49,19 @@ class HistorialProvider {
           'tipo_evento': tipo_evento,
           'fecha': fecha,
           'hora': hora,
-          'rut_alumno' : rut_alumno
+          'rut_alumno': rut_alumno
         }));
     return json.decode(respuesta.body);
   }
 
   //Actualizar un historial
   Future<LinkedHashMap<String, dynamic>> historialEditar(
-    int cod_historial, String descripcion, String tipo_evento, DateTime fecha, TimePickerDialog hora, String rut_alumno) async {
+      int cod_historial,
+      String descripcion,
+      String tipo_evento,
+      DateTime fecha,
+      TimePickerDialog hora,
+      String rut_alumno) async {
     var url = Uri.parse('$apiUrl/$cod_historial');
     var respuesta = await http.put(url,
         headers: <String, String>{
@@ -67,8 +72,8 @@ class HistorialProvider {
           'descripcion': descripcion,
           'tipo_evento': tipo_evento,
           'fecha': fecha,
-          'hora' : hora,
-          'rut_alumno' : rut_alumno
+          'hora': hora,
+          'rut_alumno': rut_alumno
         }));
     return json.decode(respuesta.body);
   }
