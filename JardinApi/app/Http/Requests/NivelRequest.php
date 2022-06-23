@@ -24,7 +24,7 @@ class NivelRequest extends FormRequest
     public function rules()
     {
         return [
-            'nombre_nivel' => 'required|alpha'
+            'nombre_nivel' => 'required|alpha|unique:nivel,nombre_nivel'
         ];
     }
 
