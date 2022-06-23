@@ -8,13 +8,8 @@ class NivelProvider {
   final String apiUrl = 'http://10.0.2.2:8000/api/nivel';
 
   // Listar Niveles
-<<<<<<< HEAD
-  Future<List<dynamic>> getNiveles() async{ 
-    var url = Uri.parse('$apiUrl');
-=======
   Future<List<dynamic>> getNiveles() async {
     var url = Uri.parse(apiUrl);
->>>>>>> 8db6fe99602457894b6707fa9d4036d95f3daa3d
     var respuesta = await http.get(url);
 
     if (respuesta.statusCode == 200) {
