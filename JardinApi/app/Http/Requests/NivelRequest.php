@@ -24,7 +24,6 @@ class NivelRequest extends FormRequest
     public function rules()
     {
         return [
-            'cod_nivel' => 'required|numeric',
             'nombre_nivel' => 'required|alpha'
         ];
     }
@@ -32,8 +31,6 @@ class NivelRequest extends FormRequest
     public function messages()
     {
         return [
-            'cod_nivel.required' => 'Ingrese un nivel',
-            'cod_nivel.numeric' => 'el codigo debe ser numerico',
             'nombre_nivel.required' => 'Debe ingresar el nombre del nivel',
             'nombre_nivel.alpha' => 'El nombre del nivel solo puede contener letras'
         ];
