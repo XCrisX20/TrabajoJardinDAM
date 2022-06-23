@@ -4,7 +4,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class EducadoresProvider {
-  final String apiUrl = 'http://10.0.0.2:8000/api/educadores';
+  final String apiUrl = 'http://10.0.2.2:8000/api/educadores';
 
   //Listar todos los Educadores
   Future<List<dynamic>> getEducadores() async {
@@ -49,7 +49,7 @@ class EducadoresProvider {
           'nombre': nombre,
           'fechaNacimiento': fechaNacimiento,
           'telefono': telefono,
-          'email' : email,
+          'email': email,
           'cod_nivel': cod_nivel
         }));
     return json.decode(respuesta.body);
@@ -57,7 +57,12 @@ class EducadoresProvider {
 
   //Actualizar un Educador
   Future<LinkedHashMap<String, dynamic>> educadorEditar(
-    String rut, String nombre, DateTime fechaNacimiento, String telefono, String email, int cod_nivel) async {
+      String rut,
+      String nombre,
+      DateTime fechaNacimiento,
+      String telefono,
+      String email,
+      int cod_nivel) async {
     var url = Uri.parse('$apiUrl/$rut');
     var respuesta = await http.put(url,
         headers: <String, String>{
@@ -67,8 +72,8 @@ class EducadoresProvider {
         body: jsonEncode(<String, dynamic>{
           'nombre': nombre,
           'fechaNacimiento': fechaNacimiento,
-          'telefono' : telefono,
-          'email' : email,
+          'telefono': telefono,
+          'email': email,
           'cod_nivel': cod_nivel
         }));
     return json.decode(respuesta.body);

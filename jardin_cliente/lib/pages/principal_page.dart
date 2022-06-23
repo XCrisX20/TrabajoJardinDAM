@@ -14,6 +14,7 @@ class _PrincipalPageState extends State<PrincipalPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+<<<<<<< HEAD
         appBar: AppBar(
           title: Text('Jardin Infantil'),
           leading: Icon(Icons.child_care),
@@ -51,5 +52,38 @@ class _PrincipalPageState extends State<PrincipalPage> {
           ],
         ),*/
         ));
+=======
+      appBar: AppBar(
+        title: Text('Jardin Infantil'),
+        leading: Icon(Icons.child_care),
+        backgroundColor: verdeClaro,
+      ),
+      body: Padding(
+        padding: EdgeInsets.all(5),
+        child: Expanded(
+          child: FutureBuilder(
+            future: NivelProvider().getNiveles(),
+            builder: (context, AsyncSnapshot snap) {
+              if (!snap.hasData) {
+                return Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
+              return ListView.separated(
+                separatorBuilder: (_, __) => Divider(),
+                itemCount: snap.data.length,
+                itemBuilder: (context, index) {
+                  var nvl = snap.data[index];
+                  return ListTile(
+                    title: Text(nvl['nombre_nivel']),
+                  );
+                },
+              );
+            },
+          ),
+        ),
+      ),
+    );
+>>>>>>> 8db6fe99602457894b6707fa9d4036d95f3daa3d
   }
 }
