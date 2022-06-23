@@ -32,7 +32,8 @@ class NivelRequest extends FormRequest
     {
         return [
             'nombre_nivel.required' => 'Debe ingresar el nombre del nivel',
-            'nombre_nivel.alpha' => 'El nombre del nivel solo puede contener letras'
+            'nombre_nivel.alpha' => 'El nombre del nivel solo puede contener letras',
+            'nombre_nivel.unique' => 'El nombre del nivel ya existe'
         ];
     }
 
