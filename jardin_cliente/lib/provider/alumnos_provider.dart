@@ -33,21 +33,21 @@ class AlumnosProvider {
 
   //Agregar un Alumno
   Future<LinkedHashMap<String, dynamic>> alumnoAgregar(
-    String rut, String nombre, DateTime fechaNacimiento, ImagePicker foto, String nombre_nivel) async{
+    String rut, String nombre, DateTime fechaNacimiento, ImagePicker foto, int cod_nivel) async{
     var url = Uri.parse('$apiUrl');
     var respuesta = await http.post(url,
         headers: <String, String>{'Content-Type': 'application/json; charset=UTF-8', 'Accept': 'application/json'},
-        body: jsonEncode(<String, dynamic>{'rut' : rut, 'nombre' : nombre, 'fechaNacimiento' : fechaNacimiento, 'foto' : foto, 'nombre_nivel' : nombre_nivel}));
+        body: jsonEncode(<String, dynamic>{'rut' : rut, 'nombre' : nombre, 'fechaNacimiento' : fechaNacimiento, 'foto' : foto, 'cod_nivel' : cod_nivel}));
     return json.decode(respuesta.body);
   }
 
   //Actualizar un Alumno
   Future<LinkedHashMap<String, dynamic>> alumnoEditar(
-    String rut, String nombre, DateTime fechaNacimiento, ImagePicker foto, String nombre_nivel) async {
+    String rut, String nombre, DateTime fechaNacimiento, ImagePicker foto, int cod_nivel) async {
     var url = Uri.parse('$apiUrl/$rut');
     var respuesta = await http.put(url,
         headers: <String, String>{'Content-Type': 'application/json; charset=UTF-8', 'Accept': 'application/json'},
-        body: jsonEncode(<String, dynamic>{'nombre': nombre, 'fechaNacimiento' : fechaNacimiento, 'foto' : foto, 'nombre_nivel' : nombre_nivel}));
+        body: jsonEncode(<String, dynamic>{'nombre': nombre, 'fechaNacimiento' : fechaNacimiento, 'foto' : foto, 'cod_nivel' : cod_nivel}));
     return json.decode(respuesta.body);
   }
 

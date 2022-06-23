@@ -37,7 +37,7 @@ class EducadoresProvider {
       DateTime fechaNacimiento,
       String telefono,
       String email,
-      String nombre_nivel) async {
+      int cod_nivel) async {
     var url = Uri.parse('$apiUrl');
     var respuesta = await http.post(url,
         headers: <String, String>{
@@ -50,14 +50,14 @@ class EducadoresProvider {
           'fechaNacimiento': fechaNacimiento,
           'telefono': telefono,
           'email' : email,
-          'nombre_nivel': nombre_nivel
+          'cod_nivel': cod_nivel
         }));
     return json.decode(respuesta.body);
   }
 
   //Actualizar un Educador
   Future<LinkedHashMap<String, dynamic>> educadorEditar(
-    String rut, String nombre, DateTime fechaNacimiento, String telefono, String email, String nombre_nivel) async {
+    String rut, String nombre, DateTime fechaNacimiento, String telefono, String email, int cod_nivel) async {
     var url = Uri.parse('$apiUrl/$rut');
     var respuesta = await http.put(url,
         headers: <String, String>{
@@ -69,7 +69,7 @@ class EducadoresProvider {
           'fechaNacimiento': fechaNacimiento,
           'telefono' : telefono,
           'email' : email,
-          'nombre_nivel': nombre_nivel
+          'cod_nivel': cod_nivel
         }));
     return json.decode(respuesta.body);
   }

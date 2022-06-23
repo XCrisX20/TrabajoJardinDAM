@@ -33,7 +33,6 @@ class HistorialProvider {
 
   //Agregar un Historial
   Future<LinkedHashMap<String, dynamic>> historialAgregar(
-      int cod_historial,
       String descripcion,
       String tipo_evento,
       DateTime fecha,
@@ -46,7 +45,6 @@ class HistorialProvider {
           'Accept': 'application/json'
         },
         body: jsonEncode(<String, dynamic>{
-          'cod_historial': cod_historial,
           'descripcion': descripcion,
           'tipo_evento': tipo_evento,
           'fecha': fecha,
@@ -66,7 +64,6 @@ class HistorialProvider {
           'Accept': 'application/json'
         },
         body: jsonEncode(<String, dynamic>{
-          'cod_historial': cod_historial,
           'descripcion': descripcion,
           'tipo_evento': tipo_evento,
           'fecha': fecha,
