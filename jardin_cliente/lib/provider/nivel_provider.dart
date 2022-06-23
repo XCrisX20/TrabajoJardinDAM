@@ -9,7 +9,7 @@ class NivelProvider{
 
   // Listar Niveles
   Future<List<dynamic>> getNiveles() async{ 
-    var url = Uri.parse(apiUrl);
+    var url = Uri.parse('$apiUrl');
     var respuesta = await http.get(url);
 
     if (respuesta.statusCode == 200){
