@@ -26,7 +26,7 @@ class EducadoresRequest extends FormRequest
         return [
             'rut'=> 'required|numeric|digits:9|unique:educadores,rut',
             'nombre'=> 'required|alpha',
-            'nombre_nivel'=> 'required',
+            'cod_nivel'=> 'required|numeric',
             'email' => 'required|email|unique:educadores,email',
             'telefono'=> 'required|numeric|digits:9|unique:educadores,telefono',
         ];
@@ -43,7 +43,8 @@ class EducadoresRequest extends FormRequest
             'email.required' =>'ingrese un email',
             'email.email' => 'El email no tiene un formato correcto',
             'email.unique' => 'el email ya existe',
-            'nombre_nivel.required'=>'debe ingresar un nivel',
+            'cod_nivel.required'=>'debe ingresar un nivel',
+            'cod_nivel.numeric' => 'El codigo debe ser numerico',
             'telefono.required'=>'ingrese un telefono',
             'telefono.numeric' => 'El telefono solo debe contener numeros',
             'telefono.digits' => 'El telefono debe contener 9 digitos',

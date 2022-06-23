@@ -14,11 +14,11 @@ return new class extends Migration
     public function up()
     {
         Schema::table('alumnos', function (Blueprint $table) {
-            $table->foreign('nombre_nivel')->references('nombre_nivel')->on('nivel');
+            $table->foreign('cod_nivel')->references('cod_nivel')->on('nivel');
         });
 
         Schema::table('educadores', function (Blueprint $table) {
-            $table->foreign('nombre_nivel')->references('nombre_nivel')->on('nivel');
+            $table->foreign('cod_nivel')->references('cod_nivel')->on('nivel');
         });
 
         Schema::table('historial', function (Blueprint $table) {

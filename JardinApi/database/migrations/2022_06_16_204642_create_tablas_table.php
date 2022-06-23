@@ -13,12 +13,20 @@ return new class extends Migration
      */
     public function up()
     {
+        
+        Schema::create('nivel', function (Blueprint $table) {
+            $table->increments('cod_nivel');
+            $table->string('nombre_nivel');
+            $table->binary('imagen')->nullable(); 
+            $table->softDeletes();        
+        });
+
         Schema::create('alumnos', function (Blueprint $table) {
             $table->string('rut')->primary();
             $table->string('nombre');
             $table->date('fechaNacimiento');
-            $table->binary('foto');  
-            $table->string('nombre_nivel');
+            $table->binary('foto')->nullable();  
+            $table->int('cod_nivel');
             $table->softDeletes();     
         });
 
@@ -37,14 +45,9 @@ return new class extends Migration
             $table->date('fechaNacimiento');
             $table->string('telefono');    
             $table->string('email');
-            $table->string('nombre_nivel');
+            $table->int('cod_nivel');
             $table->softDeletes();
         });
-        Schema::create('nivel', function (Blueprint $table) {
-            $table->string('nombre_nivel')->primary(); 
-            $table->softDeletes();        
-        });
-
     }
 
     /**
@@ -57,7 +60,6 @@ return new class extends Migration
         Schema::dropIfExists('alumnos');
         Schema::dropIfExists('educadores');
         Schema::dropIfExists('historial');
-        Schema::dropIfExists('eventos');
         Schema::dropIfExists('nivel');
     }
 };

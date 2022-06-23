@@ -11,9 +11,10 @@ class Alumnos extends Model
 {
     use HasFactory,SoftDeletes;
     
-    protected $keyType = 'string';
+    
     protected $table = 'alumnos';
     protected $primaryKey = 'rut';
+    protected $keyType = 'string';
     public $timestamps = false;
 
 

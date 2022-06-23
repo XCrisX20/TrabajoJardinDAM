@@ -26,7 +26,7 @@ class AlumnosRequest extends FormRequest
         return [
             'rut' => 'required|numeric|digits:9|unique:alumnos,rut',
             'nombre' => 'required|alpha',
-            'nombre_nivel' => 'required'
+            'cod_nivel' => 'required|numeric'
         ];
     }
 
@@ -38,7 +38,8 @@ class AlumnosRequest extends FormRequest
             'rut.unique' => 'El rut ya existe',
             'nombre.required' => 'Indique nombre del Alumno',
             'nombre.alpha' => 'El nombre no puede contener caracteres que no sean letras',
-            'nombre_nivel.required' => 'Indique nivel del alumno',
+            'cod_nivel.required' => 'Indique nivel del alumno',
+            'cod_nivel.numeric' => 'El codigo de nivel debe ser numerico'
         ];
     }
 

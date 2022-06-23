@@ -11,9 +11,9 @@ class Nivel extends Model
     use HasFactory, SoftDeletes;
     
     protected $table = 'nivel';
-    protected $primaryKey = 'nombre_nivel';
+    protected $primaryKey = 'cod_nivel';
     public $incrementing = false;
-    protected $keyType = 'string';
+    protected $keyType = 'int';
     public $timestamps = false;
 
 

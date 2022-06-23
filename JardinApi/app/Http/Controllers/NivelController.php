@@ -36,7 +36,9 @@ class NivelController extends Controller
     public function store(NivelRequest $request)
     {
         $nivel = new Nivel();
+        $nivel->cod_nivel = $request->cod_nivel;
         $nivel->nombre_nivel = $request->nombre_nivel;
+        $nivel->imagen = $request->imagen;
         $nivel->save();
         return $nivel;
     }
@@ -73,6 +75,7 @@ class NivelController extends Controller
     public function update(NivelRequest $request, Nivel $nivel)
     {
         $nivel->nombre_nivel = $request->nombre_nivel;
+        $nivel->imagen = $request->imagen;
         $nivel->save();
         return $nivel;
     }

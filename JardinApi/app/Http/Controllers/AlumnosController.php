@@ -41,7 +41,7 @@ class AlumnosController extends Controller
         $alumnos->nombre = $request->nombre;
         $alumnos->fechaNacimiento = $request->fechaNacimiento;
         $alumnos->foto = $request->foto;
-        $alumnos->nombre_nivel = $request->nombre_nivel;
+        $alumnos->cod_nivel = $request->cod_nivel;
         $alumnos->save();
         return  $alumnos;
     }
@@ -86,7 +86,7 @@ class AlumnosController extends Controller
         $alumnos->nombre = $request->nombre;
         $alumnos->fechaNacimiento = $request->fechaNacimiento;
         $alumnos->foto = $request->foto;
-        $alumnos->nombre_nivel = $request->nombre_nivel;
+        $alumnos->cod_nivel = $request->cod_nivel;
         $alumnos->save();
         return  $alumnos;
     }

@@ -42,7 +42,7 @@ class EducadoresController extends Controller
         $educadores->fechaNacimiento = $request->fechaNacimiento;
         $educadores->telefono = $request->telefono;
         $educadores->email = $request->email;
-        $educadores->nombre_nivel = $request->nombre_nivel;
+        $educadores->cod_nivel = $request->cod_nivel;
         $educadores->save();
         return $educadores;
     }
@@ -88,7 +88,7 @@ class EducadoresController extends Controller
         $educadores->fechaNacimiento = $request->fechaNacimiento;
         $educadores->telefono = $request->telefono;
         $educadores->email = $request->email;
-        $educadores->nombre_nivel = $request->nombre_nivel;
+        $educadores->cod_nivel = $request->cod_nivel;
         $educadores->save();
         return  $educadores;
 
