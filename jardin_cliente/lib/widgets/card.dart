@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class CardWidgets extends StatelessWidget {
   final String texto;
   final String imagen;
-  const CardWidgets({this.texto = '', this.imagen = '', Key? key})
+  const CardWidgets({this.texto = '', this.imagen = 'http://pm1.narvii.com/7119/b0abdf491cffde4bdf95850956c1b15a5591a4b5r1-712-707v2_uhq.jpg', Key? key})
       : super(key: key);
   @override
   Widget build(BuildContext context) {

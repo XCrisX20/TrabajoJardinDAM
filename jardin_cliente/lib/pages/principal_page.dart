@@ -35,9 +35,7 @@ class _PrincipalPageState extends State<PrincipalPage> {
                 itemCount: snap.data.length,
                 itemBuilder: (context, index) {
                   var nvl = snap.data[index];
-                  return ListTile(
-                    title: Text(nvl['nombre_nivel']),
-                  );
+                  return CardWidgets(texto: nvl['nombre_nivel'].toString(),);
                 },
               );
             },
