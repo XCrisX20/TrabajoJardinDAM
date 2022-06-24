@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jardin_cliente/pages/listado_alumnos.dart';
 import 'package:jardin_cliente/provider/nivel_provider.dart';
 import 'package:jardin_cliente/widgets/card.dart';
 
@@ -35,7 +36,17 @@ class _PrincipalPageState extends State<PrincipalPage> {
                 itemCount: snap.data.length,
                 itemBuilder: (context, index) {
                   var nvl = snap.data[index];
-                  return CardWidgets(texto: nvl['nombre_nivel'].toString(),);
+                  return ElevatedButton(
+                    child: CardWidgets(texto: nvl['nombre_nivel'].toString()),
+                    onPressed: () {
+                      MaterialPageRoute route = new MaterialPageRoute(
+                          builder: (context) => ListadoAlumnos(nivel: nvl['nombre_nivel'],));
+                      Navigator.push(context, route);
+                    },
+                  );
+                  /*return Container(
+                    child: CardWidgets(texto: nvl['nombre_nivel'].toString())
+                  );*/
                 },
               );
             },
