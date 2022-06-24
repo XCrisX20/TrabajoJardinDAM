@@ -15,6 +15,7 @@ class _PrincipalPageState extends State<PrincipalPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor:Color(0xFFFF420E) ,
       appBar: AppBar(
         title: Text('Jardin Infantil'),
         leading: Icon(Icons.child_care),
@@ -32,6 +33,7 @@ class _PrincipalPageState extends State<PrincipalPage> {
                 );
               }
               return ListView.separated(
+                physics: const BouncingScrollPhysics(),
                 separatorBuilder: (_, __) => Divider(),
                 itemCount: snap.data.length,
                 itemBuilder: (context, index) {
@@ -42,7 +44,11 @@ class _PrincipalPageState extends State<PrincipalPage> {
                       MaterialPageRoute route = new MaterialPageRoute(
                           builder: (context) => ListadoAlumnos(nivel: nvl['nombre_nivel'],));
                       Navigator.push(context, route);
+                      
                     },
+                    style: ElevatedButton.styleFrom(
+                          primary:Color(0xFFFF420E) ,
+                        )
                   );
                   /*return Container(
                     child: CardWidgets(texto: nvl['nombre_nivel'].toString())
