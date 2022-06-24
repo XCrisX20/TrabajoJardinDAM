@@ -22,7 +22,8 @@ class _FormAgregarAlumnosPageState extends State<FormAgregarAlumnosPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Ejemplo Form'),
+        backgroundColor: verdeClaro,
+        title: Text('Agregar Alumno'),
       ),
       body: Form(
         key: formKey,
@@ -97,9 +98,11 @@ class _FormAgregarAlumnosPageState extends State<FormAgregarAlumnosPage> {
         Text(ffecha.format(fechaSeleccionada), style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
         Spacer(),
         TextButton(
+       
           child: Icon(MdiIcons.calendar),
           onPressed: () {
             showDatePicker(
+
               context: context,
               initialDate: DateTime.now(),
               firstDate: DateTime(1920),
@@ -168,6 +171,9 @@ class _FormAgregarAlumnosPageState extends State<FormAgregarAlumnosPage> {
           }
           
         },
+        style: ElevatedButton.styleFrom(
+                        primary: verdeClaro,
+                      )
       ),
     );
   }

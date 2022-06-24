@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jardin_cliente/pages/agregar_alumno_form.dart';
 import 'package:jardin_cliente/provider/alumnos_provider.dart';
 
 class ListadoAlumnos extends StatefulWidget {
@@ -48,7 +49,12 @@ class _ListadoAlumnosState extends State<ListadoAlumnos> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed:() => 0,
+        onPressed:() {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => FormAgregarAlumnosPage()),
+  );
+        },
         child:Icon(Icons.add),
         backgroundColor:verdeClaro,
          ),
