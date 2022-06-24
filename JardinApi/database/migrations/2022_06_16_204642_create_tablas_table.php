@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('nombre');
             $table->date('fechaNacimiento');
             $table->binary('foto')->nullable();
-            $table->char('sexo');
+            $table->string('sexo');
             $table->integer('cod_nivel')->unsigned();
             $table->softDeletes();     
         });
@@ -45,7 +45,7 @@ return new class extends Migration
             $table->date('fechaNacimiento');
             $table->string('telefono');
             $table->string('email');
-            $table->char('sexo');
+            $table->string('sexo');
             $table->integer('cod_nivel')->unsigned();
             $table->softDeletes();
         });
