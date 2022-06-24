@@ -12,10 +12,13 @@ class ListadoAlumnos extends StatefulWidget {
 }
 
 class _ListadoAlumnosState extends State<ListadoAlumnos> {
+  final verdeClaro = Color(0xFF89DA59);
+  final naranjo =Color(0xFFFF420E);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: verdeClaro,
         title: Text("Alumnos " + widget.nivel),
       ),
       body: Padding(
@@ -44,6 +47,12 @@ class _ListadoAlumnosState extends State<ListadoAlumnos> {
           ),
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed:() => 0,
+        child:Icon(Icons.add),
+        backgroundColor:verdeClaro,
+         ),
+        
     );
   }
 }

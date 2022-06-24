@@ -12,10 +12,11 @@ class PrincipalPage extends StatefulWidget {
 
 class _PrincipalPageState extends State<PrincipalPage> {
   final verdeClaro = Color(0xFF89DA59);
+  final naranjo =Color(0xFFFF420E);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFFF420E),
+      backgroundColor: naranjo,
       appBar: AppBar(
         title: Text('Jardin Infantil'),
         leading: Icon(Icons.child_care),
