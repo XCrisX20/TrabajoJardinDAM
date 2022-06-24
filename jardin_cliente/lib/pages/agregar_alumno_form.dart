@@ -18,6 +18,7 @@ class _FormAgregarAlumnosPageState extends State<FormAgregarAlumnosPage> {
   String emailRegex = r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+";
   final verdeClaro = Color(0xFF89DA59);
   final naranjo =Color(0xFFFF420E);
+  int group = 1;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,13 +32,15 @@ class _FormAgregarAlumnosPageState extends State<FormAgregarAlumnosPage> {
           padding: const EdgeInsets.all(5.0),
           child: ListView(
             children: [
-              campoNombres(),
-              campoApellidos(),
-              campoEmail(),
+              campoPrimerNombre(),
+              campoSegundoNombre(),
+              campoPrimerApellido(),
+              campoSegundoApellido(),
+              campoSexo(),
               campoFechaNacimiento(),
-              campoJornada(),
-              campoGratuidad(),
+              campoFoto(),
               botonMatricular(),
+              
             ],
           ),
         ),
@@ -45,51 +48,70 @@ class _FormAgregarAlumnosPageState extends State<FormAgregarAlumnosPage> {
     );
   }
 
-  TextFormField campoNombres() {
+  TextFormField campoPrimerNombre() {
     return TextFormField(
       decoration: InputDecoration(
-        labelText: 'Nombres',
+        labelText: 'Primer Nombre',
       ),
       validator: (valor) {
         if (valor == null || valor.isEmpty) {
-          return 'Indique su nombre';
+          return 'Indique su primer nombre';
+        }
+        return null;
+      },
+    );
+  }
+  TextFormField campoSegundoNombre() {
+    return TextFormField(
+      decoration: InputDecoration(
+        labelText: 'Segundo Nombre',
+      ),
+      validator: (valor) {
+        if (valor == null || valor.isEmpty) {
+          return 'Indique su segundo nombre';
+        }
+        return null;
+      },
+    );
+  }
+    TextFormField campoPrimerApellido() {
+    return TextFormField(
+      decoration: InputDecoration(
+        labelText: 'Primer Apellido',
+      ),
+      validator: (valor) {
+        if (valor == null || valor.isEmpty) {
+          return 'Indique su primer apellido';
         }
         return null;
       },
     );
   }
 
-  TextFormField campoApellidos() {
+
+  TextFormField campoSegundoApellido() {
     return TextFormField(
       decoration: InputDecoration(
-        labelText: 'Apellidos',
+        labelText: 'Segundo Apellido',
       ),
       validator: (valor) {
         if (valor == null || valor.isEmpty) {
-          return 'Indique sus apellidos';
+          return 'Indique su segundo apellido';
         }
         return null;
       },
     );
   }
 
-  TextFormField campoEmail() {
-    return TextFormField(
-      decoration: InputDecoration(
-        labelText: 'Email',
-      ),
-      keyboardType: TextInputType.emailAddress,
-      validator: (valor) {
-        if (valor == null || valor.isEmpty) {
-          return 'Indique su email';
-        }
-        if (!RegExp(emailRegex).hasMatch(valor)) {
-          return 'Formato de email no válido';
-        }
-        return null;
-      },
+   Row campoSexo() {
+    return Row(
+      
     );
+
+    
   }
+
+
 
   Row campoFechaNacimiento() {
     return Row(
@@ -118,49 +140,28 @@ class _FormAgregarAlumnosPageState extends State<FormAgregarAlumnosPage> {
         ),
       ],
     );
+    
   }
-
-  Column campoJornada() {
-    return Column(
-      children: [
-        RadioListTile<String>(
-          groupValue: jornadaSeleccionada,
-          title: Text('Jornada Diurna'),
-          value: 'd',
-          onChanged: (jornada) {
-            setState(() {
-              jornadaSeleccionada = jornada!;
-            });
-          },
-        ),
-        RadioListTile<String>(
-          groupValue: jornadaSeleccionada,
-          title: Text('Jornada Vespertina'),
-          value: 'v',
-          onChanged: (jornada) {
-            setState(() {
-              jornadaSeleccionada = jornada!;
-            });
-          },
-        ),
-      ],
+   TextFormField campoFoto() {
+    return TextFormField(
+      decoration: InputDecoration(
+        labelText: 'Foto',
+      ),
+      validator: (valor) {
+        if (valor == null || valor.isEmpty) {
+          return 'Suba una Foto';
+        }
+        return null;
+      },
     );
   }
 
-  SwitchListTile campoGratuidad() {
-    return SwitchListTile(
-      title: Text('Estudia con Gratuidad'),
-      value: estudiaGratuidad,
-      onChanged: ((gratuidad) {
-        setState(() {
-          estudiaGratuidad = gratuidad;
-        });
-      }),
-    );
-  }
+  
+
 
   Container botonMatricular() {
     return Container(
+      
       width: double.infinity,
       child: ElevatedButton(
         child: Text('Matricular'),
