@@ -29,6 +29,7 @@ class EducadoresRequest extends FormRequest
             'cod_nivel'=> 'required|numeric',
             'email' => 'required|email|unique:educadores,email',
             'telefono'=> 'required|numeric|digits:9|unique:educadores,telefono',
+            'sexo' => 'required|digits:1',
         ];
     }
 
@@ -48,7 +49,9 @@ class EducadoresRequest extends FormRequest
             'telefono.required'=>'ingrese un telefono',
             'telefono.numeric' => 'El telefono solo debe contener numeros',
             'telefono.digits' => 'El telefono debe contener 9 digitos',
-            'telefono.unique' => 'El telefono ya existe'
+            'telefono.unique' => 'El telefono ya existe',
+            'sexo.required' => 'El sexo es requerido',
+            'sexo.digits' => 'El sexo solo puede tener un digito',
         ];
     }
 }

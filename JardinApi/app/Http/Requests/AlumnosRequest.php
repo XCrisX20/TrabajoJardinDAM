@@ -26,7 +26,8 @@ class AlumnosRequest extends FormRequest
         return [
             'rut' => 'required|numeric|digits:9|unique:alumnos,rut',
             'nombre' => 'required|alpha',
-            'cod_nivel' => 'required|numeric'
+            'cod_nivel' => 'required|numeric',
+            'sexo' => 'required|digits:1',
         ];
     }
 
@@ -39,7 +40,9 @@ class AlumnosRequest extends FormRequest
             'nombre.required' => 'Indique nombre del Alumno',
             'nombre.alpha' => 'El nombre no puede contener caracteres que no sean letras',
             'cod_nivel.required' => 'Indique nivel del alumno',
-            'cod_nivel.numeric' => 'El codigo de nivel debe ser numerico'
+            'cod_nivel.numeric' => 'El codigo de nivel debe ser numerico',
+            'sexo.required' => 'El sexo es requerido',
+            'sexo.digits' => 'El sexo solo puede tener un digito',
         ];
     }
 
