@@ -13,7 +13,6 @@ return new class extends Migration
      */
     public function up()
     {
-        
         Schema::create('nivel', function (Blueprint $table) {
             $table->increments('cod_nivel');
             $table->string('nombre_nivel');
@@ -25,7 +24,8 @@ return new class extends Migration
             $table->string('rut')->primary();
             $table->string('nombre');
             $table->date('fechaNacimiento');
-            $table->binary('foto')->nullable();  
+            $table->binary('foto')->nullable();
+            $table->string('sexo');
             $table->integer('cod_nivel')->unsigned();
             $table->softDeletes();     
         });
@@ -43,8 +43,9 @@ return new class extends Migration
             $table->string('rut')->primary();
             $table->string('nombre');
             $table->date('fechaNacimiento');
-            $table->string('telefono');    
+            $table->string('telefono');
             $table->string('email');
+            $table->string('sexo');
             $table->integer('cod_nivel')->unsigned();
             $table->softDeletes();
         });

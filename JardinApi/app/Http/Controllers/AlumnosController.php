@@ -18,7 +18,7 @@ class AlumnosController extends Controller
         return Alumnos::all();
     }
     public function getXNivel(int $cod_nivel){
-        return Alumnos::select('rut', 'nombre', 'fechaNacimiento', 'foto', 'cod_nivel')
+        return Alumnos::select('rut', 'nombre', 'fechaNacimiento', 'foto', 'sexo',  'cod_nivel')
         ->where('cod_nivel', '=', $cod_nivel)->get();
     }
     /**
@@ -44,6 +44,7 @@ class AlumnosController extends Controller
         $alumnos->nombre = $request->nombre;
         $alumnos->fechaNacimiento = $request->fechaNacimiento;
         $alumnos->foto = $request->foto;
+        $alumnos->sexo = $request->sexo;
         $alumnos->cod_nivel = $request->cod_nivel;
         $alumnos->save();
         return  $alumnos;
@@ -89,6 +90,7 @@ class AlumnosController extends Controller
         $alumnos->nombre = $request->nombre;
         $alumnos->fechaNacimiento = $request->fechaNacimiento;
         $alumnos->foto = $request->foto;
+        $alumnos->sexo = $request->sexo;
         $alumnos->cod_nivel = $request->cod_nivel;
         $alumnos->save();
         return  $alumnos;
