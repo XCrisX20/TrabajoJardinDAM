@@ -15,9 +15,11 @@ class _FormAgregarAlumnosPageState extends State<FormAgregarAlumnosPage> {
   var ffecha = DateFormat('dd-MM-yyyy');
   String jornadaSeleccionada = 'd';
   bool estudiaGratuidad = true;
-  String emailRegex = r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+";
+  String emailRegex =
+      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+";
+  String? gender;
   final verdeClaro = Color(0xFF89DA59);
-  final naranjo =Color(0xFFFF420E);
+  final naranjo = Color(0xFFFF420E);
   int group = 1;
   @override
   Widget build(BuildContext context) {
@@ -40,7 +42,6 @@ class _FormAgregarAlumnosPageState extends State<FormAgregarAlumnosPage> {
               campoFechaNacimiento(),
               campoFoto(),
               botonMatricular(),
-              
             ],
           ),
         ),
@@ -61,6 +62,7 @@ class _FormAgregarAlumnosPageState extends State<FormAgregarAlumnosPage> {
       },
     );
   }
+
   TextFormField campoSegundoNombre() {
     return TextFormField(
       decoration: InputDecoration(
@@ -74,7 +76,8 @@ class _FormAgregarAlumnosPageState extends State<FormAgregarAlumnosPage> {
       },
     );
   }
-    TextFormField campoPrimerApellido() {
+
+  TextFormField campoPrimerApellido() {
     return TextFormField(
       decoration: InputDecoration(
         labelText: 'Primer Apellido',
@@ -87,7 +90,6 @@ class _FormAgregarAlumnosPageState extends State<FormAgregarAlumnosPage> {
       },
     );
   }
-
 
   TextFormField campoSegundoApellido() {
     return TextFormField(
@@ -103,28 +105,55 @@ class _FormAgregarAlumnosPageState extends State<FormAgregarAlumnosPage> {
     );
   }
 
-   Row campoSexo() {
-    return Row(
-      
-    );
-
-    
+  Column campoSexo() {
+    return Column(children: [
+      ListTile(
+        title: Text("Hombre"),
+        leading: Radio(
+            value: "M",
+            groupValue: gender,
+            onChanged: (value) {
+              setState(() {
+                gender = value.toString();
+              });
+            }),
+      ),
+      ListTile(
+        title: Text("Mujer"),
+        leading: Radio(
+            value: "F",
+            groupValue: gender,
+            onChanged: (value) {
+              setState(() {
+                gender = value.toString();
+              });
+            }),
+      ),
+      ListTile(
+        title: Text("No expecifico"),
+        leading: Radio(
+            value: "I",
+            groupValue: gender,
+            onChanged: (value) {
+              setState(() {
+                gender = value.toString();
+              });
+            }),
+      ),
+    ]);
   }
-
-
 
   Row campoFechaNacimiento() {
     return Row(
       children: [
         Text('Fecha de nacimiento:', style: TextStyle(fontSize: 16)),
-        Text(ffecha.format(fechaSeleccionada), style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+        Text(ffecha.format(fechaSeleccionada),
+            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
         Spacer(),
         TextButton(
-       
           child: Icon(MdiIcons.calendar),
           onPressed: () {
             showDatePicker(
-
               context: context,
               initialDate: DateTime.now(),
               firstDate: DateTime(1920),
@@ -140,9 +169,9 @@ class _FormAgregarAlumnosPageState extends State<FormAgregarAlumnosPage> {
         ),
       ],
     );
-    
   }
-   TextFormField campoFoto() {
+
+  TextFormField campoFoto() {
     return TextFormField(
       decoration: InputDecoration(
         labelText: 'Foto',
@@ -156,26 +185,20 @@ class _FormAgregarAlumnosPageState extends State<FormAgregarAlumnosPage> {
     );
   }
 
-  
-
-
   Container botonMatricular() {
     return Container(
-      
       width: double.infinity,
       child: ElevatedButton(
-        child: Text('Matricular'),
-        onPressed: () {
-          if (formKey.currentState!.validate()) {
-            //form ok
-            print('FORMULARIO OK');
-          }
-          
-        },
-        style: ElevatedButton.styleFrom(
-                        primary: verdeClaro,
-                      )
-      ),
+          child: Text('Matricular'),
+          onPressed: () {
+            if (formKey.currentState!.validate()) {
+              //form ok
+              print('FORMULARIO OK');
+            }
+          },
+          style: ElevatedButton.styleFrom(
+            primary: verdeClaro,
+          )),
     );
   }
 }
