@@ -41,6 +41,7 @@ class _ListadoAlumnosState extends State<ListadoAlumnos> {
                   var alumno = snap.data[index];
                   return ListTile(
                     title: Text(alumno['nombre'].toString()),
+                    onTap: (){},
                   );
                 },
               );
