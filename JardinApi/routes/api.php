@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{AlumnosController,EducadoresController,EventosController,HistorialController,NivelController};
+use App\Models\Alumnos;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -17,6 +19,7 @@ use App\Http\Controllers\{AlumnosController,EducadoresController,EventosControll
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::get('/alumnos/niv/{nivel}', AlumnosController::class, 'getXNivel');
 Route::apiResource('/alumnos',AlumnosController::class);
 Route::apiResource('/educadores',EducadoresController::class);
 Route::apiResource('/eventos',EventosController::class);

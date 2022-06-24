@@ -17,7 +17,10 @@ class AlumnosController extends Controller
     {
         return Alumnos::all();
     }
-
+    public function getXNivel(int $cod_nivel){
+        return Alumnos::select('rut', 'nombre', 'fechaNacimiento', 'foto', 'cod_nivel')
+        ->where('cod_nivel', '=', $cod_nivel)->get();
+    }
     /**
      * Show the form for creating a new resource.
      *
