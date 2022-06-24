@@ -1,22 +1,49 @@
 import 'package:flutter/material.dart';
+import 'package:jardin_cliente/provider/alumnos_provider.dart';
 
 class ListadoAlumnos extends StatefulWidget {
   final String nivel;
-  ListadoAlumnos({this.nivel = '', Key? key}) : super(key: key);
+  final int codigo;
+  ListadoAlumnos({this.nivel = '', this.codigo = 0, Key? key})
+      : super(key: key);
 
   @override
   State<ListadoAlumnos> createState() => _ListadoAlumnosState();
 }
 
 class _ListadoAlumnosState extends State<ListadoAlumnos> {
-  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text("Alumnos " + widget.nivel),
       ),
-      body: Center(child: Text('Listado de Alumnos')),
+      body: Padding(
+        padding: EdgeInsets.all(5),
+        child: Expanded(
+          child: FutureBuilder(
+            future: AlumnosProvider().getAlumnosXNivel(widget.codigo),
+            builder: (context, AsyncSnapshot snap) {
+              if (!snap.hasData) {
+                return Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
+              return ListView.separated(
+                physics: const BouncingScrollPhysics(),
+                separatorBuilder: (_, __) => Divider(),
+                itemCount: snap.data.length,
+                itemBuilder: (context, index) {
+                  var alumno = snap.data[index];
+                  return ListTile(
+                    title: Text(alumno['nombre'].toString()),
+                  );
+                },
+              );
+            },
+          ),
+        ),
+      ),
     );
   }
 }

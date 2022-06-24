@@ -15,7 +15,7 @@ class _PrincipalPageState extends State<PrincipalPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor:Color(0xFFFF420E) ,
+      backgroundColor: Color(0xFFFF420E),
       appBar: AppBar(
         title: Text('Jardin Infantil'),
         leading: Icon(Icons.child_care),
@@ -39,17 +39,18 @@ class _PrincipalPageState extends State<PrincipalPage> {
                 itemBuilder: (context, index) {
                   var nvl = snap.data[index];
                   return ElevatedButton(
-                    child: CardWidgets(texto: nvl['nombre_nivel'].toString()),
-                    onPressed: () {
-                      MaterialPageRoute route = new MaterialPageRoute(
-                          builder: (context) => ListadoAlumnos(nivel: nvl['nombre_nivel'],));
-                      Navigator.push(context, route);
-                      
-                    },
-                    style: ElevatedButton.styleFrom(
-                          primary:Color(0xFFFF420E) ,
-                        )
-                  );
+                      child: CardWidgets(texto: nvl['nombre_nivel'].toString()),
+                      onPressed: () {
+                        MaterialPageRoute route = new MaterialPageRoute(
+                            builder: (context) => ListadoAlumnos(
+                                  nivel: nvl['nombre_nivel'],
+                                  codigo: nvl['cod_nivel'],
+                                ));
+                        Navigator.push(context, route);
+                      },
+                      style: ElevatedButton.styleFrom(
+                        primary: Color(0xFFFF420E),
+                      ));
                   /*return Container(
                     child: CardWidgets(texto: nvl['nombre_nivel'].toString())
                   );*/

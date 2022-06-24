@@ -19,6 +19,17 @@ class AlumnosProvider {
     }
   }
 
+  Future<List<dynamic>> getAlumnosXNivel(int nivel) async {
+    var url = Uri.parse('$apiUrl/niv/$nivel');
+    var respuesta = await http.get(url);
+
+    if (respuesta.statusCode == 200) {
+      return json.decode(respuesta.body);
+    } else {
+      return [];
+    }
+  }
+
   //Listar un alumno por Rut
   Future<LinkedHashMap<String, dynamic>> getAlumno(String rut) async {
     var url = Uri.parse('$apiUrl/$rut');
