@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jardin_cliente/pages/agregar_alumno_form.dart';
+import 'package:jardin_cliente/pages/ver_alumno.dart';
 import 'package:jardin_cliente/provider/alumnos_provider.dart';
 
 class ListadoAlumnos extends StatefulWidget {
@@ -41,7 +42,16 @@ class _ListadoAlumnosState extends State<ListadoAlumnos> {
                   var alumno = snap.data[index];
                   return ListTile(
                     title: Text(alumno['nombre'].toString()),
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => Ver_Alumnos(
+                                  codigo: widget.codigo,
+                                  rut: alumno['rut'].toString(),
+                                )),
+                      );
+                    },
                   );
                 },
               );
