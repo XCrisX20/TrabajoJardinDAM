@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
-import 'package:jardin_cliente/provider/alumnos_provider.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import
+import 'dart:io';
 
 class FormAgregarAlumnosPage extends StatefulWidget {
   final int codigo;
@@ -16,6 +16,8 @@ class FormAgregarAlumnosPage extends StatefulWidget {
 }
 
 class _FormAgregarAlumnosPageState extends State<FormAgregarAlumnosPage> {
+  File? imagen;
+  final picker = ImagePicker();
   final formKey = GlobalKey<FormState>();
   TextEditingController rutCtrl = TextEditingController();
   TextEditingController namefCtrl = TextEditingController();
@@ -221,17 +223,13 @@ class _FormAgregarAlumnosPageState extends State<FormAgregarAlumnosPage> {
   Row campoFoto() {
     return Row(
       children: [
-        ElevatedButton.icon( 
-          icon: Icon(Icons.camera), 
-          label: Text('Seleccione una imagen'),
-          onPressed: (){
-            //_showSelectionDialog(context);
-          },
-        
-          
-          )
+        ElevatedButton(
+            child: Text("Seleccione una imagen"),
+            onPressed: () {
+              opciones(context);
+            }),
+        imagen == null ? Center() : Image.file(imagen!)
       ],
-  
     );
   }
 
@@ -247,56 +245,106 @@ class _FormAgregarAlumnosPageState extends State<FormAgregarAlumnosPage> {
     );
   }
 
-  Future<void> _showSelectionDialog(BuildContext context) {
-    return showDialog(
+  opciones(context) {
+    showDialog(
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-              title: Text("¿de donde quieres obtener tu foto?"),
-              content: SingleChildScrollView(
-                child: ListBody(
-                  children: <Widget>[
-                    GestureDetector(
-                      child: Text("Galeria"),
-                      onTap: () {
-                        _openGallery(context);
-                      },
+            contentPadding: EdgeInsets.all(0),
+            content: SingleChildScrollView(
+              child: Column(
+                children: [
+                  InkWell(
+                    onTap: () {
+                      selImagen(1);
+                    },
+                    child: Container(
+                      padding: EdgeInsets.all(20),
+                      decoration: BoxDecoration(
+                          border: Border(
+                              bottom:
+                                  BorderSide(width: 1, color: Colors.grey))),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: Text(
+                              'Tomar una Foto',
+                              style: TextStyle(fontSize: 16),
+                            ),
+                          ),
+                          Icon(
+                            Icons.camera_alt,
+                            color: Colors.blue,
+                          )
+                        ],
+                      ),
                     ),
-                    Padding(padding: EdgeInsets.all(8.0)),
-                    GestureDetector(
-                      child: Text("Camara"),
-                      onTap: () {
-                        _openCamera(context);
-                      },
-                    )
-                  ],
-                ),
-              ));
+                  ),
+                  InkWell(
+                    onTap: () {
+                      selImagen(2);
+                    },
+                    child: Container(
+                      padding: EdgeInsets.all(20),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: Text(
+                              'Seleccionar una Foto',
+                              style: TextStyle(fontSize: 16),
+                            ),
+                          ),
+                          Icon(
+                            Icons.image,
+                            color: Colors.blue,
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                  InkWell(
+                    onTap: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: Container(
+                      padding: EdgeInsets.all(20),
+                      decoration: BoxDecoration(color: Colors.red),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: Text(
+                              'Cancelar',
+                              style:
+                                  TextStyle(fontSize: 16, color: Colors.white),
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          );
         });
   }
-  void _openGallery(BuildContext context) async {
-    var picture = await ImagePicker.pickImage(source: ImageSource.gallery);
-    this.setState(() {
-      imageFile = picture;
-    });
-    Navigator.of(context).pop();
-  }
-  void _openCamera(BuildContext context) async {
-    var picture = await ImagePicker.pickImage(source: ImageSource.camera);
-    this.setState(() {
-      imageFile = picture;
-    });
-    Navigator.of(context).pop();
-  }
-  Widget _setImageView() {
-    if (imageFile != null) {
-      return Image.file(imageFile, width: 500, height: 500);
+
+  Future selImagen(op) async {
+    var pickedFile;
+    if (op == 1) {
+      pickedFile = await picker.getImage(source: ImageSource.camera);
     } else {
-      return Text("Please select an image");
+      pickedFile = await picker.getImage(source: ImageSource.gallery);
     }
+
+    setState(() {
+      if (pickedFile != null) {
+        imagen = File(pickedFile.path);
+      } else {
+        print('No seleccionaste ninguna foto');
+      }
+    });
+    Navigator.of(context).pop();
   }
-
 }
-
-
-
