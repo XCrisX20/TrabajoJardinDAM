@@ -48,7 +48,6 @@ class _FormAgregarAlumnosPageState extends State<FormAgregarAlumnosPage> {
           padding: const EdgeInsets.all(5.0),
           child: ListView(
             children: [
-              Text('manuuuuuu'),
               CampoRut(),
               campoPrimerNombre(),
               campoSegundoNombre(),
@@ -229,7 +228,13 @@ class _FormAgregarAlumnosPageState extends State<FormAgregarAlumnosPage> {
             onPressed: () {
               opciones(context);
             }),
-        imagen == null ? Center() : Image.file(imagen!)
+        imagen == null ? Center() :
+         Container(
+          height: 150,
+          width: 150,
+          child: Image.file(imagen!),
+
+        )
       ],
     );
   }
@@ -334,9 +339,9 @@ class _FormAgregarAlumnosPageState extends State<FormAgregarAlumnosPage> {
   Future selImagen(op) async {
     var pickedFile;
     if (op == 1) {
-      pickedFile = await picker.getImage(source: ImageSource.camera);
+      pickedFile = await picker.pickImage(source: ImageSource.camera);
     } else {
-      pickedFile = await picker.getImage(source: ImageSource.gallery);
+      pickedFile = await picker.pickImage(source: ImageSource.gallery);
     }
 
     setState(() {
