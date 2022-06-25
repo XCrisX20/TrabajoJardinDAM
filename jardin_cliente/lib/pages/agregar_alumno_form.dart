@@ -48,6 +48,7 @@ class _FormAgregarAlumnosPageState extends State<FormAgregarAlumnosPage> {
           padding: const EdgeInsets.all(5.0),
           child: ListView(
             children: [
+              Text('manuuuuuu'),
               CampoRut(),
               campoPrimerNombre(),
               campoSegundoNombre(),
