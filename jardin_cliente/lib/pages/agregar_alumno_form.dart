@@ -108,7 +108,7 @@ class _FormAgregarAlumnosPageState extends State<FormAgregarAlumnosPage> {
   Column campoSexo() {
     return Column(children: [
       ListTile(
-        title: Text("Hombre"),
+        title: Text("hombre"),
         leading: Radio(
             value: "M",
             groupValue: gender,
