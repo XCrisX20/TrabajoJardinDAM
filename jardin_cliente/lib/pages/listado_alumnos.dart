@@ -14,7 +14,7 @@ class ListadoAlumnos extends StatefulWidget {
 
 class _ListadoAlumnosState extends State<ListadoAlumnos> {
   final verdeClaro = Color(0xFF89DA59);
-  final naranjo =Color(0xFFFF420E);
+  final naranjo = Color(0xFFFF420E);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,7 +41,7 @@ class _ListadoAlumnosState extends State<ListadoAlumnos> {
                   var alumno = snap.data[index];
                   return ListTile(
                     title: Text(alumno['nombre'].toString()),
-                    onTap: (){},
+                    onTap: () {},
                   );
                 },
               );
@@ -50,16 +50,19 @@ class _ListadoAlumnosState extends State<ListadoAlumnos> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed:() {
+        onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => FormAgregarAlumnosPage()),
-  );
+            MaterialPageRoute(
+                builder: (context) => FormAgregarAlumnosPage(
+                      codigo: widget.codigo,
+                      nivel: widget.nivel.toString(),
+                    )),
+          );
         },
-        child:Icon(Icons.add),
-        backgroundColor:verdeClaro,
-         ),
-        
+        child: Icon(Icons.add),
+        backgroundColor: verdeClaro,
+      ),
     );
   }
 }

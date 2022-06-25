@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:jardin_cliente/provider/alumnos_provider.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class FormAgregarAlumnosPage extends StatefulWidget {
-  FormAgregarAlumnosPage({Key? key}) : super(key: key);
+  final int codigo;
+  final String nivel;
+
+  FormAgregarAlumnosPage({this.codigo = 0, this.nivel = '', Key? key})
+      : super(key: key);
 
   @override
   State<FormAgregarAlumnosPage> createState() => _FormAgregarAlumnosPageState();
@@ -11,6 +16,11 @@ class FormAgregarAlumnosPage extends StatefulWidget {
 
 class _FormAgregarAlumnosPageState extends State<FormAgregarAlumnosPage> {
   final formKey = GlobalKey<FormState>();
+  TextEditingController rutCtrl = TextEditingController();
+  TextEditingController namefCtrl = TextEditingController();
+  TextEditingController namesCtrl = TextEditingController();
+  TextEditingController surnamefCtrl = TextEditingController();
+  TextEditingController surnamesCtrl = TextEditingController();
   DateTime fechaSeleccionada = DateTime.now();
   var ffecha = DateFormat('dd-MM-yyyy');
   String jornadaSeleccionada = 'd';
@@ -21,12 +31,13 @@ class _FormAgregarAlumnosPageState extends State<FormAgregarAlumnosPage> {
   final verdeClaro = Color(0xFF89DA59);
   final naranjo = Color(0xFFFF420E);
   int group = 1;
+  String nombre = '';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: verdeClaro,
-        title: Text('Agregar Alumno'),
+        title: Text('Agregar Alumno a ' + widget.nivel),
       ),
       body: Form(
         key: formKey,
@@ -34,6 +45,7 @@ class _FormAgregarAlumnosPageState extends State<FormAgregarAlumnosPage> {
           padding: const EdgeInsets.all(5.0),
           child: ListView(
             children: [
+              CampoRut(),
               campoPrimerNombre(),
               campoSegundoNombre(),
               campoPrimerApellido(),
@@ -49,8 +61,24 @@ class _FormAgregarAlumnosPageState extends State<FormAgregarAlumnosPage> {
     );
   }
 
+  TextFormField CampoRut() {
+    return TextFormField(
+      controller: rutCtrl,
+      decoration: InputDecoration(
+        labelText: 'Rut del alumno',
+      ),
+      validator: (valor) {
+        if (valor == null || valor.isEmpty) {
+          return 'Indique su Rut';
+        }
+        return rutCtrl.toString();
+      },
+    );
+  }
+
   TextFormField campoPrimerNombre() {
     return TextFormField(
+      controller: namefCtrl,
       decoration: InputDecoration(
         labelText: 'Primer Nombre',
       ),
@@ -65,6 +93,7 @@ class _FormAgregarAlumnosPageState extends State<FormAgregarAlumnosPage> {
 
   TextFormField campoSegundoNombre() {
     return TextFormField(
+      controller: namesCtrl,
       decoration: InputDecoration(
         labelText: 'Segundo Nombre',
       ),
@@ -79,6 +108,7 @@ class _FormAgregarAlumnosPageState extends State<FormAgregarAlumnosPage> {
 
   TextFormField campoPrimerApellido() {
     return TextFormField(
+      controller: surnamefCtrl,
       decoration: InputDecoration(
         labelText: 'Primer Apellido',
       ),
@@ -93,6 +123,7 @@ class _FormAgregarAlumnosPageState extends State<FormAgregarAlumnosPage> {
 
   TextFormField campoSegundoApellido() {
     return TextFormField(
+      controller: surnamesCtrl,
       decoration: InputDecoration(
         labelText: 'Segundo Apellido',
       ),
@@ -205,12 +236,7 @@ class _FormAgregarAlumnosPageState extends State<FormAgregarAlumnosPage> {
       width: double.infinity,
       child: ElevatedButton(
           child: Text('Matricular'),
-          onPressed: () {
-            if (formKey.currentState!.validate()) {
-              //form ok
-              print('FORMULARIO OK');
-            }
-          },
+          onPressed: () {},
           style: ElevatedButton.styleFrom(
             primary: verdeClaro,
           )),
