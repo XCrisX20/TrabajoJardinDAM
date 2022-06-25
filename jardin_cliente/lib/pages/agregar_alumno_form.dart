@@ -156,7 +156,7 @@ class _FormAgregarAlumnosPageState extends State<FormAgregarAlumnosPage> {
                           gender = value.toString();
                         });
                       }),
-                  Text('Hombre')
+                  Text('Masculino')
                 ],
               ),
               Row(
@@ -169,7 +169,7 @@ class _FormAgregarAlumnosPageState extends State<FormAgregarAlumnosPage> {
                           gender = value.toString();
                         });
                       }),
-                  Text('Mujer')
+                  Text('Femenino')
                 ],
               ),
               Row(
@@ -200,7 +200,8 @@ class _FormAgregarAlumnosPageState extends State<FormAgregarAlumnosPage> {
             style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
         Spacer(),
         TextButton(
-          child: Icon(MdiIcons.calendar),
+          child: Icon(MdiIcons.calendar,
+          color: verdeClaro),
           onPressed: () {
             showDatePicker(
               context: context,
@@ -227,7 +228,10 @@ class _FormAgregarAlumnosPageState extends State<FormAgregarAlumnosPage> {
             child: Text("Seleccione una imagen"),
             onPressed: () {
               opciones(context);
-            }),
+            },
+            style: ElevatedButton.styleFrom(
+            primary: verdeClaro,
+          )),
         imagen == null ? Center() :
          Container(
           height: 150,
