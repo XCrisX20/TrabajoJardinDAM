@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import
 
 class FormAgregarAlumnosPage extends StatefulWidget {
   FormAgregarAlumnosPage({Key? key}) : super(key: key);
@@ -186,17 +187,20 @@ class _FormAgregarAlumnosPageState extends State<FormAgregarAlumnosPage> {
     );
   }
 
-  TextFormField campoFoto() {
-    return TextFormField(
-      decoration: InputDecoration(
-        labelText: 'Foto',
-      ),
-      validator: (valor) {
-        if (valor == null || valor.isEmpty) {
-          return 'Suba una Foto';
-        }
-        return null;
-      },
+  Row campoFoto() {
+    return Row(
+      children: [
+        ElevatedButton.icon( 
+          icon: Icon(Icons.camera), 
+          label: Text('Seleccione una imagen'),
+          onPressed: (){
+            //_showSelectionDialog(context);
+          },
+        
+          
+          )
+      ],
+  
     );
   }
 
@@ -216,4 +220,57 @@ class _FormAgregarAlumnosPageState extends State<FormAgregarAlumnosPage> {
           )),
     );
   }
+
+  Future<void> _showSelectionDialog(BuildContext context) {
+    return showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+              title: Text("¿de donde quieres obtener tu foto?"),
+              content: SingleChildScrollView(
+                child: ListBody(
+                  children: <Widget>[
+                    GestureDetector(
+                      child: Text("Galeria"),
+                      onTap: () {
+                        _openGallery(context);
+                      },
+                    ),
+                    Padding(padding: EdgeInsets.all(8.0)),
+                    GestureDetector(
+                      child: Text("Camara"),
+                      onTap: () {
+                        _openCamera(context);
+                      },
+                    )
+                  ],
+                ),
+              ));
+        });
+  }
+  void _openGallery(BuildContext context) async {
+    var picture = await ImagePicker.pickImage(source: ImageSource.gallery);
+    this.setState(() {
+      imageFile = picture;
+    });
+    Navigator.of(context).pop();
+  }
+  void _openCamera(BuildContext context) async {
+    var picture = await ImagePicker.pickImage(source: ImageSource.camera);
+    this.setState(() {
+      imageFile = picture;
+    });
+    Navigator.of(context).pop();
+  }
+  Widget _setImageView() {
+    if (imageFile != null) {
+      return Image.file(imageFile, width: 500, height: 500);
+    } else {
+      return Text("Please select an image");
+    }
+  }
+
 }
+
+
+
