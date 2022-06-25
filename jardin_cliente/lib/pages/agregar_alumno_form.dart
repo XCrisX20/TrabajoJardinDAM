@@ -17,7 +17,7 @@ class _FormAgregarAlumnosPageState extends State<FormAgregarAlumnosPage> {
   bool estudiaGratuidad = true;
   String emailRegex =
       r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+";
-  String? gender;
+  String? gender = 'M';
   final verdeClaro = Color(0xFF89DA59);
   final naranjo = Color(0xFFFF420E);
   int group = 1;
@@ -105,42 +105,57 @@ class _FormAgregarAlumnosPageState extends State<FormAgregarAlumnosPage> {
     );
   }
 
-  Column campoSexo() {
-    return Column(children: [
-      ListTile(
-        title: Text("hombre"),
-        leading: Radio(
-            value: "M",
-            groupValue: gender,
-            onChanged: (value) {
-              setState(() {
-                gender = value.toString();
-              });
-            }),
+  Container campoSexo() {
+    return Container(
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Row(
+                children: [
+                  Radio(
+                      value: 'M',
+                      groupValue: gender,
+                      onChanged: (value) {
+                        setState(() {
+                          gender = value.toString();
+                        });
+                      }),
+                  Text('Hombre')
+                ],
+              ),
+              Row(
+                children: [
+                  Radio(
+                      value: 'F',
+                      groupValue: gender,
+                      onChanged: (value) {
+                        setState(() {
+                          gender = value.toString();
+                        });
+                      }),
+                  Text('Mujer')
+                ],
+              ),
+              Row(
+                children: [
+                  Radio(
+                      value: 'I',
+                      groupValue: gender,
+                      onChanged: (value) {
+                        setState(() {
+                          gender = value.toString();
+                        });
+                      }),
+                  Text('Otro')
+                ],
+              ),
+            ],
+          ),
+        ],
       ),
-      ListTile(
-        title: Text("Mujer"),
-        leading: Radio(
-            value: "F",
-            groupValue: gender,
-            onChanged: (value) {
-              setState(() {
-                gender = value.toString();
-              });
-            }),
-      ),
-      ListTile(
-        title: Text("No expecifico"),
-        leading: Radio(
-            value: "I",
-            groupValue: gender,
-            onChanged: (value) {
-              setState(() {
-                gender = value.toString();
-              });
-            }),
-      ),
-    ]);
+    );
   }
 
   Row campoFechaNacimiento() {
