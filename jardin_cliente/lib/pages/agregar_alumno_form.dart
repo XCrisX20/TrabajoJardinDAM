@@ -195,13 +195,12 @@ class _FormAgregarAlumnosPageState extends State<FormAgregarAlumnosPage> {
   Row campoFechaNacimiento() {
     return Row(
       children: [
-        Text('Fecha de nacimiento:', style: TextStyle(fontSize: 16)),
+        Text('Fecha de Nacimiento:', style: TextStyle(fontSize: 16)),
         Text(ffecha.format(fechaSeleccionada),
             style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
         Spacer(),
         TextButton(
-          child: Icon(MdiIcons.calendar,
-          color: verdeClaro),
+          child: Icon(MdiIcons.calendar, color: verdeClaro),
           onPressed: () {
             showDatePicker(
               context: context,
@@ -230,15 +229,15 @@ class _FormAgregarAlumnosPageState extends State<FormAgregarAlumnosPage> {
               opciones(context);
             },
             style: ElevatedButton.styleFrom(
-            primary: verdeClaro,
-          )),
-        imagen == null ? Center() :
-         Container(
-          height: 150,
-          width: 150,
-          child: Image.file(imagen!),
-
-        )
+              primary: verdeClaro,
+            )),
+        imagen == null
+            ? Center()
+            : Container(
+                height: 150,
+                width: 150,
+                child: Image.file(imagen!),
+              )
       ],
     );
   }
