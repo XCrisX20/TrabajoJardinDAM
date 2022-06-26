@@ -19,7 +19,7 @@ class HistorialProvider {
     }
   }
 
-  Future<List<dynamic>> getAlumnosXRut(String rut_alumno) async {
+  Future<List<dynamic>> getXRut(String rut_alumno) async {
     var url = Uri.parse('$apiUrl/rut/$rut_alumno');
     var respuesta = await http.get(url);
 

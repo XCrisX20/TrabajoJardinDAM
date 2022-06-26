@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:jardin_cliente/pages/modificar_alumno.dart';
 import 'dart:convert';
 import 'package:jardin_cliente/provider/alumnos_provider.dart';
+import 'package:jardin_cliente/provider/historial_provider.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class Ver_Alumnos extends StatefulWidget {
@@ -212,7 +213,14 @@ class _Ver_AlumnosState extends State<Ver_Alumnos> {
                         child: Text('Modificar Datos'),
                         onPressed: () {
                           MaterialPageRoute route = new MaterialPageRoute(
-                              builder: (context) => ModificarAlumno(codigo: widget.codigo, rut: alumno['rut'],sexo: alumno['sexo'], nombre: alumno['nombre'],foto: (alumno['foto'] == null)? alumno['foto'].toString():'' ,fechaNacimiento: alumno['fechaNacimiento'].toString(),));
+                              builder: (context) => ModificarAlumno(
+                                    codigo: widget.codigo,
+                                    rut: alumno['rut'],
+                                    sexo: alumno['sexo'],
+                                    nombre: alumno['nombre'],
+                                    foto: alumno['foto'].toString(),
+                                    fechaNacimiento: alumno['fechaNacimiento'],
+                                  ));
                           Navigator.push(context, route);
                         },
                         style: ElevatedButton.styleFrom(
@@ -228,14 +236,29 @@ class _Ver_AlumnosState extends State<Ver_Alumnos> {
                   ],
                 ),
               ),
+              //ListView.builder
               Expanded(
-                  child: ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: 50,
-                      itemBuilder: (context, index) => ListTile(
-                            title: Text('Historial${index + 1}'),
-                            onTap: () {},
-                          )))
+                child: FutureBuilder(
+                  future: HistorialProvider().getXRut(alumno['rut']),
+                  builder: (context, AsyncSnapshot snapRut) {
+                    if (!snapRut.hasData) {
+                      return Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    }
+                    return ListView.separated(
+                        separatorBuilder: (_, __) => Divider(),
+                        shrinkWrap: true,
+                        itemCount: snapRut.data.length,
+                        itemBuilder: (context, index) {
+                          var historial = snapRut.data[index];
+                          return ListTile(
+                            title: Text(historial['tipo_evento'].toString()),
+                          );
+                        });
+                  },
+                ),
+              )
             ],
           );
         },
