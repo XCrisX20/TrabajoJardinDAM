@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
+import 'package:jardin_cliente/pages/modificar_alumno.dart';
 import 'dart:convert';
 import 'package:jardin_cliente/provider/alumnos_provider.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
@@ -209,7 +210,11 @@ class _Ver_AlumnosState extends State<Ver_Alumnos> {
                     ),
                     ElevatedButton(
                         child: Text('Modificar Datos'),
-                        onPressed: () {},
+                        onPressed: () {
+                          MaterialPageRoute route = new MaterialPageRoute(
+                              builder: (context) => ModificarAlumno(codigo: widget.codigo, rut: alumno['rut'],sexo: alumno['sexo'], nombre: alumno['nombre'],foto: alumno['foto'].toString(),fechaNacimiento: alumno['fechaNacimiento'],));
+                          Navigator.push(context, route);
+                        },
                         style: ElevatedButton.styleFrom(
                           primary: Colors.yellow,
                         )),
