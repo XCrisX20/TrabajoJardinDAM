@@ -141,39 +141,50 @@ class _Ver_AlumnosState extends State<Ver_Alumnos> {
                                             .then((borrado) {
                                           if (borrado) {
                                             showDialog(
-                                              context: context,
-                                              builder: (context) => AlertDialog(
-                                                title: Text("Informacion"),
-                                                content: Text("Alumno Eliminado!"),
-                                                actions: [
-                                                  TextButton.icon(
-                                                    icon: Icon(MdiIcons.check),
-                                                    label: Text('OK'),
-                                                    onPressed: (){
-                                                      Navigator.pop(context);
-                                                    },
-                                                  )
-                                                ],
-                                            ));
-                                          }else{
+                                                context: context,
+                                                builder: (context) =>
+                                                    AlertDialog(
+                                                      title:
+                                                          Text("Informacion"),
+                                                      content: Text(
+                                                          "Alumno Eliminado!"),
+                                                      actions: [
+                                                        TextButton.icon(
+                                                          icon: Icon(
+                                                              MdiIcons.check),
+                                                          label: Text('OK'),
+                                                          onPressed: () {
+                                                            Navigator.pop(
+                                                                context);
+                                                          },
+                                                        )
+                                                      ],
+                                                    ));
+                                          } else {
                                             showDialog(
-                                              context: context,
-                                              builder: (context) => AlertDialog(
-                                                title: Text("Informacion"),
-                                                content: Text("Alumno no se pudo Eliminar!"),
-                                                actions: [
-                                                  TextButton.icon(
-                                                    icon: Icon(MdiIcons.check),
-                                                    label: Text('OK'),
-                                                    onPressed: (){
-                                                      Navigator.pop(context);
-                                                    },
-                                                  )
-                                                ],
-                                            ));
+                                                context: context,
+                                                builder: (context) =>
+                                                    AlertDialog(
+                                                      title:
+                                                          Text("Informacion"),
+                                                      content: Text(
+                                                          "Alumno no se pudo Eliminar!"),
+                                                      actions: [
+                                                        TextButton.icon(
+                                                          icon: Icon(
+                                                              MdiIcons.check),
+                                                          label: Text('OK'),
+                                                          onPressed: () {
+                                                            Navigator.pop(
+                                                                context);
+                                                          },
+                                                        )
+                                                      ],
+                                                    ));
                                           }
                                         });
                                         Navigator.of(context).pop('OK');
+                                        Navigator.pop(context);
                                       },
                                     ),
                                     TextButton.icon(
@@ -184,7 +195,7 @@ class _Ver_AlumnosState extends State<Ver_Alumnos> {
                                       },
                                     ),
                                   ],
-                        )).then((value) => print(value));
+                                )).then((value) => print(value));
                         setState(() {});
                       },
                     ),
