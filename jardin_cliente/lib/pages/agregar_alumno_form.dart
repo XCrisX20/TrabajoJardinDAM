@@ -1,6 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
+import 'package:jardin_cliente/provider/alumnos_provider.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'dart:io';
 
@@ -16,25 +19,32 @@ class FormAgregarAlumnosPage extends StatefulWidget {
 }
 
 class _FormAgregarAlumnosPageState extends State<FormAgregarAlumnosPage> {
-  File? imagen;
-  final picker = ImagePicker();
+  //Formulario
   final formKey = GlobalKey<FormState>();
   TextEditingController rutCtrl = TextEditingController();
-  TextEditingController namefCtrl = TextEditingController();
-  TextEditingController namesCtrl = TextEditingController();
-  TextEditingController surnamefCtrl = TextEditingController();
-  TextEditingController surnamesCtrl = TextEditingController();
+  TextEditingController nombreCtrl = TextEditingController();
+  TextEditingController sNombreCtrl = TextEditingController();
+  TextEditingController apellido_pCtrl = TextEditingController();
+  TextEditingController apellido_mCtrl = TextEditingController();
+
+  String nombre = '';
+  String? genero = 'M';
   DateTime fechaSeleccionada = DateTime.now();
   var ffecha = DateFormat('dd-MM-yyyy');
-  String jornadaSeleccionada = 'd';
-  bool estudiaGratuidad = true;
-  String emailRegex =
-      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+";
-  String? gender = 'M';
+  String nomReg = r"/^[a-z ,.'-]+$/i";
+  //campos para imagen
+  File? imagen;
+  final picker = ImagePicker();
+  String? imagen64;
+  //Captura de Errores
+  String errRut = '';
+  String errNombre = '';
+  String errFechaNacimiento = '';
+  String errSexo = '';
+  //colores para el sistema
   final verdeClaro = Color(0xFF89DA59);
   final naranjo = Color(0xFFFF420E);
-  int group = 1;
-  String nombre = '';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,13 +58,45 @@ class _FormAgregarAlumnosPageState extends State<FormAgregarAlumnosPage> {
           padding: const EdgeInsets.all(5.0),
           child: ListView(
             children: [
-              CampoRut(),
+              campoRut(),
+              Container(
+                alignment: Alignment.center,
+                child: Text(
+                  errRut,
+                  style:
+                      TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
+                ),
+              ),
               campoPrimerNombre(),
+              Container(
+                alignment: Alignment.center,
+                child: Text(
+                  errNombre,
+                  style:
+                      TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
+                ),
+              ),
               campoSegundoNombre(),
               campoPrimerApellido(),
               campoSegundoApellido(),
               campoSexo(),
+              Container(
+                alignment: Alignment.center,
+                child: Text(
+                  errSexo,
+                  style:
+                      TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
+                ),
+              ),
               campoFechaNacimiento(),
+              Container(
+                alignment: Alignment.center,
+                child: Text(
+                  errFechaNacimiento,
+                  style:
+                      TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
+                ),
+              ),
               campoFoto(),
               botonMatricular(),
             ],
@@ -64,7 +106,7 @@ class _FormAgregarAlumnosPageState extends State<FormAgregarAlumnosPage> {
     );
   }
 
-  TextFormField CampoRut() {
+  TextFormField campoRut() {
     return TextFormField(
       controller: rutCtrl,
       decoration: InputDecoration(
@@ -74,20 +116,23 @@ class _FormAgregarAlumnosPageState extends State<FormAgregarAlumnosPage> {
         if (valor == null || valor.isEmpty) {
           return 'Indique su Rut';
         }
-        return rutCtrl.toString();
+        return null;
       },
     );
   }
 
   TextFormField campoPrimerNombre() {
     return TextFormField(
-      controller: namefCtrl,
+      controller: nombreCtrl,
       decoration: InputDecoration(
         labelText: 'Primer Nombre',
       ),
       validator: (valor) {
         if (valor == null || valor.isEmpty) {
           return 'Indique su primer nombre';
+        }
+        if (!RegExp(nomReg).hasMatch(valor)) {
+          return "Formato de nombre no Valido";
         }
         return null;
       },
@@ -96,13 +141,16 @@ class _FormAgregarAlumnosPageState extends State<FormAgregarAlumnosPage> {
 
   TextFormField campoSegundoNombre() {
     return TextFormField(
-      controller: namesCtrl,
+      controller: sNombreCtrl,
       decoration: InputDecoration(
         labelText: 'Segundo Nombre',
       ),
       validator: (valor) {
         if (valor == null || valor.isEmpty) {
           return 'Indique su segundo nombre';
+        }
+        if (!RegExp(nomReg).hasMatch(valor)) {
+          return "Formato de nombre no Valido";
         }
         return null;
       },
@@ -111,13 +159,16 @@ class _FormAgregarAlumnosPageState extends State<FormAgregarAlumnosPage> {
 
   TextFormField campoPrimerApellido() {
     return TextFormField(
-      controller: surnamefCtrl,
+      controller: apellido_pCtrl,
       decoration: InputDecoration(
         labelText: 'Primer Apellido',
       ),
       validator: (valor) {
         if (valor == null || valor.isEmpty) {
           return 'Indique su primer apellido';
+        }
+        if (!RegExp(nomReg).hasMatch(valor)) {
+          return "Formato de apellido no Valido";
         }
         return null;
       },
@@ -126,13 +177,16 @@ class _FormAgregarAlumnosPageState extends State<FormAgregarAlumnosPage> {
 
   TextFormField campoSegundoApellido() {
     return TextFormField(
-      controller: surnamesCtrl,
+      controller: apellido_mCtrl,
       decoration: InputDecoration(
         labelText: 'Segundo Apellido',
       ),
       validator: (valor) {
         if (valor == null || valor.isEmpty) {
           return 'Indique su segundo apellido';
+        }
+        if (!RegExp(nomReg).hasMatch(valor)) {
+          return "Formato de apellido no Valido";
         }
         return null;
       },
@@ -150,10 +204,10 @@ class _FormAgregarAlumnosPageState extends State<FormAgregarAlumnosPage> {
                 children: [
                   Radio(
                       value: 'M',
-                      groupValue: gender,
+                      groupValue: genero,
                       onChanged: (value) {
                         setState(() {
-                          gender = value.toString();
+                          genero = value.toString();
                         });
                       }),
                   Text('Masculino')
@@ -163,10 +217,10 @@ class _FormAgregarAlumnosPageState extends State<FormAgregarAlumnosPage> {
                 children: [
                   Radio(
                       value: 'F',
-                      groupValue: gender,
+                      groupValue: genero,
                       onChanged: (value) {
                         setState(() {
-                          gender = value.toString();
+                          genero = value.toString();
                         });
                       }),
                   Text('Femenino')
@@ -176,10 +230,10 @@ class _FormAgregarAlumnosPageState extends State<FormAgregarAlumnosPage> {
                 children: [
                   Radio(
                       value: 'I',
-                      groupValue: gender,
+                      groupValue: genero,
                       onChanged: (value) {
                         setState(() {
-                          gender = value.toString();
+                          genero = value.toString();
                         });
                       }),
                   Text('Otro')
@@ -205,12 +259,11 @@ class _FormAgregarAlumnosPageState extends State<FormAgregarAlumnosPage> {
             showDatePicker(
               context: context,
               initialDate: DateTime.now(),
-              firstDate: DateTime(1920),
+              firstDate: DateTime(DateTime.now().year - 7),
               lastDate: DateTime.now(),
               locale: Locale('es', 'ES'),
             ).then((fecha) {
               setState(() {
-                // fechaSeleccionada = fecha != null ? fecha : fechaSeleccionada;
                 fechaSeleccionada = fecha ?? fechaSeleccionada;
               });
             });
@@ -247,7 +300,57 @@ class _FormAgregarAlumnosPageState extends State<FormAgregarAlumnosPage> {
       width: double.infinity,
       child: ElevatedButton(
           child: Text('Matricular'),
-          onPressed: () {},
+          onPressed: () async {
+            String rut = rutCtrl.text;
+            String nombre = nombreCtrl.text +
+                " " +
+                sNombreCtrl.text +
+                " " +
+                apellido_pCtrl.text +
+                " " +
+                apellido_mCtrl.text;
+            String fecha =
+                "${fechaSeleccionada.year}-${fechaSeleccionada.month}-${fechaSeleccionada.day}";
+            var foto = imagen!.path;
+            List<int> bytes = await new File(foto).readAsBytesSync();
+            imagen64 = base64.encode(bytes);
+            String sexo = genero.toString();
+            int cod_nivel = widget.codigo;
+
+            print("RUT: " +
+                rut + "\n" +
+                "Nombre: " + nombre +"\n" +
+                "fechaNacimiento: " + fecha + "\n" +
+                "foto: " + imagen64.toString() + "\n" +
+                "sexo: " + sexo + "\n" +
+                "cod_nivel: " + cod_nivel.toString());
+
+            var respuesta = await AlumnosProvider().alumnoAgregar(
+                rut.trim(), nombre.trim(), fecha, foto, sexo, cod_nivel);
+
+            if (respuesta['message'] != null) {
+              //rut
+              if (respuesta['errors']['rut'] != null) {
+                errRut = respuesta['errors']['rut'][0];
+              }
+              //nombre
+              if (respuesta['errors']['nombre'] != null) {
+                errNombre = respuesta['errors']['nombre'][0];
+              }
+              //fechaNacimiento
+              if (respuesta['errors']['fechaNacimiento'] != null) {
+                errFechaNacimiento = respuesta['errors']['fechaNacimiento'][0];
+              }
+              //Sexo
+              if (respuesta['errors']['sexo'] != null) {
+                errSexo = respuesta['errors']['sexo'][0];
+              }
+
+              setState(() {});
+              return;
+            }
+            Navigator.pop(context);
+          },
           style: ElevatedButton.styleFrom(
             primary: verdeClaro,
           )),

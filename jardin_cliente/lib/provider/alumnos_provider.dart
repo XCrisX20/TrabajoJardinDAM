@@ -1,5 +1,6 @@
 import 'dart:collection';
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
@@ -46,8 +47,9 @@ class AlumnosProvider {
   Future<LinkedHashMap<String, dynamic>> alumnoAgregar(
       String rut,
       String nombre,
-      DateTime fechaNacimiento,
-      ImagePicker foto,
+      String fechaNacimiento,
+      String? foto,
+      String sexo,
       int cod_nivel) async {
     var url = Uri.parse('$apiUrl');
     var respuesta = await http.post(url,
@@ -67,7 +69,7 @@ class AlumnosProvider {
 
   //Actualizar un Alumno
   Future<LinkedHashMap<String, dynamic>> alumnoEditar(String rut, String nombre,
-      DateTime fechaNacimiento, ImagePicker foto, int cod_nivel) async {
+      DateTime fechaNacimiento, ImagePicker foto, String sexo, int cod_nivel) async {
     var url = Uri.parse('$apiUrl/$rut');
     var respuesta = await http.put(url,
         headers: <String, String>{
