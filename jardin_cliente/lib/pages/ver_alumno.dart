@@ -212,7 +212,7 @@ class _Ver_AlumnosState extends State<Ver_Alumnos> {
                         child: Text('Modificar Datos'),
                         onPressed: () {
                           MaterialPageRoute route = new MaterialPageRoute(
-                              builder: (context) => ModificarAlumno(codigo: widget.codigo, rut: alumno['rut'],sexo: alumno['sexo'], nombre: alumno['nombre'],foto: alumno['foto'].toString(),fechaNacimiento: alumno['fechaNacimiento'],));
+                              builder: (context) => ModificarAlumno(codigo: widget.codigo, rut: alumno['rut'],sexo: alumno['sexo'], nombre: alumno['nombre'],foto: (alumno['foto'] == null)? alumno['foto'].toString():'' ,fechaNacimiento: alumno['fechaNacimiento'].toString(),));
                           Navigator.push(context, route);
                         },
                         style: ElevatedButton.styleFrom(
