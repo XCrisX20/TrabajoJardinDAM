@@ -50,7 +50,9 @@ class _ListadoAlumnosState extends State<ListadoAlumnos> {
                                   codigo: widget.codigo,
                                   rut: alumno['rut'].toString(),
                                 )),
-                      );
+                      ).then((value) {
+                        setState(() {});
+                      });
                     },
                   );
                 },
