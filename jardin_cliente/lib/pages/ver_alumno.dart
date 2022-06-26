@@ -52,7 +52,13 @@ class _Ver_AlumnosState extends State<Ver_Alumnos> {
           var imagen;
 
           if (alumno['foto'] != null) {
-            imagen = Container(child: Image.file(File(alumno['foto'].toString()),width: 150,height: 150,),);
+            imagen = Container(
+              child: Image.file(
+                File(alumno['foto'].toString()),
+                width: 150,
+                height: 150,
+              ),
+            );
           } else {
             imagen = Container(child: Text("Alumno sin Imagen"));
           }
@@ -61,7 +67,10 @@ class _Ver_AlumnosState extends State<Ver_Alumnos> {
             children: [
               Container(
                 padding: EdgeInsets.all(10),
-                child: Text(alumno['nombre'], style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+                child: Text(
+                  alumno['nombre'],
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
               ),
               Row(
                 children: [
@@ -213,7 +222,15 @@ class _Ver_AlumnosState extends State<Ver_Alumnos> {
                     ),
                   ],
                 ),
-              )
+              ),
+              Expanded(
+                  child: ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: 50,
+                      itemBuilder: (context, index) => ListTile(
+                            title: Text('Historial${index + 1}'),
+                            onTap: () {},
+                          )))
             ],
           );
         },

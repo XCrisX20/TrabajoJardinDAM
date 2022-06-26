@@ -16,7 +16,10 @@ class HistorialController extends Controller
     {
         return Historial::all();
     }
-
+    public function getXRut(string $rut_alumno){
+        return Historial::select('cod_historial', 'descripcion', 'tipo_evento', 'fecha', 'hora',  'rut_alumno')
+        ->where('rut_alumno', '=', $rut_alumno)->get();
+    }
     /**
      * Show the form for creating a new resource.
      *

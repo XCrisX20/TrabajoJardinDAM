@@ -19,6 +19,17 @@ class HistorialProvider {
     }
   }
 
+  Future<List<dynamic>> getAlumnosXRut(String rut_alumno) async {
+    var url = Uri.parse('$apiUrl/rut/$rut_alumno');
+    var respuesta = await http.get(url);
+
+    if (respuesta.statusCode == 200) {
+      return json.decode(respuesta.body);
+    } else {
+      return [];
+    }
+  }
+
   //Listar un historial por su codigo
   Future<LinkedHashMap<String, dynamic>> getHistorial(int cod_historial) async {
     var url = Uri.parse('$apiUrl/$cod_historial');
