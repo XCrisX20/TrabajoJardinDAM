@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:jardin_cliente/pages/modificar_alumno.dart';
 import 'dart:convert';
 import 'package:jardin_cliente/provider/alumnos_provider.dart';
@@ -228,7 +229,7 @@ class _Ver_AlumnosState extends State<Ver_Alumnos> {
                         )),
                     ElevatedButton(
                       child: Text(
-                        'Ver Historial',
+                        'Agregar Historial',
                         style: TextStyle(color: Colors.white),
                       ),
                       onPressed: () {},
@@ -252,8 +253,72 @@ class _Ver_AlumnosState extends State<Ver_Alumnos> {
                         itemCount: snapRut.data.length,
                         itemBuilder: (context, index) {
                           var historial = snapRut.data[index];
-                          return ListTile(
-                            title: Text(historial['tipo_evento'].toString()),
+                          return Slidable(
+                            child: ListTile(
+                              title: Text(
+                                historial['fecha'].toString(),
+                                style: TextStyle(
+                                  fontSize: 18,
+                                ),
+                              ),
+                              trailing: Text(
+                                historial['tipo_evento'].toString(),
+                                style: TextStyle(
+                                  fontSize: 20,
+                                ),
+                              ),
+                              subtitle: Text(
+                                historial['hora'].toString(),
+                                style: TextStyle(
+                                  fontSize: 16,
+                                ),
+                              ),
+                              onTap: () {
+                                showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                      title: Text("Detalle del historial"),
+                                      content: Text(
+                                        historial['descripcion'].toString(),
+                                      ),
+                                      actions: [
+                                        TextButton(
+                                          child: new Text("OK"),
+                                          onPressed: () {
+                                            Navigator.of(context).pop();
+                                          },
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+                              },
+                            ),
+                            startActionPane: ActionPane(
+                              motion: ScrollMotion(),
+                              children: [
+                                SlidableAction(
+                                  onPressed: (context) {},
+                                  backgroundColor:
+                                      Color.fromARGB(255, 155, 255, 255),
+                                  icon: MdiIcons.pen,
+                                  label: 'Editar',
+                                ),
+                              ],
+                            ),
+                            endActionPane: ActionPane(
+                              motion: ScrollMotion(),
+                              children: [
+                                SlidableAction(
+                                  onPressed: (context) {},
+                                  backgroundColor:
+                                      Color.fromARGB(255, 95, 14, 14),
+                                  icon: MdiIcons.trashCan,
+                                  label: 'Borra',
+                                ),
+                              ],
+                            ),
                           );
                         });
                   },
