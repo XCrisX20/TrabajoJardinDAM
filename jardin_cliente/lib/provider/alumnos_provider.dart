@@ -61,6 +61,7 @@ class AlumnosProvider {
           'rut': rut,
           'nombre': nombre,
           'fechaNacimiento': fechaNacimiento,
+          'sexo': sexo,
           'foto': foto,
           'cod_nivel': cod_nivel
         }));
@@ -68,8 +69,13 @@ class AlumnosProvider {
   }
 
   //Actualizar un Alumno
-  Future<LinkedHashMap<String, dynamic>> alumnoEditar(String rut, String nombre,
-      DateTime fechaNacimiento, ImagePicker foto, String sexo, int cod_nivel) async {
+  Future<LinkedHashMap<String, dynamic>> alumnoEditar(
+      String rut,
+      String nombre,
+      DateTime fechaNacimiento,
+      ImagePicker foto,
+      String sexo,
+      int cod_nivel) async {
     var url = Uri.parse('$apiUrl/$rut');
     var respuesta = await http.put(url,
         headers: <String, String>{

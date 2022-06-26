@@ -69,6 +69,7 @@ class _ListadoAlumnosState extends State<ListadoAlumnos> {
                       nivel: widget.nivel.toString(),
                     )),
           );
+          setState(() {});
         },
         child: Icon(Icons.add),
         backgroundColor: verdeClaro,

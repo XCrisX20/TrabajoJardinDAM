@@ -31,7 +31,7 @@ class _FormAgregarAlumnosPageState extends State<FormAgregarAlumnosPage> {
   String? genero = 'M';
   DateTime fechaSeleccionada = DateTime.now();
   var ffecha = DateFormat('dd-MM-yyyy');
-  String nomReg = r"/^[a-z ,.'-]+$/i";
+  String nomReg = r"/^[a-zA-Z'-]+$";
   //campos para imagen
   File? imagen;
   final picker = ImagePicker();
@@ -318,12 +318,22 @@ class _FormAgregarAlumnosPageState extends State<FormAgregarAlumnosPage> {
             int cod_nivel = widget.codigo;
 
             print("RUT: " +
-                rut + "\n" +
-                "Nombre: " + nombre +"\n" +
-                "fechaNacimiento: " + fecha + "\n" +
-                "foto: " + imagen64.toString() + "\n" +
-                "sexo: " + sexo + "\n" +
-                "cod_nivel: " + cod_nivel.toString());
+                rut +
+                "\n" +
+                "Nombre: " +
+                nombre +
+                "\n" +
+                "fechaNacimiento: " +
+                fecha +
+                "\n" +
+                "sexo: " +
+                sexo +
+                "\n" +
+                "cod_nivel: " +
+                cod_nivel.toString() +
+                "\n" +
+                "foto: " +
+                imagen64.toString());
 
             var respuesta = await AlumnosProvider().alumnoAgregar(
                 rut.trim(), nombre.trim(), fecha, foto, sexo, cod_nivel);
