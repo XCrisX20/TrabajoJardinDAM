@@ -311,9 +311,12 @@ class _FormAgregarAlumnosPageState extends State<FormAgregarAlumnosPage> {
                 apellido_mCtrl.text;
             String fecha =
                 "${fechaSeleccionada.year}-${fechaSeleccionada.month}-${fechaSeleccionada.day}";
-            var foto = imagen!.path;
-            List<int> bytes = await new File(foto).readAsBytesSync();
-            imagen64 = base64.encode(bytes);
+            var foto = null;
+            if (imagen != null) {
+              foto = imagen!.path;
+              List<int> bytes = await new File(foto).readAsBytesSync();
+              imagen64 = base64.encode(bytes);
+            }
             String sexo = genero.toString();
             int cod_nivel = widget.codigo;
 
