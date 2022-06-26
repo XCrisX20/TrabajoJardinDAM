@@ -49,6 +49,7 @@ class _ListadoAlumnosState extends State<ListadoAlumnos> {
                             builder: (context) => Ver_Alumnos(
                                   codigo: widget.codigo,
                                   rut: alumno['rut'].toString(),
+                                  nivel: widget.nivel,
                                 )),
                       ).then((value) {
                         setState(() {});

@@ -320,24 +320,6 @@ class _FormAgregarAlumnosPageState extends State<FormAgregarAlumnosPage> {
             String sexo = genero.toString();
             int cod_nivel = widget.codigo;
 
-            print("RUT: " +
-                rut +
-                "\n" +
-                "Nombre: " +
-                nombre +
-                "\n" +
-                "fechaNacimiento: " +
-                fecha +
-                "\n" +
-                "sexo: " +
-                sexo +
-                "\n" +
-                "cod_nivel: " +
-                cod_nivel.toString() +
-                "\n" +
-                "foto: " +
-                imagen64.toString());
-
             var respuesta = await AlumnosProvider().alumnoAgregar(
                 rut.trim(), nombre.trim(), fecha, foto, sexo, cod_nivel);
 
