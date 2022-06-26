@@ -1,10 +1,6 @@
 import 'dart:io';
 import 'dart:typed_data';
-import 'dart:async';
-import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:image/image.dart' as ImageProcess;
 import 'dart:convert';
 import 'package:jardin_cliente/provider/alumnos_provider.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
@@ -52,16 +48,21 @@ class _Ver_AlumnosState extends State<Ver_Alumnos> {
           } else {
             sexo = "Indeterminado";
           }
+
           var imagen;
+
           if (alumno['foto'] != null) {
-            Uint8List bytes = base64.decode(alumno['foto']);
-            imagen = Image.memory(bytes);
+            imagen = Container(child: Image.file(File(alumno['foto'].toString()),width: 150,height: 150,),);
           } else {
             imagen = Container(child: Text("Alumno sin Imagen"));
           }
 
           return Column(
             children: [
+              Container(
+                padding: EdgeInsets.all(10),
+                child: Text(alumno['nombre'], style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+              ),
               Row(
                 children: [
                   Container(
@@ -73,7 +74,9 @@ class _Ver_AlumnosState extends State<Ver_Alumnos> {
                         height: 150,
                         width: 150,
                         decoration: BoxDecoration(
-                            border: Border.all(width: 1, color: Colors.grey)),
+                          border: Border.all(width: 2, color: Colors.black),
+                          color: Colors.grey,
+                        ),
                         child: imagen,
                       ),
                     ),
@@ -85,27 +88,23 @@ class _Ver_AlumnosState extends State<Ver_Alumnos> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           SizedBox(
-                            height: 20,
+                            height: 5,
                           ),
                           Text(
                             "Rut: " + alumno['rut'],
-                            style: TextStyle(fontSize: 16),
+                            style: TextStyle(fontSize: 18, fontFamily: 'Arial'),
                           ),
                           Text(
-                            "Nombre: " + alumno['nombre'],
-                            style: TextStyle(fontSize: 16),
-                          ),
-                          Text(
-                            "Fecha Nacimiento: " + alumno['fechaNacimiento'],
-                            style: TextStyle(fontSize: 16),
+                            "Fecha Nac: " + alumno['fechaNacimiento'],
+                            style: TextStyle(fontSize: 18, fontFamily: 'Arial'),
                           ),
                           Text(
                             "Sexo: " + sexo,
-                            style: TextStyle(fontSize: 16),
+                            style: TextStyle(fontSize: 18, fontFamily: 'Arial'),
                           ),
                           Text(
                             "Nivel: " + widget.nivel,
-                            style: TextStyle(fontSize: 16),
+                            style: TextStyle(fontSize: 18, fontFamily: 'Arial'),
                           ),
                         ],
                       ),
