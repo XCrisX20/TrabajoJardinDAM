@@ -66,8 +66,8 @@ class HistorialProvider {
       int cod_historial,
       String descripcion,
       String tipo_evento,
-      DateTime fecha,
-      TimeOfDay hora,
+      String fecha,
+      String hora,
       String rut_alumno) async {
     var url = Uri.parse('$apiUrl/$cod_historial');
     var respuesta = await http.put(url,
