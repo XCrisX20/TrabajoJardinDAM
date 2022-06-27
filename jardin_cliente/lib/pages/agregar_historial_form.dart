@@ -16,8 +16,8 @@ class _AgregarHistorialFormState extends State<AgregarHistorialForm> {
       DropdownMenuItem(child: Text("bullying"), value: "bullying"),
       DropdownMenuItem(child: Text("retiro"), value: "retiro"),
       DropdownMenuItem(child: Text("suspension"), value: "suspension"),
-      DropdownMenuItem(
-          child: Text("mal comportamiento"), value: "mal comportamiento"),
+      DropdownMenuItem(child: Text("mal comportamiento"), value: "mal comportamiento"),
+      DropdownMenuItem(child: Text("buen comportamiento"), value: "buen comportamiento"),
       DropdownMenuItem(child: Text("sin respuestas"), value: "sin respuestas"),
     ];
 
@@ -66,10 +66,20 @@ class _AgregarHistorialFormState extends State<AgregarHistorialForm> {
                         selectedValue = newValue!;
                       });
                     },
-                    items: dropdownItems)
+                    items: dropdownItems),
+                Container(
+                  child:
+                  ElevatedButton(
+                    child: Text('Agregar Historial'),
+                    onPressed: (){},
+                  )
+                 ),
               ],
+              
+            
             ),
           )),
+          
     );
   }
 }
