@@ -223,7 +223,9 @@ class _Ver_AlumnosState extends State<Ver_Alumnos> {
                                     foto: alumno['foto'].toString(),
                                     fechaNacimiento: alumno['fechaNacimiento'],
                                   ));
-                          Navigator.push(context, route);
+                          Navigator.push(context, route).then((value){
+                            setState(() {});
+                          });
                         },
                         style: ElevatedButton.styleFrom(
                           primary: Colors.yellow,
