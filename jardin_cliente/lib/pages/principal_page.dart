@@ -13,7 +13,7 @@ class PrincipalPage extends StatefulWidget {
 
 class _PrincipalPageState extends State<PrincipalPage> {
   final verdeClaro = Color(0xFF89DA59);
-  final naranjo =Color(0xFFFF420E);
+  final naranjo = Color(0xFFFF420E);
   @override
   Widget build(BuildContext context) {
     return Scaffold(

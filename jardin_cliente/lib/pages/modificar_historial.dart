@@ -111,8 +111,7 @@ class _Modificar_HistorialState extends State<Modificar_Historial> {
                         Desc,
                         selectedValue,
                         formattedDate,
-                        formattedHours,
-                        widget.rut);
+                        formattedHours);
                     if (respuesta['message'] != null) {
                       if (respuesta['errors']['descripcion'] != null) {
                         errDesc = respuesta['errors']['descripcion'][0];
