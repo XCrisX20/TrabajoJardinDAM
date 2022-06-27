@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jardin_cliente/pages/agregar_nivel.dart';
 import 'package:jardin_cliente/provider/nivel_provider.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class GestionNiveles extends StatefulWidget {
   GestionNiveles({Key? key}) : super(key: key);
@@ -38,6 +39,19 @@ class _GestionNivelesState extends State<GestionNiveles> {
                   return ListTile(
                     title: Text(nvl['nombre_nivel'].toString()),
                     leading:Text(nvl['cod_nivel'].toString()),
+                    trailing: Row(
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.only(right: 5),
+                          child: IconButton(icon: Icon(MdiIcons.trashCan), onPressed: (){
+                            
+                          }),
+                        ),
+                        IconButton(icon: Icon(MdiIcons.pencil), onPressed: (){
+
+                        },),
+                      ],
+                    ),
                   );
                 });
           },
@@ -48,7 +62,9 @@ class _GestionNivelesState extends State<GestionNiveles> {
         backgroundColor: verdeClaro,
         onPressed: (){
           MaterialPageRoute route = new MaterialPageRoute(builder: ((context) => AgregarNivel()));
-          Navigator.push(context, route);
+          Navigator.push(context, route).then((value){
+            setState(() {});
+          });
         },
       ),
     );

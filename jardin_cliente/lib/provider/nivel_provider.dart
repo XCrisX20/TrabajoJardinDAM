@@ -33,7 +33,7 @@ class NivelProvider {
 
   //Agrega un Nivel
   Future<LinkedHashMap<String, dynamic>> nivelAgregar(
-      String nombre_nivel, ImagePicker imagen) async {
+      String nombre_nivel, String? imagen) async {
     var url = Uri.parse('$apiUrl');
     var respuesta = await http.post(url,
         headers: <String, String>{
@@ -47,7 +47,7 @@ class NivelProvider {
 
   //Actualizar un Nivel
   Future<LinkedHashMap<String, dynamic>> nivelsEditar(
-      int cod_nivel, String nombre_nivel, ImagePicker imagen) async {
+      int cod_nivel, String nombre_nivel, String? imagen) async {
     var url = Uri.parse('$apiUrl/$cod_nivel');
     var respuesta = await http.put(url,
         headers: <String, String>{
