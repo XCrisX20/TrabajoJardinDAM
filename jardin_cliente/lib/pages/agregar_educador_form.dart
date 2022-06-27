@@ -8,6 +8,7 @@ import 'dart:io';
 import 'package:jardin_cliente/provider/nivel_provider.dart';
 
 import '../provider/educadores_provider.dart';
+
 class FormAgregarEducadorPage extends StatefulWidget {
   final int codigo;
   final String nivel;
@@ -16,7 +17,8 @@ class FormAgregarEducadorPage extends StatefulWidget {
       : super(key: key);
 
   @override
-  State<FormAgregarEducadorPage> createState() => _FormAgregarEducadorPageState();
+  State<FormAgregarEducadorPage> createState() =>
+      _FormAgregarEducadorPageState();
 }
 
 class _FormAgregarEducadorPageState extends State<FormAgregarEducadorPage> {
@@ -29,17 +31,14 @@ class _FormAgregarEducadorPageState extends State<FormAgregarEducadorPage> {
   TextEditingController apellido_mCtrl = TextEditingController();
   TextEditingController emailCtrl = TextEditingController();
 
-  
-
-    
   String nivel = '';
   String nombre = '';
   String? genero = 'M';
   DateTime fechaSeleccionada = DateTime.now();
   var ffecha = DateFormat('dd-MM-yyyy');
   String nomReg = r"/^[a-zA-Z'-]+$";
-  String email ='';
-  String telefono='';
+  String email = '';
+  String telefono = '';
   //Captura de Errores
   String errRut = '';
   String errNombre = '';
@@ -94,7 +93,6 @@ class _FormAgregarEducadorPageState extends State<FormAgregarEducadorPage> {
                       TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
                 ),
               ),
-              
               campoFechaNacimiento(),
               Container(
                 alignment: Alignment.center,
@@ -104,9 +102,7 @@ class _FormAgregarEducadorPageState extends State<FormAgregarEducadorPage> {
                       TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
                 ),
               ),
-              
               botonAgregarEducador(),
-              
             ],
           ),
         ),
@@ -128,7 +124,6 @@ class _FormAgregarEducadorPageState extends State<FormAgregarEducadorPage> {
       },
     );
   }
-  
 
   TextFormField campoPrimerNombre() {
     return TextFormField(
@@ -183,6 +178,7 @@ class _FormAgregarEducadorPageState extends State<FormAgregarEducadorPage> {
       },
     );
   }
+
   TextFormField campoEmail() {
     return TextFormField(
       controller: emailCtrl,
@@ -268,7 +264,7 @@ class _FormAgregarEducadorPageState extends State<FormAgregarEducadorPage> {
       ),
     );
   }
-  
+
   Row campoFechaNacimiento() {
     return Row(
       children: [
@@ -296,8 +292,6 @@ class _FormAgregarEducadorPageState extends State<FormAgregarEducadorPage> {
     );
   }
 
- 
- 
   Container botonAgregarEducador() {
     return Container(
       width: double.infinity,
@@ -314,12 +308,14 @@ class _FormAgregarEducadorPageState extends State<FormAgregarEducadorPage> {
                 apellido_mCtrl.text;
             String fecha =
                 "${fechaSeleccionada.year}-${fechaSeleccionada.month}-${fechaSeleccionada.day}";
-            
-            String sexo = genero.toString();
-            int cod_nivel = widget.codigo;
-
             var respuesta = await EducadoresProvider().educadorAgregar(
-                rut.trim(), nombre.trim(), fecha,email.trim(), sexo, telefono, widget.codigo);
+                rut.trim(),
+                nombre.trim(),
+                fecha,
+                telefono,
+                email.trim(),
+                genero.toString(),
+                widget.codigo);
 
             if (respuesta['message'] != null) {
               //rut
@@ -333,7 +329,7 @@ class _FormAgregarEducadorPageState extends State<FormAgregarEducadorPage> {
               //email
               if (respuesta['errors']['email'] != null) {
                 errEmail = respuesta['errors']['email'][0];
-              } 
+              }
 
               //fechaNacimiento
               if (respuesta['errors']['fechaNacimiento'] != null) {
@@ -354,5 +350,4 @@ class _FormAgregarEducadorPageState extends State<FormAgregarEducadorPage> {
           )),
     );
   }
-
 }
