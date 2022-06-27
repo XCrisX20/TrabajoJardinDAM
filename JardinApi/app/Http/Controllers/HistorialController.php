@@ -78,13 +78,12 @@ class HistorialController extends Controller
      * @param  \App\Models\Historial  $historial
      * @return \Illuminate\Http\Response
      */
-    public function update(ResquestHistorial $request, Historial $historial)
+    public function update(Request $request, Historial $historial)
     {
         $historial->descripcion = $request->descripcion;
         $historial->tipo_evento = $request->tipo_evento;
         $historial->fecha = $request->fecha;
         $historial->hora = $request->hora;
-        $historial->rut_alumno = $request->rut_alumnno;
         $historial->save();
         return $historial;
     }

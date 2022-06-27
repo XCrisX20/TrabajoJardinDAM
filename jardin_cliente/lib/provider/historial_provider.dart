@@ -63,12 +63,12 @@ class HistorialProvider {
 
   //Actualizar un historial
   Future<LinkedHashMap<String, dynamic>> historialEditar(
-      int cod_historial,
-      String descripcion,
-      String tipo_evento,
-      String fecha,
-      String hora,
-      String rut_alumno) async {
+    int cod_historial,
+    String descripcion,
+    String tipo_evento,
+    String fecha,
+    String hora,
+  ) async {
     var url = Uri.parse('$apiUrl/$cod_historial');
     var respuesta = await http.put(url,
         headers: <String, String>{
@@ -80,7 +80,6 @@ class HistorialProvider {
           'tipo_evento': tipo_evento,
           'fecha': fecha,
           'hora': hora,
-          'rut_alumno': rut_alumno
         }));
     return json.decode(respuesta.body);
   }
