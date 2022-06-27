@@ -34,7 +34,7 @@ class EducadoresProvider {
   Future<LinkedHashMap<String, dynamic>> educadorAgregar(
       String rut,
       String nombre,
-      DateTime fechaNacimiento,
+      String fechaNacimiento,
       String telefono,
       String email,
       int cod_nivel) async {
