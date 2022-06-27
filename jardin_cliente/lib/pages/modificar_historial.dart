@@ -2,17 +2,26 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:jardin_cliente/provider/historial_provider.dart';
 
-class AgregarHistorialForm extends StatefulWidget {
+class Modificar_Historial extends StatefulWidget {
   final String rut;
   final String nombre;
-  const AgregarHistorialForm({this.rut = '', this.nombre = '', Key? key})
+  final int Codigo;
+  final String Desc;
+  final String Tipo_des;
+  const Modificar_Historial(
+      {this.rut = '',
+      this.nombre = '',
+      this.Codigo = 0,
+      this.Desc = '',
+      this.Tipo_des = '',
+      Key? key})
       : super(key: key);
 
   @override
-  State<AgregarHistorialForm> createState() => _AgregarHistorialFormState();
+  State<Modificar_Historial> createState() => _Modificar_HistorialState();
 }
 
-class _AgregarHistorialFormState extends State<AgregarHistorialForm> {
+class _Modificar_HistorialState extends State<Modificar_Historial> {
   TextEditingController DescCtrl = TextEditingController();
   List<DropdownMenuItem<String>> get dropdownItems {
     List<DropdownMenuItem<String>> menuItems = [
@@ -37,10 +46,16 @@ class _AgregarHistorialFormState extends State<AgregarHistorialForm> {
 
   final formKey = GlobalKey<FormState>();
   @override
+  void initState() {
+    super.initState();
+    DescCtrl.text = widget.Desc;
+    selectedValue = widget.Tipo_des.toString();
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Agregar Historial de ' + widget.nombre),
+        title: Text('Modificar esta historia '),
       ),
       body: Form(
           key: formKey,
@@ -91,14 +106,14 @@ class _AgregarHistorialFormState extends State<AgregarHistorialForm> {
                     String Desc = DescCtrl.text.trim();
                     String formattedDate = DateFormat('yyyy-MM-dd').format(now);
                     String formattedHours = DateFormat('kk:mm').format(now);
-                    var respuesta = await HistorialProvider().historialAgregar(
+                    var respuesta = await HistorialProvider().historialEditar(
+                        widget.Codigo,
                         Desc,
                         selectedValue,
                         formattedDate,
                         formattedHours,
                         widget.rut);
                     if (respuesta['message'] != null) {
-                      //rut
                       if (respuesta['errors']['descripcion'] != null) {
                         errDesc = respuesta['errors']['descripcion'][0];
                       }

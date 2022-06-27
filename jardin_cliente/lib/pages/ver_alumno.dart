@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:jardin_cliente/pages/agregar_historial_form.dart';
 import 'package:jardin_cliente/pages/modificar_alumno.dart';
+import 'package:jardin_cliente/pages/modificar_historial.dart';
 import 'dart:convert';
 import 'package:jardin_cliente/provider/alumnos_provider.dart';
 import 'package:jardin_cliente/provider/historial_provider.dart';
@@ -239,6 +240,7 @@ class _Ver_AlumnosState extends State<Ver_Alumnos> {
                           MaterialPageRoute(
                               builder: (context) => AgregarHistorialForm(
                                     rut: widget.rut.toString(),
+                                    nombre: alumno['nombre'],
                                   )),
                         ).then((value) {
                           setState(() {});
@@ -310,7 +312,22 @@ class _Ver_AlumnosState extends State<Ver_Alumnos> {
                               motion: ScrollMotion(),
                               children: [
                                 SlidableAction(
-                                  onPressed: (context) {},
+                                  onPressed: (context) {
+                                    MaterialPageRoute route =
+                                        new MaterialPageRoute(
+                                            builder: (context) =>
+                                                Modificar_Historial(
+                                                  Codigo: widget.codigo,
+                                                  rut: alumno['rut'],
+                                                  Desc: historial['descripcion']
+                                                      .toString(),
+                                                  nombre: alumno['nombre'],
+                                                  Tipo_des:
+                                                      historial['tipo_evento']
+                                                          .toString(),
+                                                ));
+                                    Navigator.push(context, route);
+                                  },
                                   backgroundColor:
                                       Color.fromARGB(255, 155, 255, 255),
                                   icon: MdiIcons.pen,
