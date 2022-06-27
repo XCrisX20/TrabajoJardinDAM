@@ -73,8 +73,8 @@ class AlumnosProvider {
   Future<LinkedHashMap<String, dynamic>> alumnoEditar(
       String rut,
       String nombre,
-      DateTime fechaNacimiento,
-      ImagePicker foto,
+      String fechaNacimiento,
+      String? foto,
       String sexo,
       int cod_nivel) async {
     var url = Uri.parse('$apiUrl/$rut');
@@ -87,6 +87,7 @@ class AlumnosProvider {
           'nombre': nombre,
           'fechaNacimiento': fechaNacimiento,
           'foto': foto,
+          'sexo' : sexo,
           'cod_nivel': cod_nivel
         }));
     return json.decode(respuesta.body);
