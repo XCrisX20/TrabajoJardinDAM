@@ -2,6 +2,7 @@ import 'dart:io';
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:jardin_cliente/pages/agregar_historial_form.dart';
 import 'package:jardin_cliente/pages/modificar_alumno.dart';
 import 'dart:convert';
 import 'package:jardin_cliente/provider/alumnos_provider.dart';
@@ -232,7 +233,13 @@ class _Ver_AlumnosState extends State<Ver_Alumnos> {
                         'Agregar Historial',
                         style: TextStyle(color: Colors.white),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => AgregarHistorialForm()),
+                        );
+                      },
                     ),
                   ],
                 ),
@@ -311,7 +318,89 @@ class _Ver_AlumnosState extends State<Ver_Alumnos> {
                               motion: ScrollMotion(),
                               children: [
                                 SlidableAction(
-                                  onPressed: (context) {},
+                                  onPressed: (context) {
+                                    showDialog(
+                                        context: context,
+                                        builder: (context) => AlertDialog(
+                                              title: Text('Eliminar Historial'),
+                                              content: Text(
+                                                  '¿Esta seguro de Eliminar este registro?'),
+                                              actions: [
+                                                TextButton.icon(
+                                                  icon: Icon(MdiIcons.check),
+                                                  label: Text("OK"),
+                                                  onPressed: () {
+                                                    HistorialProvider()
+                                                        .historialBorrar(
+                                                            historial[
+                                                                'cod_historial'])
+                                                        .then((borrado) {
+                                                      if (borrado) {
+                                                        showDialog(
+                                                            context: context,
+                                                            builder:
+                                                                (context) =>
+                                                                    AlertDialog(
+                                                                      title: Text(
+                                                                          "Informacion"),
+                                                                      content: Text(
+                                                                          "registro Eliminado!"),
+                                                                      actions: [
+                                                                        TextButton
+                                                                            .icon(
+                                                                          icon:
+                                                                              Icon(MdiIcons.check),
+                                                                          label:
+                                                                              Text('OK'),
+                                                                          onPressed:
+                                                                              () {
+                                                                            Navigator.pop(context);
+                                                                          },
+                                                                        )
+                                                                      ],
+                                                                    ));
+                                                      } else {
+                                                        showDialog(
+                                                            context: context,
+                                                            builder:
+                                                                (context) =>
+                                                                    AlertDialog(
+                                                                      title: Text(
+                                                                          "Informacion"),
+                                                                      content: Text(
+                                                                          "registro no se pudo Eliminar!"),
+                                                                      actions: [
+                                                                        TextButton
+                                                                            .icon(
+                                                                          icon:
+                                                                              Icon(MdiIcons.check),
+                                                                          label:
+                                                                              Text('OK'),
+                                                                          onPressed:
+                                                                              () {
+                                                                            Navigator.pop(context);
+                                                                          },
+                                                                        )
+                                                                      ],
+                                                                    ));
+                                                      }
+                                                    });
+                                                    Navigator.of(context)
+                                                        .pop('OK');
+                                                    setState(() {});
+                                                  },
+                                                ),
+                                                TextButton.icon(
+                                                  icon: Icon(MdiIcons.close),
+                                                  label: Text("Cancelar"),
+                                                  onPressed: () {
+                                                    Navigator.of(context)
+                                                        .pop('Cancelar');
+                                                  },
+                                                ),
+                                              ],
+                                            )).then((value) => print(value));
+                                  },
                                   backgroundColor:
                                       Color.fromARGB(255, 95, 14, 14),
                                   icon: MdiIcons.trashCan,
