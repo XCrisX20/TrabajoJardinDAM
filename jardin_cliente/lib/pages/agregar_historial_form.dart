@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:jardin_cliente/provider/historial_provider.dart';
 
 class AgregarHistorialForm extends StatefulWidget {
-  const AgregarHistorialForm({Key? key}) : super(key: key);
+  final String rut;
+  const AgregarHistorialForm({this.rut = '', Key? key}) : super(key: key);
 
   @override
   State<AgregarHistorialForm> createState() => _AgregarHistorialFormState();
@@ -16,15 +19,19 @@ class _AgregarHistorialFormState extends State<AgregarHistorialForm> {
       DropdownMenuItem(child: Text("bullying"), value: "bullying"),
       DropdownMenuItem(child: Text("retiro"), value: "retiro"),
       DropdownMenuItem(child: Text("suspension"), value: "suspension"),
-      DropdownMenuItem(child: Text("mal comportamiento"), value: "mal comportamiento"),
-      DropdownMenuItem(child: Text("buen comportamiento"), value: "buen comportamiento"),
+      DropdownMenuItem(
+          child: Text("mal comportamiento"), value: "mal comportamiento"),
+      DropdownMenuItem(
+          child: Text("buen comportamiento"), value: "buen comportamiento"),
       DropdownMenuItem(child: Text("sin respuestas"), value: "sin respuestas"),
     ];
 
     return menuItems;
   }
 
+  String errDesc = '';
   String selectedValue = "accidente";
+  DateTime now = DateTime.now();
 
   final formKey = GlobalKey<FormState>();
   @override
@@ -51,6 +58,14 @@ class _AgregarHistorialFormState extends State<AgregarHistorialForm> {
                     return null;
                   },
                 ),
+                Container(
+                  alignment: Alignment.center,
+                  child: Text(
+                    errDesc,
+                    style: TextStyle(
+                        color: Colors.red, fontWeight: FontWeight.bold),
+                  ),
+                ),
                 SizedBox(height: 50),
                 Container(
                   child: Text(
@@ -68,18 +83,32 @@ class _AgregarHistorialFormState extends State<AgregarHistorialForm> {
                     },
                     items: dropdownItems),
                 Container(
-                  child:
-                  ElevatedButton(
-                    child: Text('Agregar Historial'),
-                    onPressed: (){},
-                  )
-                 ),
+                    child: ElevatedButton(
+                  child: Text('Agregar Historial'),
+                  onPressed: () async {
+                    String Desc = DescCtrl.text.trim();
+                    String formattedDate = DateFormat('yyyy-MM-dd').format(now);
+                    String formattedHours = DateFormat('kk:mm').format(now);
+                    var respuesta = await HistorialProvider().historialAgregar(
+                        Desc,
+                        selectedValue,
+                        formattedDate,
+                        formattedHours,
+                        widget.rut);
+                    if (respuesta['message'] != null) {
+                      //rut
+                      if (respuesta['errors']['descripcion'] != null) {
+                        errDesc = respuesta['errors']['descripcion'][0];
+                      }
+                      setState(() {});
+                      return;
+                    }
+                    Navigator.pop(context);
+                  },
+                )),
               ],
-              
-            
             ),
           )),
-          
     );
   }
 }

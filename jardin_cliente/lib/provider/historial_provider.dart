@@ -43,12 +43,8 @@ class HistorialProvider {
   }
 
   //Agregar un Historial
-  Future<LinkedHashMap<String, dynamic>> historialAgregar(
-      String descripcion,
-      String tipo_evento,
-      DateTime fecha,
-      TimePickerDialog hora,
-      String rut_alumno) async {
+  Future<LinkedHashMap<String, dynamic>> historialAgregar(String descripcion,
+      String tipo_evento, String fecha, String hora, String rut_alumno) async {
     var url = Uri.parse('$apiUrl');
     var respuesta = await http.post(url,
         headers: <String, String>{
@@ -71,7 +67,7 @@ class HistorialProvider {
       String descripcion,
       String tipo_evento,
       DateTime fecha,
-      TimePickerDialog hora,
+      TimeOfDay hora,
       String rut_alumno) async {
     var url = Uri.parse('$apiUrl/$cod_historial');
     var respuesta = await http.put(url,
