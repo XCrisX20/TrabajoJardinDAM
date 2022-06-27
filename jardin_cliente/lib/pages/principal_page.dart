@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:jardin_cliente/pages/gestion_niveles.dart';
 import 'package:jardin_cliente/pages/listado_alumnos.dart';
 import 'package:jardin_cliente/pages/listar_nivel.dart';
 import 'package:jardin_cliente/provider/nivel_provider.dart';
 import 'package:jardin_cliente/widgets/card.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class PrincipalPage extends StatefulWidget {
   PrincipalPage({Key? key}) : super(key: key);
@@ -19,8 +21,15 @@ class _PrincipalPageState extends State<PrincipalPage> {
     return Scaffold(
       backgroundColor: naranjo,
       appBar: AppBar(
-        title: Text('Jardin Infantil'),
-        leading: Icon(Icons.child_care),
+        title: Text('Jardin Arbolitos'),
+        leading: IconButton(
+          icon: Icon(MdiIcons.cog),
+          onPressed: () {
+            MaterialPageRoute route =
+                new MaterialPageRoute(builder: (context) => GestionNiveles());
+            Navigator.push(context, route);
+          },
+        ),
         backgroundColor: verdeClaro,
       ),
       body: Padding(
