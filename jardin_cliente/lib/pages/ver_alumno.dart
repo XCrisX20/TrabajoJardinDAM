@@ -224,7 +224,7 @@ class _Ver_AlumnosState extends State<Ver_Alumnos> {
                                     foto: alumno['foto'].toString(),
                                     fechaNacimiento: alumno['fechaNacimiento'],
                                   ));
-                          Navigator.push(context, route).then((value){
+                          Navigator.push(context, route).then((value) {
                             setState(() {});
                           });
                         },
@@ -319,8 +319,8 @@ class _Ver_AlumnosState extends State<Ver_Alumnos> {
                                         new MaterialPageRoute(
                                             builder: (context) =>
                                                 Modificar_Historial(
-                                                  Codigo: widget.codigo,
-                                                  rut: alumno['rut'],
+                                                  Codigo: historial[
+                                                      'cod_historial'],
                                                   Desc: historial['descripcion']
                                                       .toString(),
                                                   nombre: alumno['nombre'],
@@ -328,7 +328,11 @@ class _Ver_AlumnosState extends State<Ver_Alumnos> {
                                                       historial['tipo_evento']
                                                           .toString(),
                                                 ));
-                                    Navigator.push(context, route);
+                                    Navigator.push(context, route)
+                                        .then((value) {
+                                      setState(() {});
+                                    });
+                                    ;
                                   },
                                   backgroundColor:
                                       Color.fromARGB(255, 155, 255, 255),

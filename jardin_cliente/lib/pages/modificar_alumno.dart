@@ -77,41 +77,41 @@ class _ModificarAlumnoState extends State<ModificarAlumno> {
               children: [
                 campoRut(),
                 Container(
-                alignment: Alignment.center,
-                child: Text(
-                  errRut,
-                  style:
-                      TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
+                  alignment: Alignment.center,
+                  child: Text(
+                    errRut,
+                    style: TextStyle(
+                        color: Colors.red, fontWeight: FontWeight.bold),
+                  ),
                 ),
-              ),
                 campoNombre(),
                 Container(
-                alignment: Alignment.center,
-                child: Text(
-                  errNombre,
-                  style:
-                      TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
+                  alignment: Alignment.center,
+                  child: Text(
+                    errNombre,
+                    style: TextStyle(
+                        color: Colors.red, fontWeight: FontWeight.bold),
+                  ),
                 ),
-              ),
                 campoSexo(),
                 Container(
-                alignment: Alignment.center,
-                child: Text(
-                  errSexo,
-                  style:
-                      TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
+                  alignment: Alignment.center,
+                  child: Text(
+                    errSexo,
+                    style: TextStyle(
+                        color: Colors.red, fontWeight: FontWeight.bold),
+                  ),
                 ),
-              ),
                 campoNivel(),
                 campoFechaNacimiento(),
                 Container(
-                alignment: Alignment.center,
-                child: Text(
-                  errFechaNacimiento,
-                  style:
-                      TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
+                  alignment: Alignment.center,
+                  child: Text(
+                    errFechaNacimiento,
+                    style: TextStyle(
+                        color: Colors.red, fontWeight: FontWeight.bold),
+                  ),
                 ),
-              ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -403,7 +403,8 @@ class _ModificarAlumnoState extends State<ModificarAlumno> {
             }
             int cod_nivel = int.parse(nivel);
 
-            var respuesta = await AlumnosProvider().alumnoEditar(rut.trim(), nombre.trim(), fecha, foto, sexo.toString(),cod_nivel);
+            var respuesta = await AlumnosProvider().alumnoEditar(rut.trim(),
+                nombre.trim(), fecha, foto, sexo.toString(), cod_nivel);
 
             //var respuesta = await AlumnosProvider().alumnoEditar(rut.trim(),
             //    nombre.trim(), fecha, foto, sexo.toString(), cod_nivel);

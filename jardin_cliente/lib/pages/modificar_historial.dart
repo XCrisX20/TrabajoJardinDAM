@@ -3,14 +3,12 @@ import 'package:intl/intl.dart';
 import 'package:jardin_cliente/provider/historial_provider.dart';
 
 class Modificar_Historial extends StatefulWidget {
-  final String rut;
   final String nombre;
   final int Codigo;
   final String Desc;
   final String Tipo_des;
   const Modificar_Historial(
-      {this.rut = '',
-      this.nombre = '',
+      {this.nombre = '',
       this.Codigo = 0,
       this.Desc = '',
       this.Tipo_des = '',
@@ -55,7 +53,7 @@ class _Modificar_HistorialState extends State<Modificar_Historial> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Modificar esta historia '),
+        title: Text('Modificar esta historia de' + widget.nombre),
       ),
       body: Form(
           key: formKey,
@@ -101,7 +99,7 @@ class _Modificar_HistorialState extends State<Modificar_Historial> {
                     items: dropdownItems),
                 Container(
                     child: ElevatedButton(
-                  child: Text('Agregar Historial'),
+                  child: Text('Modificar  Historial'),
                   onPressed: () async {
                     String Desc = DescCtrl.text.trim();
                     String formattedDate = DateFormat('yyyy-MM-dd').format(now);
