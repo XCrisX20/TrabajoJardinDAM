@@ -47,6 +47,7 @@ class _FormAgregarEducadorPageState extends State<FormAgregarEducadorPage> {
   String errNombre = '';
   String errFechaNacimiento = '';
   String errSexo = '';
+  String errEmail = '';
   //colores para el sistema
   final verdeClaro = Color(0xFF89DA59);
   final naranjo = Color(0xFFFF420E);
@@ -108,6 +109,7 @@ class _FormAgregarEducadorPageState extends State<FormAgregarEducadorPage> {
               ),
               campoFoto(),
               botonAgregarEducador(),
+              
             ],
           ),
         ),
@@ -350,7 +352,7 @@ class _FormAgregarEducadorPageState extends State<FormAgregarEducadorPage> {
       ],
     );
   }
-
+ 
   Container botonAgregarEducador() {
     return Container(
       width: double.infinity,
@@ -388,6 +390,11 @@ class _FormAgregarEducadorPageState extends State<FormAgregarEducadorPage> {
               if (respuesta['errors']['nombre'] != null) {
                 errNombre = respuesta['errors']['nombre'][0];
               }
+              //email
+              if (respuesta['errors']['email'] != null) {
+                errEmail = respuesta['errors']['email'][0];
+              } 
+
               //fechaNacimiento
               if (respuesta['errors']['fechaNacimiento'] != null) {
                 errFechaNacimiento = respuesta['errors']['fechaNacimiento'][0];

@@ -4,24 +4,27 @@ import 'package:jardin_cliente/pages/ver_alumno.dart';
 import 'package:jardin_cliente/provider/alumnos_provider.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
-class ListadoAlumnos extends StatefulWidget {
+class ListadoEducadores extends StatefulWidget {
   final String nivel;
   final int codigo;
-  ListadoAlumnos({this.nivel = '', this.codigo = 0, Key? key})
+  ListadoEducadores({this.nivel = '', this.codigo = 0, Key? key})
       : super(key: key);
 
   @override
-  State<ListadoAlumnos> createState() => _ListadoAlumnosState();
+  State<ListadoEducadores> createState() => _ListadoEducadoresState();
 }
 
-class _ListadoAlumnosState extends State<ListadoAlumnos> {
+class _ListadoEducadoresState extends State<ListadoEducadores> {
   final verdeClaro = Color(0xFF89DA59);
   final naranjo = Color(0xFFFF420E);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
+      appBar: AppBar(
+        backgroundColor: verdeClaro,
+        title: Text("Alumnos " + widget.nivel),
+      ),
       body: Padding(
         padding: EdgeInsets.all(5),
         child: Expanded(

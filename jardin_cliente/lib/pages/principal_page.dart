@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jardin_cliente/pages/listado_alumnos.dart';
+import 'package:jardin_cliente/pages/listar_nivel.dart';
 import 'package:jardin_cliente/provider/nivel_provider.dart';
 import 'package:jardin_cliente/widgets/card.dart';
 
@@ -43,7 +44,7 @@ class _PrincipalPageState extends State<PrincipalPage> {
                       child: CardWidgets(texto: nvl['nombre_nivel'].toString()),
                       onPressed: () {
                         MaterialPageRoute route = new MaterialPageRoute(
-                            builder: (context) => ListadoAlumnos(
+                            builder: (context) => ListarNivel(
                                   nivel: nvl['nombre_nivel'],
                                   codigo: nvl['cod_nivel'],
                                 ));

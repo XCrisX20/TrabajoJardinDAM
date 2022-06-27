@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:jardin_cliente/pages/agregar_alumno_form.dart';
 import 'package:jardin_cliente/pages/agregar_educador_form.dart';
 import 'package:jardin_cliente/pages/principal_page.dart';
 
