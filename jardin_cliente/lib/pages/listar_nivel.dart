@@ -27,19 +27,18 @@ class _ListarNivelState extends State<ListarNivel> {
   int codigo=0;
   String nivel='';
  
+  List paginas = [];
 
   @override
     void initState() {
     super.initState();
-    codigo = widget.codigo;
-    nivel = widget.nivel.toString();
+    paginas = [
+    {"pagina":ListadoAlumnos(codigo: widget.codigo, nivel: widget.nivel,), 'texto': 'Alumnos', 'icono': MdiIcons.humanChild, 'color':0xFF89DA59},
+    {'pagina':ListadoEducadores(codigo: widget.codigo, nivel: widget.nivel,), 'texto': 'Educadores', 'icono': MdiIcons.human, 'color':0xFF89DA59},
+    ];
     
   }
-  List<dynamic> paginas = [
-    {"pagina":ListadoAlumnos(nivel:nivel,codigo:codigo,), 'texto': 'Alumnos', 'icono': MdiIcons.humanChild, 'color':0xFF89DA59},
-    {'pagina': ListadoEducadores(), 'texto': 'Educadores', 'icono': MdiIcons.human, 'color':0xFF89DA59},
- 
-    ];
+  
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
