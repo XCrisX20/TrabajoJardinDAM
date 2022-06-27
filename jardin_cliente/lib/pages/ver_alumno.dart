@@ -237,8 +237,12 @@ class _Ver_AlumnosState extends State<Ver_Alumnos> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => AgregarHistorialForm()),
-                        );
+                              builder: (context) => AgregarHistorialForm(
+                                    rut: widget.rut.toString(),
+                                  )),
+                        ).then((value) {
+                          setState(() {});
+                        });
                       },
                     ),
                   ],
