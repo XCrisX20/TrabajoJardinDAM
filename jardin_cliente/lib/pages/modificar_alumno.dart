@@ -403,8 +403,10 @@ class _ModificarAlumnoState extends State<ModificarAlumno> {
             }
             int cod_nivel = int.parse(nivel);
 
-            var respuesta = await AlumnosProvider().alumnoEditar(rut.trim(),
-                nombre.trim(), fecha, foto, sexo.toString(), cod_nivel);
+            var respuesta = await AlumnosProvider().alumnoEditar(rut.trim(), nombre.trim(), fecha, foto, sexo.toString(),cod_nivel);
+
+            //var respuesta = await AlumnosProvider().alumnoEditar(rut.trim(),
+            //    nombre.trim(), fecha, foto, sexo.toString(), cod_nivel);
 
             if (respuesta['message'] != null) {
               //rut
