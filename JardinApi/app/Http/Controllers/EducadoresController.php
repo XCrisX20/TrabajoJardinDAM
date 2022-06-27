@@ -17,6 +17,10 @@ class EducadoresController extends Controller
     {
         return Educadores::all();
     }
+    public function getXNivel(int $cod_nivel){
+        return Educadores::select('rut', 'nombre','email', 'fechaNacimiento', 'telefono', 'sexo',  'cod_nivel')
+        ->where('cod_nivel', '=', $cod_nivel)->get();
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -80,7 +84,7 @@ class EducadoresController extends Controller
      * @param  \App\Models\Educadores  $educadores
      * @return \Illuminate\Http\Response
      */
-    public function update(EducadoresRequest $request, Educadores $educadores)
+    public function update(Request $request, Educadores $educadores)
     {
         $url = url()->current();
         $rut = explode("/", $url)[5];

@@ -4,6 +4,9 @@ import 'package:jardin_cliente/pages/ver_alumno.dart';
 import 'package:jardin_cliente/provider/alumnos_provider.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
+import '../provider/educadores_provider.dart';
+import 'agregar_educador_form.dart';
+
 class ListadoEducadores extends StatefulWidget {
   final String nivel;
   final int codigo;
@@ -21,15 +24,12 @@ class _ListadoEducadoresState extends State<ListadoEducadores> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: verdeClaro,
-        title: Text("Alumnos " + widget.nivel),
-      ),
+  
       body: Padding(
         padding: EdgeInsets.all(5),
         child: Expanded(
           child: FutureBuilder(
-            future: AlumnosProvider().getAlumnosXNivel(widget.codigo),
+            future: EducadoresProvider().getEducadoresXNivel(widget.codigo),
             builder: (context, AsyncSnapshot snap) {
               if (!snap.hasData) {
                 return Center(
@@ -69,7 +69,7 @@ class _ListadoEducadoresState extends State<ListadoEducadores> {
           Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => FormAgregarAlumnosPage(
+                builder: (context) => FormAgregarEducadorPage(
                       codigo: widget.codigo,
                       nivel: widget.nivel.toString(),
                     )),

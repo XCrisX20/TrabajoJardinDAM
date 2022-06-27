@@ -19,6 +19,7 @@ use App\Models\Alumnos;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::get('/educadores/niv/{nivel}', [EducadoresController::class, 'getXNivel']);
 Route::get('/alumnos/niv/{nivel}', [AlumnosController::class, 'getXNivel']);
 Route::get('/historial/rut/{rut_alumno}', [HistorialController::class, 'getXRut']);
 Route::apiResource('/alumnos',AlumnosController::class);

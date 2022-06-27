@@ -17,6 +17,18 @@ class EducadoresProvider {
       return [];
     }
   }
+   //Listar todos los Educadores por nivel
+  Future<List<dynamic>> getEducadoresXNivel(int nivel) async {
+    var url = Uri.parse('$apiUrl/niv/$nivel');
+    var respuesta = await http.get(url);
+
+    if (respuesta.statusCode == 200) {
+      return json.decode(respuesta.body);
+    } else {
+      return [];
+    }
+  }
+
 
   //Listar un Educador por Rut
   Future<LinkedHashMap<String, dynamic>> getEducador(String rut) async {
@@ -37,6 +49,7 @@ class EducadoresProvider {
       String fechaNacimiento,
       String telefono,
       String email,
+      String sexo,
       int cod_nivel) async {
     var url = Uri.parse('$apiUrl');
     var respuesta = await http.post(url,
@@ -50,6 +63,7 @@ class EducadoresProvider {
           'fechaNacimiento': fechaNacimiento,
           'telefono': telefono,
           'email': email,
+          'sexo': sexo,
           'cod_nivel': cod_nivel
         }));
     return json.decode(respuesta.body);

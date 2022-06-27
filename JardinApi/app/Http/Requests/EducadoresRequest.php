@@ -24,23 +24,21 @@ class EducadoresRequest extends FormRequest
     public function rules()
     {
         return [
-            'rut'=> 'required|numeric|digits:9|unique:educadores,rut',
-            'nombre'=> 'required|alpha',
+            'rut'=> 'required|min:9|unique:educadores,rut',
+            'nombre'=> 'required',
             'cod_nivel'=> 'required|numeric',
             'email' => 'required|email|unique:educadores,email',
             'telefono'=> 'required|numeric|digits:9|unique:educadores,telefono',
-            'sexo' => 'required|digits:1',
+            'sexo' => 'required|min:1',
         ];
     }
 
     public function messages(){
         return[
             'rut.required'=>'Ingrese un rut valido',
-            'rut.numeric' => 'El rut debe ser numerico',
-            'rut.digits' => 'El rut no debe ser mas largo que 9',
+            'rut.min' => 'El rut no debe ser mas largo que 9',
             'rut.unique' => 'El rut ya existe',
             'nombre.required'=>'indique el nombre del educador',
-            'nombre.alpha' => 'El nombre solo debe contener letras',
             'email.required' =>'ingrese un email',
             'email.email' => 'El email no tiene un formato correcto',
             'email.unique' => 'el email ya existe',
@@ -51,7 +49,7 @@ class EducadoresRequest extends FormRequest
             'telefono.digits' => 'El telefono debe contener 9 digitos',
             'telefono.unique' => 'El telefono ya existe',
             'sexo.required' => 'El sexo es requerido',
-            'sexo.digits' => 'El sexo solo puede tener un digito',
+            'sexo.min' => 'El sexo solo puede tener un digito',
         ];
     }
 }

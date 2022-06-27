@@ -38,10 +38,8 @@ class _FormAgregarEducadorPageState extends State<FormAgregarEducadorPage> {
   DateTime fechaSeleccionada = DateTime.now();
   var ffecha = DateFormat('dd-MM-yyyy');
   String nomReg = r"/^[a-zA-Z'-]+$";
-  //campos para imagen
-  File? imagen;
-  final picker = ImagePicker();
-  String? imagen64;
+  String email ='';
+  String telefono='';
   //Captura de Errores
   String errRut = '';
   String errNombre = '';
@@ -87,7 +85,6 @@ class _FormAgregarEducadorPageState extends State<FormAgregarEducadorPage> {
               campoPrimerApellido(),
               campoSegundoApellido(),
               campoEmail(),
-              campoNivel(),
               campoSexo(),
               Container(
                 alignment: Alignment.center,
@@ -107,7 +104,7 @@ class _FormAgregarEducadorPageState extends State<FormAgregarEducadorPage> {
                       TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
                 ),
               ),
-              campoFoto(),
+              
               botonAgregarEducador(),
               
             ],
@@ -271,39 +268,7 @@ class _FormAgregarEducadorPageState extends State<FormAgregarEducadorPage> {
       ),
     );
   }
-  Container campoNivel() {
-    return Container(
-      child: FutureBuilder(
-        future: NivelProvider().getNiveles(),
-        builder: (context, AsyncSnapshot snap) {
-          if (!snap.hasData) {
-            return DropdownButtonFormField<String>(
-              hint: Text("Cargando Niveles"),
-              items: [],
-              onChanged: (value) {},
-            );
-          }
-          var niveles = snap.data;
-          return DropdownButtonFormField<String>(
-            hint: Text('Nivel'),
-            items: niveles.map<DropdownMenuItem<String>>((nivel) {
-              return DropdownMenuItem<String>(
-                child: Text(nivel['nombre_nivel']),
-                value: nivel['cod_nivel'].toString(),
-              );
-            }).toList(),
-            value: nivel.isEmpty ? null : nivel,
-            onChanged: (nuevoNivel) {
-              setState(() {
-                nivel = nuevoNivel.toString();
-              });
-            },
-          );
-        },
-      ),
-    );
-  }
-
+  
   Row campoFechaNacimiento() {
     return Row(
       children: [
@@ -331,27 +296,7 @@ class _FormAgregarEducadorPageState extends State<FormAgregarEducadorPage> {
     );
   }
 
-  Row campoFoto() {
-    return Row(
-      children: [
-        ElevatedButton(
-            child: Text("Seleccione una imagen"),
-            onPressed: () {
-              opciones(context);
-            },
-            style: ElevatedButton.styleFrom(
-              primary: verdeClaro,
-            )),
-        imagen == null
-            ? Center()
-            : Container(
-                height: 150,
-                width: 150,
-                child: Image.file(imagen!),
-              )
-      ],
-    );
-  }
+ 
  
   Container botonAgregarEducador() {
     return Container(
@@ -369,17 +314,12 @@ class _FormAgregarEducadorPageState extends State<FormAgregarEducadorPage> {
                 apellido_mCtrl.text;
             String fecha =
                 "${fechaSeleccionada.year}-${fechaSeleccionada.month}-${fechaSeleccionada.day}";
-            var foto = null;
-            if (imagen != null) {
-              foto = imagen!.path;
-              List<int> bytes = await new File(foto).readAsBytesSync();
-              imagen64 = base64.encode(bytes);
-            }
+            
             String sexo = genero.toString();
             int cod_nivel = widget.codigo;
 
             var respuesta = await EducadoresProvider().educadorAgregar(
-                rut.trim(), nombre.trim(), fecha, foto, sexo, cod_nivel);
+                rut.trim(), nombre.trim(), fecha,email.trim(), sexo, telefono, widget.codigo);
 
             if (respuesta['message'] != null) {
               //rut
@@ -415,106 +355,4 @@ class _FormAgregarEducadorPageState extends State<FormAgregarEducadorPage> {
     );
   }
 
-  opciones(context) {
-    showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            contentPadding: EdgeInsets.all(0),
-            content: SingleChildScrollView(
-              child: Column(
-                children: [
-                  InkWell(
-                    onTap: () {
-                      selImagen(1);
-                    },
-                    child: Container(
-                      padding: EdgeInsets.all(20),
-                      decoration: BoxDecoration(
-                          border: Border(
-                              bottom:
-                                  BorderSide(width: 1, color: Colors.grey))),
-                      child: Row(
-                        children: [
-                          Expanded(
-                            child: Text(
-                              'Tomar una Foto',
-                              style: TextStyle(fontSize: 16),
-                            ),
-                          ),
-                          Icon(
-                            Icons.camera_alt,
-                            color: Colors.blue,
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                  InkWell(
-                    onTap: () {
-                      selImagen(2);
-                    },
-                    child: Container(
-                      padding: EdgeInsets.all(20),
-                      child: Row(
-                        children: [
-                          Expanded(
-                            child: Text(
-                              'Seleccionar una Foto',
-                              style: TextStyle(fontSize: 16),
-                            ),
-                          ),
-                          Icon(
-                            Icons.image,
-                            color: Colors.blue,
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                  InkWell(
-                    onTap: () {
-                      Navigator.of(context).pop();
-                    },
-                    child: Container(
-                      padding: EdgeInsets.all(20),
-                      decoration: BoxDecoration(color: Colors.red),
-                      child: Row(
-                        children: [
-                          Expanded(
-                            child: Text(
-                              'Cancelar',
-                              style:
-                                  TextStyle(fontSize: 16, color: Colors.white),
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          );
-        });
-  }
-
-  Future selImagen(op) async {
-    var pickedFile;
-    if (op == 1) {
-      pickedFile = await picker.pickImage(source: ImageSource.camera);
-    } else {
-      pickedFile = await picker.pickImage(source: ImageSource.gallery);
-    }
-
-    setState(() {
-      if (pickedFile != null) {
-        imagen = File(pickedFile.path);
-      } else {
-        print('No seleccionaste ninguna foto');
-      }
-    });
-    Navigator.of(context).pop();
-  }
 }
