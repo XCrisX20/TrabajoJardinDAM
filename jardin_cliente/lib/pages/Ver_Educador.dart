@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
+import 'package:jardin_cliente/pages/Modificar_Educador.dart';
 import 'dart:convert';
 import 'package:jardin_cliente/provider/educadores_provider.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
@@ -88,6 +89,14 @@ class _Ver_EducadorState extends State<Ver_Educador> {
                           ),
                           Text(
                             "Nivel: " + widget.nivel,
+                            style: TextStyle(fontSize: 18, fontFamily: 'Arial'),
+                          ),
+                          Text(
+                            "Telefono: " + Educador['telefono'],
+                            style: TextStyle(fontSize: 18, fontFamily: 'Arial'),
+                          ),
+                          Text(
+                            "Email: " + Educador['email'],
                             style: TextStyle(fontSize: 18, fontFamily: 'Arial'),
                           ),
                         ],
@@ -184,7 +193,22 @@ class _Ver_EducadorState extends State<Ver_Educador> {
                     ),
                     ElevatedButton(
                         child: Text('Modificar Datos'),
-                        onPressed: () {},
+                        onPressed: () {
+                          MaterialPageRoute route = new MaterialPageRoute(
+                              builder: (context) => ModificarEducador(
+                                    codigo: widget.codigo,
+                                    rut: Educador['rut'],
+                                    sexo: Educador['sexo'],
+                                    nombre: Educador['nombre'],
+                                    telefono: Educador['telefono'],
+                                    email: Educador['telefono'].toString(),
+                                    fechaNacimiento:
+                                        Educador['fechaNacimiento'],
+                                  ));
+                          Navigator.push(context, route).then((value) {
+                            setState(() {});
+                          });
+                        },
                         style: ElevatedButton.styleFrom(
                           primary: Colors.yellow,
                         )),

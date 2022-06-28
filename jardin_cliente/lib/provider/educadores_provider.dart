@@ -17,7 +17,8 @@ class EducadoresProvider {
       return [];
     }
   }
-   //Listar todos los Educadores por nivel
+
+  //Listar todos los Educadores por nivel
   Future<List<dynamic>> getEducadoresXNivel(int nivel) async {
     var url = Uri.parse('$apiUrl/niv/$nivel');
     var respuesta = await http.get(url);
@@ -28,7 +29,6 @@ class EducadoresProvider {
       return [];
     }
   }
-
 
   //Listar un Educador por Rut
   Future<LinkedHashMap<String, dynamic>> getEducador(String rut) async {
@@ -73,8 +73,9 @@ class EducadoresProvider {
   Future<LinkedHashMap<String, dynamic>> educadorEditar(
       String rut,
       String nombre,
-      DateTime fechaNacimiento,
+      String fechaNacimiento,
       String telefono,
+      String sexo,
       String email,
       int cod_nivel) async {
     var url = Uri.parse('$apiUrl/$rut');
@@ -87,6 +88,7 @@ class EducadoresProvider {
           'nombre': nombre,
           'fechaNacimiento': fechaNacimiento,
           'telefono': telefono,
+          'sexo': sexo,
           'email': email,
           'cod_nivel': cod_nivel
         }));

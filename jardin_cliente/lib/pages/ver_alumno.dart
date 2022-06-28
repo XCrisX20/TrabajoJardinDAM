@@ -238,7 +238,7 @@ class _Ver_AlumnosState extends State<Ver_Alumnos> {
                     ElevatedButton(
                       child: Text(
                         'Agregar Historial',
-                        style: TextStyle(color: Colors.white),
+                        style: TextStyle(color: Colors.black),
                       ),
                       onPressed: () {
                         Navigator.push(
