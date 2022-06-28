@@ -30,7 +30,10 @@ class _PrincipalPageState extends State<PrincipalPage> {
           onPressed: () {
             MaterialPageRoute route =
                 new MaterialPageRoute(builder: (context) => GestionNiveles());
-            Navigator.push(context, route);
+            Navigator.push(context, route).then((value) {
+              setState(() {});
+            });
+            ;
           },
         ),
         backgroundColor: primerColor,
@@ -61,6 +64,7 @@ class _PrincipalPageState extends State<PrincipalPage> {
                                   codigo: nvl['cod_nivel'],
                                 ));
                         Navigator.push(context, route);
+                        setState(() {});
                       },
                       style: ElevatedButton.styleFrom(
                         primary: AmarilloColor,

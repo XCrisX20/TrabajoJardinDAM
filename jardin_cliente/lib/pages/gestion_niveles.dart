@@ -117,6 +117,7 @@ class _GestionNivelesState extends State<GestionNiveles> {
                                                       ));
                                             }
                                           });
+                                          setState(() {});
                                           Navigator.of(context).pop('OK');
                                           Navigator.pop(context);
                                         },
@@ -130,7 +131,6 @@ class _GestionNivelesState extends State<GestionNiveles> {
                                       ),
                                     ],
                                   )).then((value) => print(value));
-                          setState(() {});
                         },
                         style: ElevatedButton.styleFrom(primary: Colors.red),
                       ));
