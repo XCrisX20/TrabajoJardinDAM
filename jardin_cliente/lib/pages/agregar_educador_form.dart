@@ -38,7 +38,7 @@ class _FormAgregarEducadorPageState extends State<FormAgregarEducadorPage> {
   var ffecha = DateFormat('dd-MM-yyyy');
   String nomReg = r"/^[a-zA-Z'-]+$";
   String email = '';
-  String telefono = '';
+  String telefono = '1';
   //Captura de Errores
   String errRut = '';
   String errNombre = '';
@@ -299,6 +299,7 @@ class _FormAgregarEducadorPageState extends State<FormAgregarEducadorPage> {
           child: Text('Agregar'),
           onPressed: () async {
             String rut = rutCtrl.text;
+
             String nombre = nombreCtrl.text +
                 " " +
                 sNombreCtrl.text +
@@ -313,7 +314,7 @@ class _FormAgregarEducadorPageState extends State<FormAgregarEducadorPage> {
                 nombre.trim(),
                 fecha,
                 telefono,
-                email.trim(),
+                emailCtrl.text.trim(),
                 genero.toString(),
                 widget.codigo);
 
