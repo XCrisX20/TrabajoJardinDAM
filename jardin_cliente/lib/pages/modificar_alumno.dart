@@ -30,7 +30,10 @@ class ModificarAlumno extends StatefulWidget {
 }
 
 class _ModificarAlumnoState extends State<ModificarAlumno> {
-  final verdeClaro = Color(0xFF89DA59);
+  final primerColor = Color(0xFFFFBE86);
+  final AmarilloColor = Color(0xFFFFE156);
+  final rosadoColor = Color(0xFFFFB5C2);
+  final incipidoColor = Color(0xFFFFE9CE);
   //formulario
   final formKey = GlobalKey<FormState>();
   TextEditingController rutCtrl = TextEditingController();
@@ -67,7 +70,7 @@ class _ModificarAlumnoState extends State<ModificarAlumno> {
         appBar: AppBar(
           title: Text("Modificar Alumno"),
           elevation: 0,
-          backgroundColor: verdeClaro,
+          backgroundColor: primerColor,
         ),
         body: Form(
           key: formKey,
@@ -248,7 +251,7 @@ class _ModificarAlumnoState extends State<ModificarAlumno> {
             style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
         Spacer(),
         TextButton(
-          child: Icon(MdiIcons.calendar, color: verdeClaro),
+          child: Icon(MdiIcons.calendar, color: primerColor),
           onPressed: () {
             showDatePicker(
               context: context,
@@ -276,7 +279,7 @@ class _ModificarAlumnoState extends State<ModificarAlumno> {
               opciones(context);
             },
             style: ElevatedButton.styleFrom(
-              primary: verdeClaro,
+              primary: primerColor,
             )),
       ],
     );
@@ -433,7 +436,7 @@ class _ModificarAlumnoState extends State<ModificarAlumno> {
             Navigator.pop(context);
           },
           style: ElevatedButton.styleFrom(
-            primary: verdeClaro,
+            primary: primerColor,
           )),
     );
   }
