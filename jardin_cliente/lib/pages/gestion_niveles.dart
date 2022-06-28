@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jardin_cliente/pages/agregar_nivel.dart';
+import 'package:jardin_cliente/pages/modificar_nivel.dart';
 import 'package:jardin_cliente/provider/nivel_provider.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
@@ -37,32 +38,110 @@ class _GestionNivelesState extends State<GestionNiveles> {
                 itemBuilder: (context, index) {
                   var nvl = snap.data[index];
                   return ListTile(
-                    title: Text(nvl['nombre_nivel'].toString()),
-                    leading:Text(nvl['cod_nivel'].toString()),
-                    trailing: Row(
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.only(right: 5),
-                          child: IconButton(icon: Icon(MdiIcons.trashCan), onPressed: (){
-                            
-                          }),
+                      title: Text(nvl['nombre_nivel'].toString()),
+                      leading: Text(nvl['cod_nivel'].toString()),
+                      onTap: () {
+                        MaterialPageRoute route = new MaterialPageRoute(
+                            builder: (contex) => ModificarNivel(
+                                  codigo: nvl['cod_nivel'],
+                                  nombre: nvl['nombre_nivel'].toString(),
+                                ));
+                        Navigator.push(context, route)
+                            .then((value) => setState(() {}));
+                      },
+                      trailing: ElevatedButton(
+                        child: Text(
+                          'Eliminar',
+                          style: TextStyle(color: Colors.white),
                         ),
-                        IconButton(icon: Icon(MdiIcons.pencil), onPressed: (){
-
-                        },),
-                      ],
-                    ),
-                  );
+                        onPressed: () {
+                          showDialog(
+                              context: context,
+                              builder: (context) => AlertDialog(
+                                    title: Text('Eliminar Nivel'),
+                                    content: Text(
+                                        '¿Esta seguro de Eliminar este Nivel?'),
+                                    actions: [
+                                      TextButton.icon(
+                                        icon: Icon(MdiIcons.check),
+                                        label: Text("OK"),
+                                        onPressed: () {
+                                          NivelProvider()
+                                              .nivelBorrar(nvl['cod_nivel'])
+                                              .then((borrado) {
+                                            if (borrado) {
+                                              snap.data.removeAt(index);
+                                              showDialog(
+                                                  context: context,
+                                                  builder: (context) =>
+                                                      AlertDialog(
+                                                        title:
+                                                            Text("Informacion"),
+                                                        content: Text(
+                                                            "Nivel Eliminado!"),
+                                                        actions: [
+                                                          TextButton.icon(
+                                                            icon: Icon(
+                                                                MdiIcons.check),
+                                                            label: Text('OK'),
+                                                            onPressed: () {
+                                                              Navigator.pop(
+                                                                  context);
+                                                            },
+                                                          )
+                                                        ],
+                                                      ));
+                                            } else {
+                                              showDialog(
+                                                  context: context,
+                                                  builder: (context) =>
+                                                      AlertDialog(
+                                                        title:
+                                                            Text("Informacion"),
+                                                        content: Text(
+                                                            "Nivel no se pudo Eliminar!"),
+                                                        actions: [
+                                                          TextButton.icon(
+                                                            icon: Icon(
+                                                                MdiIcons.check),
+                                                            label: Text('OK'),
+                                                            onPressed: () {
+                                                              Navigator.pop(
+                                                                  context);
+                                                            },
+                                                          )
+                                                        ],
+                                                      ));
+                                            }
+                                          });
+                                          Navigator.of(context).pop('OK');
+                                          Navigator.pop(context);
+                                        },
+                                      ),
+                                      TextButton.icon(
+                                        icon: Icon(MdiIcons.close),
+                                        label: Text("Cancelar"),
+                                        onPressed: () {
+                                          Navigator.of(context).pop('Cancelar');
+                                        },
+                                      ),
+                                    ],
+                                  )).then((value) => print(value));
+                          setState(() {});
+                        },
+                        style: ElevatedButton.styleFrom(primary: Colors.red),
+                      ));
                 });
           },
         )),
       ),
-    floatingActionButton: FloatingActionButton(
+      floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         backgroundColor: verdeClaro,
-        onPressed: (){
-          MaterialPageRoute route = new MaterialPageRoute(builder: ((context) => AgregarNivel()));
-          Navigator.push(context, route).then((value){
+        onPressed: () {
+          MaterialPageRoute route =
+              new MaterialPageRoute(builder: ((context) => AgregarNivel()));
+          Navigator.push(context, route).then((value) {
             setState(() {});
           });
         },
