@@ -40,7 +40,7 @@ class CardWidgets extends StatelessWidget {
                 Container(
                   decoration: new BoxDecoration(color: Color(0xFFFFE9CE)),
                   padding: EdgeInsets.all(10),
-                  child: Text(texto),
+                  child: Text(texto,style: TextStyle(fontWeight: FontWeight.bold)),
                 ),
               ],
             ),
