@@ -14,12 +14,15 @@ class PrincipalPage extends StatefulWidget {
 }
 
 class _PrincipalPageState extends State<PrincipalPage> {
-  final verdeClaro = Color(0xFF89DA59);
-  final naranjo = Color(0xFFFF420E);
+  
+  final primerColor = Color(0xFFFFBE86);
+  final AmarilloColor = Color(0xFFFFE156);
+  final rosadoColor = Color(0xFFFFB5C2);
+  final incipidoColor = Color(0xFFFFE9CE);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: naranjo,
+      backgroundColor: AmarilloColor,
       appBar: AppBar(
         title: Text('Jardin Arbolitos'),
         leading: IconButton(
@@ -30,7 +33,7 @@ class _PrincipalPageState extends State<PrincipalPage> {
             Navigator.push(context, route);
           },
         ),
-        backgroundColor: verdeClaro,
+        backgroundColor: primerColor,
       ),
       body: Padding(
         padding: EdgeInsets.all(5),
@@ -60,7 +63,7 @@ class _PrincipalPageState extends State<PrincipalPage> {
                         Navigator.push(context, route);
                       },
                       style: ElevatedButton.styleFrom(
-                        primary: Color(0xFFFF420E),
+                        primary: AmarilloColor,
                       ));
                   /*return Container(
                     child: CardWidgets(texto: nvl['nombre_nivel'].toString())

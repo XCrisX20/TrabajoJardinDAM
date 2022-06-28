@@ -12,14 +12,16 @@ class GestionNiveles extends StatefulWidget {
 }
 
 class _GestionNivelesState extends State<GestionNiveles> {
-  final verdeClaro = Color(0xFF89DA59);
-  final naranjo = Color(0xFFFF420E);
+  final primerColor = Color(0xFFFFBE86);
+  final AmarilloColor = Color(0xFFFFE156);
+  final rosadoColor = Color(0xFFFFB5C2);
+  final incipidoColor = Color(0xFFFFE9CE);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text("Gestion de Niveles"),
-        backgroundColor: verdeClaro,
+        backgroundColor: primerColor,
       ),
       body: Padding(
         padding: const EdgeInsets.all(10),
@@ -50,6 +52,7 @@ class _GestionNivelesState extends State<GestionNiveles> {
                             .then((value) => setState(() {}));
                       },
                       trailing: ElevatedButton(
+                        
                         child: Text(
                           'Eliminar',
                           style: TextStyle(color: Colors.white),
@@ -137,7 +140,7 @@ class _GestionNivelesState extends State<GestionNiveles> {
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
-        backgroundColor: verdeClaro,
+        backgroundColor: AmarilloColor,
         onPressed: () {
           MaterialPageRoute route =
               new MaterialPageRoute(builder: ((context) => AgregarNivel()));

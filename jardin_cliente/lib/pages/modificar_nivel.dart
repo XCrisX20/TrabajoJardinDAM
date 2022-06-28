@@ -19,8 +19,10 @@ class _ModificarNivelState extends State<ModificarNivel> {
   String? foto = null;
   String errNombre = '';
   //Colores del Sistema
-  final verdeClaro = Color(0xFF89DA59);
-  final naranjo = Color(0xFFFF420E);
+  final primerColor = Color(0xFFFFBE86);
+  final AmarilloColor = Color(0xFFFFE156);
+  final rosadoColor = Color(0xFFFFB5C2);
+  final incipidoColor = Color(0xFFFFE9CE);
   @override
   void initState() {
     super.initState();
@@ -31,7 +33,7 @@ class _ModificarNivelState extends State<ModificarNivel> {
     return Scaffold(
         appBar: AppBar(
           title: Text('Modificar Nivel'),
-          backgroundColor: verdeClaro,
+          backgroundColor: primerColor,
         ),
         body: Form(
           key: formKey,
@@ -64,7 +66,7 @@ class _ModificarNivelState extends State<ModificarNivel> {
                   width: double.infinity,
                   margin: EdgeInsets.only(top: 20),
                   child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(primary: verdeClaro,),
+                    style: ElevatedButton.styleFrom(primary: AmarilloColor,),
                     child: Text("Modificar Nivel"),
                     onPressed: () async {
                       var respuesta = await NivelProvider().nivelsEditar(

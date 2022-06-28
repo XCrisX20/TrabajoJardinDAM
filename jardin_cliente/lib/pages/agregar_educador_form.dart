@@ -48,14 +48,16 @@ class _FormAgregarEducadorPageState extends State<FormAgregarEducadorPage> {
   String errSexo = '';
   String errEmail = '';
   //colores para el sistema
-  final verdeClaro = Color(0xFF89DA59);
-  final naranjo = Color(0xFFFF420E);
+  final primerColor = Color(0xFFFFBE86);
+  final AmarilloColor = Color(0xFFFFE156);
+  final rosadoColor = Color(0xFFFFB5C2);
+  final incipidoColor = Color(0xFFFFE9CE);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: verdeClaro,
+        backgroundColor: primerColor,
         title: Text('Agregar Educador '),
       ),
       body: Form(
@@ -307,7 +309,7 @@ class _FormAgregarEducadorPageState extends State<FormAgregarEducadorPage> {
             style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
         Spacer(),
         TextButton(
-          child: Icon(MdiIcons.calendar, color: verdeClaro),
+          child: Icon(MdiIcons.calendar, color: primerColor),
           onPressed: () {
             showDatePicker(
               context: context,
@@ -385,7 +387,7 @@ class _FormAgregarEducadorPageState extends State<FormAgregarEducadorPage> {
             Navigator.pop(context);
           },
           style: ElevatedButton.styleFrom(
-            primary: verdeClaro,
+            primary: primerColor,
           )),
     );
   }

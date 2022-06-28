@@ -22,8 +22,10 @@ class ListarNivel extends StatefulWidget {
 
 class _ListarNivelState extends State<ListarNivel> {
   int _currentIndex = 0;
-  final verdeClaro = Color(0xFF89DA59);
-  final naranjo = Color(0xFFFF420E);
+  final primerColor = Color(0xFFFFBE86);
+  final AmarilloColor = Color(0xFFFFE156);
+  final rosadoColor = Color(0xFFFFB5C2);
+  final incipidoColor = Color(0xFFFFE9CE);
   int codigo=0;
   String nivel='';
  
@@ -33,8 +35,8 @@ class _ListarNivelState extends State<ListarNivel> {
     void initState() {
     super.initState();
     paginas = [
-    {"pagina":ListadoAlumnos(codigo: widget.codigo, nivel: widget.nivel,), 'texto': 'Alumnos', 'icono': MdiIcons.humanChild, 'color':0xFF89DA59},
-    {'pagina':ListadoEducadores(codigo: widget.codigo, nivel: widget.nivel,), 'texto': 'Educadores', 'icono': MdiIcons.human, 'color':0xFF89DA59},
+    {"pagina":ListadoAlumnos(codigo: widget.codigo, nivel: widget.nivel,), 'texto': 'Alumnos', 'icono': MdiIcons.humanChild, 'color':0xFFFFBE86},
+    {'pagina':ListadoEducadores(codigo: widget.codigo, nivel: widget.nivel,), 'texto': 'Educadores', 'icono': MdiIcons.human, 'color':0xFFFFBE86},
     ];
     
   }
@@ -43,7 +45,7 @@ class _ListarNivelState extends State<ListarNivel> {
     return Scaffold(
       appBar: AppBar(
         title: Text('nivel: ' + widget.nivel),
-        backgroundColor: verdeClaro,
+        backgroundColor:primerColor,
       ),
       body: paginas[_currentIndex]['pagina'] as Widget,
       bottomNavigationBar: BottomNavigationBar(

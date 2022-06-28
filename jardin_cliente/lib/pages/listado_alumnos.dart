@@ -15,8 +15,10 @@ class ListadoAlumnos extends StatefulWidget {
 }
 
 class _ListadoAlumnosState extends State<ListadoAlumnos> {
-  final verdeClaro = Color(0xFF89DA59);
-  final naranjo = Color(0xFFFF420E);
+  final primerColor = Color(0xFFFFBE86);
+  final AmarilloColor = Color(0xFFFFE156);
+  final rosadoColor = Color(0xFFFFB5C2);
+  final incipidoColor = Color(0xFFFFE9CE);
 
   @override
   Widget build(BuildContext context) {
@@ -75,7 +77,7 @@ class _ListadoAlumnosState extends State<ListadoAlumnos> {
           });
         },
         child: Icon(Icons.add),
-        backgroundColor: verdeClaro,
+        backgroundColor: AmarilloColor,
       ),
   
     );
