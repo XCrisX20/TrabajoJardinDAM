@@ -25,6 +25,7 @@ class _FormAgregarEducadorPageState extends State<FormAgregarEducadorPage> {
   //Formulario
   final formKey = GlobalKey<FormState>();
   TextEditingController rutCtrl = TextEditingController();
+  TextEditingController telefonoCtrl = TextEditingController();
   TextEditingController nombreCtrl = TextEditingController();
   TextEditingController sNombreCtrl = TextEditingController();
   TextEditingController apellido_pCtrl = TextEditingController();
@@ -40,6 +41,7 @@ class _FormAgregarEducadorPageState extends State<FormAgregarEducadorPage> {
   String email = '';
   String telefono = '1';
   //Captura de Errores
+  String errTelefono='';
   String errRut = '';
   String errNombre = '';
   String errFechaNacimiento = '';
@@ -83,7 +85,24 @@ class _FormAgregarEducadorPageState extends State<FormAgregarEducadorPage> {
               campoSegundoNombre(),
               campoPrimerApellido(),
               campoSegundoApellido(),
+              campoTelefono(),
+              Container(
+                alignment: Alignment.center,
+                child: Text(
+                  errTelefono,
+                  style:
+                      TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
+                ),
+              ),
               campoEmail(),
+              Container(
+                alignment: Alignment.center,
+                child: Text(
+                  errEmail,
+                  style:
+                      TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
+                ),
+              ),
               campoSexo(),
               Container(
                 alignment: Alignment.center,
@@ -124,6 +143,21 @@ class _FormAgregarEducadorPageState extends State<FormAgregarEducadorPage> {
       },
     );
   }
+  TextFormField campoTelefono() {
+    return TextFormField(
+      controller: telefonoCtrl,
+      decoration: InputDecoration(
+        labelText: 'Telefono del educador',
+      ),
+      validator: (valor) {
+        if (valor == null || valor.isEmpty) {
+          return 'Indique su telefono';
+        }
+        return null;
+      },
+    );
+  }
+
 
   TextFormField campoPrimerNombre() {
     return TextFormField(
@@ -313,7 +347,7 @@ class _FormAgregarEducadorPageState extends State<FormAgregarEducadorPage> {
                 rut.trim(),
                 nombre.trim(),
                 fecha,
-                telefono,
+                telefonoCtrl.text.trim(),
                 emailCtrl.text.trim(),
                 genero.toString(),
                 widget.codigo);
@@ -322,6 +356,10 @@ class _FormAgregarEducadorPageState extends State<FormAgregarEducadorPage> {
               //rut
               if (respuesta['errors']['rut'] != null) {
                 errRut = respuesta['errors']['rut'][0];
+              }
+              //telefono
+              if (respuesta['errors']['telefono'] != null) {
+                errTelefono = respuesta['errors']['telefono'][0];
               }
               //nombre
               if (respuesta['errors']['nombre'] != null) {
