@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jardin_cliente/pages/Ver_Educador.dart';
 import 'package:jardin_cliente/pages/agregar_alumno_form.dart';
 import 'package:jardin_cliente/pages/ver_alumno.dart';
 import 'package:jardin_cliente/provider/alumnos_provider.dart';
@@ -26,7 +27,6 @@ class _ListadoEducadoresState extends State<ListadoEducadores> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-  
       body: Padding(
         padding: EdgeInsets.all(5),
         child: Expanded(
@@ -43,16 +43,16 @@ class _ListadoEducadoresState extends State<ListadoEducadores> {
                 separatorBuilder: (_, __) => Divider(),
                 itemCount: snap.data.length,
                 itemBuilder: (context, index) {
-                  var alumno = snap.data[index];
+                  var educador = snap.data[index];
                   return ListTile(
-                    title: Text(alumno['nombre'].toString()),
+                    title: Text(educador['nombre'].toString()),
                     onTap: () {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => Ver_Alumnos(
+                            builder: (context) => Ver_Educador(
                                   codigo: widget.codigo,
-                                  rut: alumno['rut'].toString(),
+                                  rut: educador['rut'].toString(),
                                   nivel: widget.nivel,
                                 )),
                       ).then((value) {
@@ -82,7 +82,6 @@ class _ListadoEducadoresState extends State<ListadoEducadores> {
         child: Icon(Icons.add),
         backgroundColor: AmarilloColor,
       ),
-  
     );
   }
 }

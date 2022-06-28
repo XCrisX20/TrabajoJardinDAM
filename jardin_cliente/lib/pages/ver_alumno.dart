@@ -30,10 +30,14 @@ class _Ver_AlumnosState extends State<Ver_Alumnos> {
     super.initState();
   }
 
+  final primerColor = Color(0xFFFFBE86);
+  final AmarilloColor = Color(0xFFFFE156);
+  final rosadoColor = Color(0xFFFFB5C2);
+  final incipidoColor = Color(0xFFFFE9CE);
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: verdeClaro,
+        backgroundColor: primerColor,
         title: Text("Informacion del alumno"),
       ),
       body: FutureBuilder(
