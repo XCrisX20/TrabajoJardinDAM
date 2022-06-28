@@ -4,12 +4,11 @@ import '../pages/listado_alumnos.dart';
 
 class CardWidgets extends StatelessWidget {
   final String texto;
-  final String imagen;
+
   
   const CardWidgets(
       {this.texto = '',
-      this.imagen =
-          'http://pm1.narvii.com/7119/b0abdf491cffde4bdf95850956c1b15a5591a4b5r1-712-707v2_uhq.jpg',
+      
       Key? key})
       : super(key: key);
   @override
@@ -33,7 +32,7 @@ class CardWidgets extends StatelessWidget {
                   height: 200,
                   width: double.infinity,
                   // Como queremos traer una imagen desde un url usamos NetworkImage
-                  image: NetworkImage(imagen),
+                  image: AssetImage('assets/icon/arbol.png'),
                 ),
 
                 // Usamos Container para el contenedor de la descripción
