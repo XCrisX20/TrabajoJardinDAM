@@ -24,7 +24,7 @@ class NivelRequest extends FormRequest
     public function rules()
     {
         return [
-            'nombre_nivel' => 'required|alpha|unique:nivel,nombre_nivel'
+            'nombre_nivel' => 'required|unique:nivel,nombre_nivel'
         ];
     }
 
@@ -32,7 +32,6 @@ class NivelRequest extends FormRequest
     {
         return [
             'nombre_nivel.required' => 'Debe ingresar el nombre del nivel',
-            'nombre_nivel.alpha' => 'El nombre del nivel solo puede contener letras',
             'nombre_nivel.unique' => 'El nombre del nivel ya existe'
         ];
     }

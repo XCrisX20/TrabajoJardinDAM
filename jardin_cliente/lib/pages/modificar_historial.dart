@@ -33,6 +33,8 @@ class _Modificar_HistorialState extends State<Modificar_Historial> {
       DropdownMenuItem(
           child: Text("buen comportamiento"), value: "buen comportamiento"),
       DropdownMenuItem(child: Text("sin respuestas"), value: "sin respuestas"),
+      DropdownMenuItem(child: Text("Descenso"), value: "Descenso"),
+      DropdownMenuItem(child: Text("Ascenso"), value: "Ascenso"),
     ];
 
     return menuItems;
@@ -92,6 +94,12 @@ class _Modificar_HistorialState extends State<Modificar_Historial> {
                     style: TextStyle(color: Colors.black, fontSize: 20),
                     value: selectedValue,
                     onChanged: (String? newValue) {
+                      if ("Descenso" == widget.Tipo_des.toString() ||
+                          "Ascenso" == widget.Tipo_des.toString() ||
+                          newValue == "Ascenso" ||
+                          newValue == "Descenso") {
+                        return null;
+                      }
                       setState(() {
                         selectedValue = newValue!;
                       });
