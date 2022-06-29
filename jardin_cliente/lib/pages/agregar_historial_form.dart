@@ -34,6 +34,10 @@ class _AgregarHistorialFormState extends State<AgregarHistorialForm> {
   String errDesc = '';
   String selectedValue = "accidente";
   DateTime now = DateTime.now();
+  final primerColor = Color(0xFFFFBE86);
+  final AmarilloColor = Color(0xFFFFE156);
+  final rosadoColor = Color(0xFFFFB5C2);
+  final incipidoColor = Color(0xFFFFE9CE);
 
   final formKey = GlobalKey<FormState>();
   @override
@@ -86,8 +90,9 @@ class _AgregarHistorialFormState extends State<AgregarHistorialForm> {
                     items: dropdownItems),
                 Container(
                     child: ElevatedButton(
-                  child: Text('Agregar Historial'),
-                  onPressed: () async {
+                       style: ElevatedButton.styleFrom(primary: primerColor),
+                        child: Text('Agregar Historial'),
+                        onPressed: () async {
                     String Desc = DescCtrl.text.trim();
                     String formattedDate = DateFormat('yyyy-MM-dd').format(now);
                     String formattedHours = DateFormat('kk:mm').format(now);
