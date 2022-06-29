@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:jardin_cliente/provider/alumnos_provider.dart';
+import 'package:jardin_cliente/provider/historial_provider.dart';
 import 'package:jardin_cliente/provider/nivel_provider.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
@@ -34,6 +35,7 @@ class _ModificarAlumnoState extends State<ModificarAlumno> {
   final AmarilloColor = Color(0xFFFFE156);
   final rosadoColor = Color(0xFFFFB5C2);
   final incipidoColor = Color(0xFFFFE9CE);
+  DateTime now = DateTime.now();
   //formulario
   final formKey = GlobalKey<FormState>();
   TextEditingController rutCtrl = TextEditingController();
@@ -409,9 +411,6 @@ class _ModificarAlumnoState extends State<ModificarAlumno> {
             var respuesta = await AlumnosProvider().alumnoEditar(rut.trim(),
                 nombre.trim(), fecha, foto, sexo.toString(), cod_nivel);
 
-            //var respuesta = await AlumnosProvider().alumnoEditar(rut.trim(),
-            //    nombre.trim(), fecha, foto, sexo.toString(), cod_nivel);
-
             if (respuesta['message'] != null) {
               //rut
               if (respuesta['errors']['rut'] != null) {
@@ -433,6 +432,22 @@ class _ModificarAlumnoState extends State<ModificarAlumno> {
               setState(() {});
               return;
             }
+            print("CODIGO NIVEL ANT: " + widget.codigo.toString() + "\n"
+            + "CODIGO NUEVO: " + cod_nivel.toString());
+            String formattedDate = DateFormat('yyyy-MM-dd').format(now);
+            String formattedHours = DateFormat('kk:mm').format(now);
+
+            if (cod_nivel != widget.codigo){
+              if (cod_nivel > widget.codigo){
+                var respuesta2 = await HistorialProvider()
+                .historialAgregar("Alumno Asciende de nivel", "Ascenso", formattedDate, formattedHours, widget.rut);
+              }else{
+                var respuesta2 = await HistorialProvider()
+                .historialAgregar("Alumno Desciende de nivel", "Descenso", formattedDate, formattedHours, widget.rut);
+              }
+            }
+            
+            
             Navigator.pop(context);
           },
           style: ElevatedButton.styleFrom(
