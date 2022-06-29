@@ -100,6 +100,8 @@ class _Modificar_HistorialState extends State<Modificar_Historial> {
                           newValue == "Descenso") {
                         return null;
                       }
+                      // lo dejamos asi por un tema de que si llegarse la casualidad de que el usuario
+                      // llegara a poder cambiar este historial no puede cambiarlo de su valor que no sea lo que esta en el if
                       setState(() {
                         selectedValue = newValue!;
                       });

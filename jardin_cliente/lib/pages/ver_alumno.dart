@@ -319,6 +319,33 @@ class _Ver_AlumnosState extends State<Ver_Alumnos> {
                               children: [
                                 SlidableAction(
                                   onPressed: (context) {
+                                    if (historial['tipo_evento'] ==
+                                            "Descenso" ||
+                                        historial['tipo_evento'] == "Ascenso") {
+                                      showDialog(
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          return AlertDialog(
+                                            title:
+                                                Text("Detalle del historial"),
+                                            content: Text(
+                                              'No se puede modificar esto tipo de dato ' +
+                                                  historial['tipo_evento']
+                                                      .toString(),
+                                            ),
+                                            actions: [
+                                              TextButton(
+                                                child: new Text("OK"),
+                                                onPressed: () {
+                                                  Navigator.of(context).pop();
+                                                },
+                                              ),
+                                            ],
+                                          );
+                                        },
+                                      );
+                                      return null;
+                                    }
                                     MaterialPageRoute route =
                                         new MaterialPageRoute(
                                             builder: (context) =>
