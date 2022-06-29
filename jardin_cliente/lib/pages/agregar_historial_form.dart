@@ -44,6 +44,7 @@ class _AgregarHistorialFormState extends State<AgregarHistorialForm> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: primerColor,
         title: Text('Agregar Historial de ' + widget.nombre),
       ),
       body: Form(
@@ -90,7 +91,7 @@ class _AgregarHistorialFormState extends State<AgregarHistorialForm> {
                     items: dropdownItems),
                 Container(
                     child: ElevatedButton(
-                       style: ElevatedButton.styleFrom(primary: primerColor),
+                       style: ElevatedButton.styleFrom(primary: AmarilloColor),
                         child: Text('Agregar Historial'),
                         onPressed: () async {
                     String Desc = DescCtrl.text.trim();
