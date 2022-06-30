@@ -322,6 +322,12 @@ class _FormAgregarAlumnosPageState extends State<FormAgregarAlumnosPage> {
             String sexo = genero.toString();
             int cod_nivel = widget.codigo;
 
+            if (!validarRut(rut.trim())) {
+              errRut = 'Formato de Rut Invalido';
+              setState(() {});
+              return;
+            }
+
             var respuesta = await AlumnosProvider().alumnoAgregar(
                 rut.trim(), nombre.trim(), fecha, foto, sexo, cod_nivel);
 
@@ -455,5 +461,44 @@ class _FormAgregarAlumnosPageState extends State<FormAgregarAlumnosPage> {
       }
     });
     Navigator.of(context).pop();
+  }
+
+  bool validarRut(String rut) {
+    bool verificacion = false;
+    if (rut.length == 9) {
+      String number = rut.substring(0, 8);
+      String dv = rut[8];
+
+      int suma = 0;
+      var j = 3;
+
+      for (int i = 0; i < number.length; i++) {
+        if (j == 1) {
+          j = 7;
+        }
+        suma = suma + (j * int.parse(number[i]));
+        j--;
+      }
+      int resto = suma % 11;
+      int dig = 11 - resto;
+      String ddv;
+      if (dig < 10 && dig > 0) {
+        ddv = dig.toString();
+      } else {
+        if (dig == 10) {
+          ddv = 'K';
+        } else {
+          ddv = '0';
+        }
+      }
+
+      if (dv.toUpperCase() == ddv.toUpperCase()) {
+        verificacion = true;
+      } else {
+        verificacion = false;
+      }
+    }
+
+    return verificacion;
   }
 }
