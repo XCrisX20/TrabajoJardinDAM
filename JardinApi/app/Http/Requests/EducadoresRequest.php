@@ -24,7 +24,7 @@ class EducadoresRequest extends FormRequest
     public function rules()
     {
         return [
-            'rut'=> 'required|min:9|unique:educadores,rut',
+            'rut'=> 'required|unique:educadores,rut',
             'nombre'=> 'required',
             'cod_nivel'=> 'required|numeric',
             'fechaNacimiento'=> 'required',
@@ -37,7 +37,6 @@ class EducadoresRequest extends FormRequest
     public function messages(){
         return[
             'rut.required'=>'Ingrese un rut valido',
-            'rut.min' => 'El rut no debe ser mas largo que 9',
             'rut.unique' => 'El rut ya existe',
             'nombre.required'=>'indique el nombre del educador',
             'email.required' =>'ingrese un email',

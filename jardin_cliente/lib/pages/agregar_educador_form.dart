@@ -345,6 +345,13 @@ class _FormAgregarEducadorPageState extends State<FormAgregarEducadorPage> {
                 apellido_mCtrl.text;
             String fecha =
                 "${fechaSeleccionada.year}-${fechaSeleccionada.month}-${fechaSeleccionada.day}";
+            if (!validarRut(rut.trim())){
+              errRut = 'Rut invalido';
+              setState(() {
+                
+              });
+              return ;
+            }
             var respuesta = await EducadoresProvider().educadorAgregar(
                 rut.trim(),
                 nombre.trim(),
@@ -390,5 +397,46 @@ class _FormAgregarEducadorPageState extends State<FormAgregarEducadorPage> {
             primary: primerColor,
           )),
     );
+  }
+  bool validarRut(String rut) {
+    if(rut.length == 8){
+      rut = '0'+ rut;
+    }
+    bool verificacion = false;
+    if (rut.length == 9) {
+      String number = rut.substring(0, 8);
+      String dv = rut[8];
+
+      int suma = 0;
+      var j = 3;
+
+      for (int i = 0; i < number.length; i++) {
+        if (j == 1) {
+          j = 7;
+        }
+        suma = suma + (j * int.parse(number[i]));
+        j--;
+      }
+      int resto = suma % 11;
+      int dig = 11 - resto;
+      String ddv;
+      if (dig < 10 && dig > 0) {
+        ddv = dig.toString();
+      } else {
+        if (dig == 10) {
+          ddv = 'K';
+        } else {
+          ddv = '0';
+        }
+      }
+
+      if (dv.toUpperCase() == ddv.toUpperCase()) {
+        verificacion = true;
+      } else {
+        verificacion = false;
+      }
+    }
+
+    return verificacion;
   }
 }
