@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "351235697743",
+    "project_id": "jardindb-27906",
+    "storage_bucket": "jardindb-27906.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:351235697743:android:803d9a84b80c2870374e3a",
+        "android_client_info": {
+          "package_name": "com.jardin.jardin_cliente"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "351235697743-nrd19h07ceu3kshel6r88qs7b9q04jgp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAW1TGkF4-T2wWq4ut5rnRmTqPUwfeZl6k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "351235697743-nrd19h07ceu3kshel6r88qs7b9q04jgp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
