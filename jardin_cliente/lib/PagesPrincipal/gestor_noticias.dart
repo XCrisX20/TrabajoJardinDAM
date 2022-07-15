@@ -18,11 +18,14 @@ class _gestor_noticiasState extends State<gestor_noticias> {
         title: Text('Noticias'),
         leading: Icon(MdiIcons.newspaper),
       ),
-      body: Expanded(
+      body: Column(
+        children: [
+          Expanded(
             child: StreamBuilder(
               stream: FirestoreService().noticias(),
               builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
-                if (!snapshot.hasData || snapshot.connectionState == ConnectionState.waiting) {
+                if (!snapshot.hasData ||
+                    snapshot.connectionState == ConnectionState.waiting) {
                   return Center(
                     child: CircularProgressIndicator(),
                   );
@@ -36,18 +39,16 @@ class _gestor_noticiasState extends State<gestor_noticias> {
                     return ListTile(
                       leading: Icon(MdiIcons.cube),
                       title: Text('${noticias['titulo']}'),
-                      subtitle: Text('contenido: ${noticias['contenido']} fecha:\$${noticias['fecha']}'),
+                      subtitle: Text(
+                          'contenido: ${noticias['contenido']} fecha:\$${noticias['fecha']}'),
                     );
                   },
                 );
               },
             ),
           ),
-        
-      );
-     
-  
-      
-    
+        ],
+      ),
+    );
   }
 }

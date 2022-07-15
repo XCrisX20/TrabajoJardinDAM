@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:jardin_cliente/PagesPrincipal/Login.dart';
@@ -5,7 +6,9 @@ import 'package:jardin_cliente/PagesPrincipal/gestor_noticias.dart';
 import 'package:jardin_cliente/pages/agregar_educador_form.dart';
 import 'package:jardin_cliente/pages/principal_page.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
