@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:jardin_cliente/PagesPrincipal/login.dart';
 import 'package:jardin_cliente/pages/configuraciones.dart';
 import 'package:jardin_cliente/pages/gestion_niveles.dart';
 import 'package:jardin_cliente/pages/listado_alumnos.dart';
 import 'package:jardin_cliente/pages/listar_nivel.dart';
+import 'package:jardin_cliente/provider/GoogleService.dart';
 import 'package:jardin_cliente/provider/nivel_provider.dart';
 import 'package:jardin_cliente/widgets/card.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
@@ -15,7 +17,6 @@ class PrincipalPage extends StatefulWidget {
 }
 
 class _PrincipalPageState extends State<PrincipalPage> {
-  
   final primerColor = Color(0xFFFFBE86);
   final AmarilloColor = Color(0xFFFFE156);
   final rosadoColor = Color(0xFFFFB5C2);
@@ -26,17 +27,40 @@ class _PrincipalPageState extends State<PrincipalPage> {
       backgroundColor: AmarilloColor,
       appBar: AppBar(
         title: Text('Jardin Arbolitos'),
-        leading: IconButton(
-          icon: Icon(MdiIcons.cog),
-          onPressed: () {
-            MaterialPageRoute route =
-                new MaterialPageRoute(builder: (context) => Configuracion());
-            Navigator.push(context, route).then((value) {
-              setState(() {});
-            });
-            ;
-          },
+        leading: Icon(
+          MdiIcons.cog,
+          // onPressed: () {
+          //   MaterialPageRoute route =
+          //       new MaterialPageRoute(builder: (context) => Configuracion());
+          //   Navigator.push(context, route).then((value) {
+          //     setState(() {});
+          //   });
+          //   ;
+          // },
         ),
+        actions: [
+          PopupMenuButton(
+            itemBuilder: (context) => [
+              PopupMenuItem(
+                value: 'nivel',
+                child: Text('Agregar Otro nivel'),
+              ),
+              PopupMenuItem(
+                value: 'logout',
+                child: Text('Cerrar Sesion'),
+              ),
+            ],
+            onSelected: (opcion) async {
+              if (opcion == 'logout') {
+                GoogleServicio().SingOut();
+                MaterialPageRoute route = MaterialPageRoute(
+                  builder: (context) => IniciarSesion(),
+                );
+                Navigator.pushReplacement(context, route);
+              }
+            },
+          ),
+        ],
         backgroundColor: primerColor,
       ),
       body: Padding(
