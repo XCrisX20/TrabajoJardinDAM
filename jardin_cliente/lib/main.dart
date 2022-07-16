@@ -6,6 +6,8 @@ import 'package:jardin_cliente/PagesPrincipal/gestor_noticias.dart';
 import 'package:jardin_cliente/pages/agregar_educador_form.dart';
 import 'package:jardin_cliente/pages/principal_page.dart';
 
+import 'PagesPrincipal/menu_principal.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -32,7 +34,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.yellow,
       ),
-      home: gestor_noticias(),
+      home:MenuPrincipal(),
     );
   }
 }

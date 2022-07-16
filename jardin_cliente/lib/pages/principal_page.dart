@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jardin_cliente/pages/configuraciones.dart';
 import 'package:jardin_cliente/pages/gestion_niveles.dart';
 import 'package:jardin_cliente/pages/listado_alumnos.dart';
 import 'package:jardin_cliente/pages/listar_nivel.dart';
@@ -29,7 +30,7 @@ class _PrincipalPageState extends State<PrincipalPage> {
           icon: Icon(MdiIcons.cog),
           onPressed: () {
             MaterialPageRoute route =
-                new MaterialPageRoute(builder: (context) => GestionNiveles());
+                new MaterialPageRoute(builder: (context) => Configuracion());
             Navigator.push(context, route).then((value) {
               setState(() {});
             });

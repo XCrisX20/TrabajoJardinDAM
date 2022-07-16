@@ -1,17 +1,16 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:jardin_cliente/pages/agregar_noticia.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import '../provider/noticias_provider.dart';
 
-class gestor_noticias extends StatefulWidget {
-  gestor_noticias({Key? key}) : super(key: key);
+class Listado_noticias extends StatefulWidget {
+  Listado_noticias({Key? key}) : super(key: key);
 
   @override
-  State<gestor_noticias> createState() => _gestor_noticiasState();
+  State<Listado_noticias> createState() => _Listado_noticiasState();
 }
 
-class _gestor_noticiasState extends State<gestor_noticias> {
+class _Listado_noticiasState extends State<Listado_noticias> {
   final primerColor = Color(0xFFFFBE86);
   final AmarilloColor = Color(0xFFFFE156);
   final rosadoColor = Color(0xFFFFB5C2);
@@ -20,7 +19,7 @@ class _gestor_noticiasState extends State<gestor_noticias> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: primerColor,
+        backgroundColor: AmarilloColor,
         title: Text('Noticias'),
         leading: Icon(MdiIcons.newspaper),
       ),
@@ -53,19 +52,7 @@ class _gestor_noticiasState extends State<gestor_noticias> {
               },
             ),
           ),
-          
         ],
-      ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-        backgroundColor: AmarilloColor,
-        onPressed: () {
-          MaterialPageRoute route =
-              new MaterialPageRoute(builder: ((context) => AgregarNoticia()));
-          Navigator.push(context, route).then((value) {
-            setState(() {});
-          });
-        },
       ),
     );
   }
