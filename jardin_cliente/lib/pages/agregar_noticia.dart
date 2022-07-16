@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:jardin_cliente/provider/noticias_provider.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 
 class AgregarNoticia extends StatefulWidget {
@@ -14,11 +17,14 @@ class _AgregarNoticiaState extends State<AgregarNoticia> {
   final AmarilloColor = Color(0xFFFFE156);
   final rosadoColor = Color(0xFFFFB5C2);
   final incipidoColor = Color(0xFFFFE9CE);
+  var formatoFecha = DateFormat('dd/MM/yyyy hh:mm');
+  var fechaActual = DateTime.now();
   //formulario
   final formKey = GlobalKey<FormState>();
   String? foto = null;
-  TextEditingController nombreCtrl = new TextEditingController();
-  String errNombre = '';
+  TextEditingController tituloCtrl = new TextEditingController();
+  TextEditingController contenidoCtrl = new TextEditingController();
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,7 +40,7 @@ class _AgregarNoticiaState extends State<AgregarNoticia> {
               child: Column(
                 children: [
                   TextFormField(
-                    controller: nombreCtrl,
+                    controller: tituloCtrl,
                     decoration: InputDecoration(
                       labelText: 'Titulo de la Noticia',
                     ),
@@ -46,7 +52,7 @@ class _AgregarNoticiaState extends State<AgregarNoticia> {
                     },
                   ),
                   TextFormField(
-                    controller: nombreCtrl,
+                    controller: contenidoCtrl,
                     decoration: InputDecoration(
                       labelText: 'Contenido de la noticia',
                     ),
@@ -57,34 +63,26 @@ class _AgregarNoticiaState extends State<AgregarNoticia> {
                       return null;
                     },
                   ),
-                  TextFormField(
-                    controller: nombreCtrl,
-                    decoration: InputDecoration(
-                      labelText: 'Fecha',
-                    ),
-                    validator: (valor) {
-                      if (valor == null || valor.isEmpty) {
-                        return 'Indique el Titulo';
-                      }
-                      return null;
-                    },
-                  ),
-                  Container(
-                    alignment: Alignment.center,
-                    child: Text(
-                      errNombre,
-                      style:
-                          TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
-                    ),
-                  ),
+                  Row(
+                  children: [
+                    Text('Fecha de la noticia:', style: TextStyle(fontSize: 16)),
+                    Text(formatoFecha.format(fechaActual),
+                        style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)), 
+                  ],
+                ),
+                  
                   
                   Container(
                     margin: EdgeInsets.only(top: 20),
                     width: double.infinity,
                     child: ElevatedButton(
                       child: Text("Agregar Noticia"),
-                      onPressed: () async {
-                        
+                      onPressed: () {
+                        String titulo = tituloCtrl.text.trim();
+                        String contenido = contenidoCtrl.text.trim(); 
+                        DateTime fecha = fechaActual;
+                        FirestoreService().noticiasAgregar(titulo, contenido, fecha);
+                        Navigator.pop(context);
                       },
                       style: ElevatedButton.styleFrom(
                         primary: AmarilloColor

@@ -47,6 +47,87 @@ class _gestor_noticiasState extends State<gestor_noticias> {
                       title: Text('${noticias['titulo']}'),
                       subtitle: Text(
                           'contenido: ${noticias['contenido']} fecha:\$${noticias['fecha']}'),
+                      trailing: ElevatedButton(
+                        
+                        child: Text(
+                          'Eliminar',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        onPressed: () {
+                          showDialog(
+                              context: context,
+                              builder: (context) => AlertDialog(
+                                    title: Text('Eliminar Noticia'),
+                                    content: Text(
+                                        '¿Esta seguro de Eliminar este Noticia?'),
+                                    actions: [
+                                      TextButton.icon(
+                                        icon: Icon(MdiIcons.check),
+                                        label: Text("OK"),
+                                        onPressed: () {
+                                          FirestoreService().noticiasBorrar(noticias.id)
+                                              .then((borrado) {
+                                            if (borrado) {
+                                              showDialog(
+                                                  context: context,
+                                                  builder: (context) =>
+                                                      AlertDialog(
+                                                        title:
+                                                            Text("Informacion"),
+                                                        content: Text(
+                                                            "Noticia Eliminado!"),
+                                                        actions: [
+                                                          TextButton.icon(
+                                                            icon: Icon(
+                                                                MdiIcons.check),
+                                                            label: Text('OK'),
+                                                            onPressed: () {
+                                                              Navigator.pop(
+                                                                  context);
+                                                            },
+                                                          )
+                                                        ],
+                                                      ));
+                                            } else {
+                                              showDialog(
+                                                  context: context,
+                                                  builder: (context) =>
+                                                      AlertDialog(
+                                                        title:
+                                                            Text("Informacion"),
+                                                        content: Text(
+                                                            "Noticia no se pudo Eliminar!"),
+                                                        actions: [
+                                                          TextButton.icon(
+                                                            icon: Icon(
+                                                                MdiIcons.check),
+                                                            label: Text('OK'),
+                                                            onPressed: () {
+                                                              Navigator.pop(
+                                                                  context);
+                                                            },
+                                                          )
+                                                        ],
+                                                      ));
+                                            }
+                                          });
+                                          setState(() {});
+                                          Navigator.of(context).pop('OK');
+                                          Navigator.pop(context);
+                                        },
+                                      ),
+                                      TextButton.icon(
+                                        icon: Icon(MdiIcons.close),
+                                        label: Text("Cancelar"),
+                                        onPressed: () {
+                                          Navigator.of(context).pop('Cancelar');
+                                        },
+                                      ),
+                                    ],
+                                  )).then((value) => print(value));
+                        },
+                        style: ElevatedButton.styleFrom(primary: Colors.red),
+                      )
                     );
                   },
                 );
