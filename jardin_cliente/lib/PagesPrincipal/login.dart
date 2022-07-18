@@ -30,7 +30,7 @@ class _IniciarSesionState extends State<IniciarSesion> {
                 onPressed: user != null
                     ? null
                     : () async {
-                        await GoogleServicio().signInWithGoogl();
+                        await GoogleServicio().signInWithGoogle();
                         MaterialPageRoute route = MaterialPageRoute(
                           builder: (context) => PrincipalPage(),
                         );
