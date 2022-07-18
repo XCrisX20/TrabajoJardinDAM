@@ -34,7 +34,7 @@ class _MenuPrincipalState extends State<MenuPrincipal> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => IniciarSesion()),
+                  builder: (context) => PrincipalPage()),
             ).then((value) {
               setState(() {});
             });

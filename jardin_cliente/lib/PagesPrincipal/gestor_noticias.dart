@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:jardin_cliente/pages/agregar_noticia.dart';
+import 'package:jardin_cliente/pages/modificar_noticia.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import '../provider/noticias_provider.dart';
 
@@ -47,6 +48,12 @@ class _gestor_noticiasState extends State<gestor_noticias> {
                       title: Text('${noticias['titulo']}'),
                       subtitle: Text(
                           'contenido: ${noticias['contenido']} fecha:\$${noticias['fecha']}'),
+                          onTap: () {
+                        MaterialPageRoute route = new MaterialPageRoute(
+                            builder: (contex) => ModificarNoticia(id:noticias.id, titulo:noticias['titulo'], contenido:noticias['contenido']));
+                        Navigator.push(context, route)
+                            .then((value) => setState(() {}));
+                      },
                       trailing: ElevatedButton(
                         
                         child: Text(

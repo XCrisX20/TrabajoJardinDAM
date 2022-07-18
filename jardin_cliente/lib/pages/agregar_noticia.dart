@@ -52,6 +52,7 @@ class _AgregarNoticiaState extends State<AgregarNoticia> {
                     },
                   ),
                   TextFormField(
+                    maxLines: 5,
                     controller: contenidoCtrl,
                     decoration: InputDecoration(
                       labelText: 'Contenido de la noticia',

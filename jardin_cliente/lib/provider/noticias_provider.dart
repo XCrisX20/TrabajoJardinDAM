@@ -28,11 +28,11 @@ class FirestoreService {
     // print(prod['nombre']);
   }
 
-  Future noticiasEditar(String id, String titulo, String contenido, DateTime fecha) {
+  Future noticiasEditar(String id, String titulo, String contenido) {
     return FirebaseFirestore.instance.collection('noticias').doc(id).update({
       'titulo': titulo,
       'contenido': contenido,
-      'fecha': fecha,
+      
     });
   }
 }
