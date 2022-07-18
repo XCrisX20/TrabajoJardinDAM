@@ -27,24 +27,20 @@ class _PrincipalPageState extends State<PrincipalPage> {
       backgroundColor: AmarilloColor,
       appBar: AppBar(
         title: Text('Jardin Arbolitos'),
-        leading: Icon(
-          MdiIcons.cog,
-          // onPressed: () {
-          //   MaterialPageRoute route =
-          //       new MaterialPageRoute(builder: (context) => Configuracion());
-          //   Navigator.push(context, route).then((value) {
-          //     setState(() {});
-          //   });
-          //   ;
-          // },
+        leading: IconButton(
+          icon: Icon(MdiIcons.cog),
+          onPressed: () {
+            MaterialPageRoute route =
+                new MaterialPageRoute(builder: (context) => Configuracion());
+            Navigator.push(context, route).then((value) {
+              setState(() {});
+            });
+            ;
+          },
         ),
         actions: [
           PopupMenuButton(
             itemBuilder: (context) => [
-              PopupMenuItem(
-                value: 'nivel',
-                child: Text('Agregar Otro nivel'),
-              ),
               PopupMenuItem(
                 value: 'logout',
                 child: Text('Cerrar Sesion'),
