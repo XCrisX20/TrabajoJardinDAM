@@ -1,7 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:path/path.dart';
 
 class GoogleServicio {
   FirebaseAuth firebaseAuth = FirebaseAuth.instance;
@@ -9,6 +11,7 @@ class GoogleServicio {
   Future<User?> signInWithGoogle() async {
     try {
       final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+      ;
       if (googleUser != null) {
         final GoogleSignInAuthentication GoogleAuth =
             await googleUser.authentication;
@@ -19,10 +22,10 @@ class GoogleServicio {
         UserCredential userCredential =
             await firebaseAuth.signInWithCredential(Credential);
         return userCredential.user;
+      } else {
+        return null;
       }
-    } catch (e) {
-      print(e);
-    }
+    } on PlatformException catch (e) {}
   }
 
   Future SingOut() async {
