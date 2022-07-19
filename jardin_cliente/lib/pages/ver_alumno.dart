@@ -69,7 +69,7 @@ class _Ver_AlumnosState extends State<Ver_Alumnos> {
                   height: 150,
                 )
               );
-            } catch (error) {
+            }  on Exception catch (_) {
               imagen = Container(child: Text("Alumno sin Imagen"));
             }
             
