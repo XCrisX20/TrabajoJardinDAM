@@ -20,24 +20,36 @@ class _IniciarSesionState extends State<IniciarSesion> {
     GoogleSignInAccount? user = _googleSignIn.currentUser;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Hola Usuario'),
-        leading: Icon(MdiIcons.humanHandsup),
+        title: Text('Hola Usuario')
       ),
       body: Center(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            ElevatedButton(
-                onPressed: user != null
-                    ? null
-                    : () async {
-                        await GoogleServicio().signInWithGoogle();
-                        MaterialPageRoute route = MaterialPageRoute(
-                          builder: (context) => PrincipalPage(),
-                        );
-                        setState(() {});
-                        Navigator.pushReplacement(context, route);
-                      },
-                child: Text("Iniciar Sesion")),
+            Container(
+              padding: EdgeInsets.all(10),
+              width: double.infinity,
+              height: 100,
+              child: ElevatedButton(
+                  onPressed: user != null
+                      ? null
+                      : () async {
+                          await GoogleServicio().signInWithGoogle();
+                          MaterialPageRoute route = MaterialPageRoute(
+                            builder: (context) => PrincipalPage(),
+                          );
+                          setState(() {});
+                          Navigator.pushReplacement(context, route);
+                        },
+                  child:Row(
+                    children: [
+                      Icon(MdiIcons.google),
+                      Text("           Iniciar Sesion con google",style: TextStyle(fontSize: 20),)
+                      
+                    ],
+                  )
+                  ),
+            ),
           ],
         ),
       ),
