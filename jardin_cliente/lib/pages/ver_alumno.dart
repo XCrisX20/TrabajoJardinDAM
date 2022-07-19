@@ -60,7 +60,7 @@ class _Ver_AlumnosState extends State<Ver_Alumnos> {
 
           var imagen;
 
-          if (alumno['foto'] != null) {
+          if (alumno['foto'] != null || alumno['foto'] != "" || alumno['foto'].isEmpty) {
             try {
               imagen = Container(
                 child: Image.file(
