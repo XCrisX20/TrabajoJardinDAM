@@ -60,19 +60,14 @@ class _Ver_AlumnosState extends State<Ver_Alumnos> {
 
           var imagen;
 
-          if (alumno['foto'] != null || alumno['foto'] != "" || alumno['foto'].isEmpty) {
-            try {
-              imagen = Container(
-                child: Image.file(
-                  File(alumno['foto'].toString()),
-                  width: 150,
-                  height: 150,
-                )
-              );
-            }  on Exception catch (_) {
-              imagen = Container(child: Text("Alumno sin Imagen"));
-            }
-            
+          if (alumno['foto'] != null) {
+            imagen = Container(
+              child: Image.file(
+                File(alumno['foto'].toString()),
+                width: 150,
+                height: 150,
+              ),
+            );
           } else {
             imagen = Container(child: Text("Alumno sin Imagen"));
           }
