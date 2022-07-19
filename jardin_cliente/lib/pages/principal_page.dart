@@ -35,7 +35,6 @@ class _PrincipalPageState extends State<PrincipalPage> {
             Navigator.push(context, route).then((value) {
               setState(() {});
             });
-            ;
           },
         ),
         actions: [
