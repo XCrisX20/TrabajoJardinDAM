@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:jardin_cliente/pages/agregar_noticia.dart';
 import 'package:jardin_cliente/pages/modificar_noticia.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
@@ -23,7 +24,7 @@ class _gestor_noticiasState extends State<gestor_noticias> {
       appBar: AppBar(
         backgroundColor: primerColor,
         title: Text('Noticias'),
-        leading: Icon(MdiIcons.newspaper),
+        
       ),
       body: Column(
         children: [
@@ -42,12 +43,14 @@ class _gestor_noticiasState extends State<gestor_noticias> {
                   itemCount: snapshot.data!.docs.length,
                   itemBuilder: (context, index) {
                     var noticias = snapshot.data!.docs[index];
-                    print(noticias);
+                    DateTime fecha = noticias['fecha'].toDate();
+                    
+                    print(fecha);
                     return ListTile(
-                      leading: Icon(MdiIcons.cube),
+                      leading: Icon(MdiIcons.newspaper),
                       title: Text('${noticias['titulo']}'),
                       subtitle: Text(
-                          'contenido: ${noticias['contenido']} fecha:\$${noticias['fecha']}'),
+                          'contenido: ${noticias['contenido']}\nfecha:${fecha}'),
                           onTap: () {
                         MaterialPageRoute route = new MaterialPageRoute(
                             builder: (contex) => ModificarNoticia(id:noticias.id, titulo:noticias['titulo'], contenido:noticias['contenido']));
@@ -145,7 +148,7 @@ class _gestor_noticiasState extends State<gestor_noticias> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
+        child: Icon(MdiIcons.newspaperPlus),
         backgroundColor: AmarilloColor,
         onPressed: () {
           MaterialPageRoute route =

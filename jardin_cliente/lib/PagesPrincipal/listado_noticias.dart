@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:jardin_cliente/widgets/card_noticias.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import '../provider/noticias_provider.dart';
 
@@ -21,7 +22,6 @@ class _Listado_noticiasState extends State<Listado_noticias> {
       appBar: AppBar(
         backgroundColor: AmarilloColor,
         title: Text('Noticias'),
-        leading: Icon(MdiIcons.newspaper),
       ),
       body: Column(
         children: [
@@ -40,12 +40,11 @@ class _Listado_noticiasState extends State<Listado_noticias> {
                   itemCount: snapshot.data!.docs.length,
                   itemBuilder: (context, index) {
                     var noticias = snapshot.data!.docs[index];
-                    print(noticias);
-                    return ListTile(
-                      leading: Icon(MdiIcons.cube),
-                      title: Text('${noticias['titulo']}'),
-                      subtitle: Text(
-                          'contenido: ${noticias['contenido']} fecha:\$${noticias['fecha']}'),
+                    DateTime fecha = noticias['fecha'].toDate();
+                    return CardNoticias(
+                      titulo: noticias['titulo'],
+                      contenido: noticias['contenido'],
+                      fecha: fecha.toString(),
                     );
                   },
                 );

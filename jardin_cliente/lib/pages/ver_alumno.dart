@@ -131,10 +131,31 @@ class _Ver_AlumnosState extends State<Ver_Alumnos> {
                 ],
               ),
               Container(
-                margin: EdgeInsets.all(10),
+                width: 500,
+                margin: EdgeInsets.all(2),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
+                     ElevatedButton(
+                        
+                        child: Text('Modificar Datos'),
+                        onPressed: () {
+                          MaterialPageRoute route = new MaterialPageRoute(
+                              builder: (context) => ModificarAlumno(
+                                    codigo: widget.codigo,
+                                    rut: alumno['rut'],
+                                    sexo: alumno['sexo'],
+                                    nombre: alumno['nombre'],
+                                    foto: alumno['foto'].toString(),
+                                    fechaNacimiento: alumno['fechaNacimiento'],
+                                  ));
+                          Navigator.push(context, route).then((value) {
+                            setState(() {});
+                          });
+                        },
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.yellow,
+                        )),
                     ElevatedButton(
                       child: Text(
                         'Eliminar Alumno',
@@ -216,26 +237,7 @@ class _Ver_AlumnosState extends State<Ver_Alumnos> {
                         setState(() {});
                       },
                     ),
-                    ElevatedButton(
-                        child: Text('Modificar Datos'),
-                        onPressed: () {
-                          MaterialPageRoute route = new MaterialPageRoute(
-                              builder: (context) => ModificarAlumno(
-                                    codigo: widget.codigo,
-                                    rut: alumno['rut'],
-                                    sexo: alumno['sexo'],
-                                    nombre: alumno['nombre'],
-                                    foto: alumno['foto'].toString(),
-                                    fechaNacimiento: alumno['fechaNacimiento'],
-                                  ));
-                          Navigator.push(context, route).then((value) {
-                            setState(() {});
-                          });
-                        },
-                        style: ElevatedButton.styleFrom(
-                          primary: Colors.yellow,
-                        )),
-                    ElevatedButton(
+                     ElevatedButton(
                       child: Text(
                         'Agregar Historial',
                         style: TextStyle(color: Colors.black),
@@ -253,9 +255,12 @@ class _Ver_AlumnosState extends State<Ver_Alumnos> {
                         });
                       },
                     ),
+                   
+                    
                   ],
                 ),
               ),
+             
               //ListView.builder
               Expanded(
                 child: FutureBuilder(
@@ -462,7 +467,7 @@ class _Ver_AlumnosState extends State<Ver_Alumnos> {
                                   backgroundColor:
                                       Color.fromARGB(255, 95, 14, 14),
                                   icon: MdiIcons.trashCan,
-                                  label: 'Borra',
+                                  label: 'Borrar',
                                 ),
                               ],
                             ),

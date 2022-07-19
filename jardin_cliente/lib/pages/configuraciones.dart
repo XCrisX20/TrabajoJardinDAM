@@ -29,7 +29,7 @@ class _ConfiguracionState extends State<Configuracion> {
     super.initState();
     paginas = [
     {"pagina":GestionNiveles(), 'texto': 'Gestion Niveles', 'icono': MdiIcons.humanChild, 'color':0xFFFFBE86},
-    {'pagina':gestor_noticias(), 'texto': 'Gestion Noticias', 'icono': MdiIcons.human, 'color':0xFFFFBE86},
+    {'pagina':gestor_noticias(), 'texto': 'Gestion Noticias', 'icono': MdiIcons.newspaper, 'color':0xFFFFBE86},
     ];
     
   }

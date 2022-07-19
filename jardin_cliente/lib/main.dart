@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:jardin_cliente/PagesPrincipal/Login.dart';
 import 'package:jardin_cliente/PagesPrincipal/gestor_noticias.dart';
+
 import 'package:jardin_cliente/pages/agregar_educador_form.dart';
 import 'package:jardin_cliente/pages/principal_page.dart';
 
@@ -34,7 +35,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.yellow,
       ),
-      home:MenuPrincipal(),
+      home:IniciarSesion(),
     );
   }
 }
