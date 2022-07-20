@@ -34,7 +34,8 @@ class AlumnosController extends Controller
 
     public function getCantAlumnos(int $cod_nivel){
         return Alumnos::join('nivel', 'nivel.cod_nivel', '=', 'alumnos.cod_nivel')
-        ->select(DB::raw('count(*) as cantidad'))->get();
+        ->where('nivel.cod_nivel', '=', $cod_nivel)
+        ->select (DB::raw('count(*) as cantidad'))->get();
     }
 
     /**

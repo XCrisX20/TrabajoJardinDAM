@@ -32,6 +32,14 @@ class AlumnosProvider {
     }
   }
 
+  //Listar todos los Alumnos por nivel
+  Future<int> getCantidadXNivel(int nivel) async {
+    var url = Uri.parse('$apiUrl/niv/cantidad/$nivel');
+    var respuesta = await http.get(url);
+    var cant = json.decode(respuesta.body);
+    return cant[0]['cantidad'];
+  }
+
   //Listar un alumno por Rut
   Future<LinkedHashMap<String, dynamic>> getAlumno(String rut) async {
     var url = Uri.parse('$apiUrl/$rut');
@@ -70,13 +78,8 @@ class AlumnosProvider {
   }
 
   //Actualizar un Alumno
-  Future<LinkedHashMap<String, dynamic>> alumnoEditar(
-      String rut,
-      String nombre,
-      String fechaNacimiento,
-      String? foto,
-      String sexo,
-      int cod_nivel) async {
+  Future<LinkedHashMap<String, dynamic>> alumnoEditar(String rut, String nombre,
+      String fechaNacimiento, String? foto, String sexo, int cod_nivel) async {
     var url = Uri.parse('$apiUrl/$rut');
     var respuesta = await http.put(url,
         headers: <String, String>{
@@ -87,7 +90,7 @@ class AlumnosProvider {
           'nombre': nombre,
           'fechaNacimiento': fechaNacimiento,
           'foto': foto,
-          'sexo' : sexo,
+          'sexo': sexo,
           'cod_nivel': cod_nivel
         }));
     return json.decode(respuesta.body);

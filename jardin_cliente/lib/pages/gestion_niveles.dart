@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jardin_cliente/pages/agregar_nivel.dart';
 import 'package:jardin_cliente/pages/modificar_nivel.dart';
+import 'package:jardin_cliente/provider/alumnos_provider.dart';
 import 'package:jardin_cliente/provider/nivel_provider.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
@@ -52,7 +53,6 @@ class _GestionNivelesState extends State<GestionNiveles> {
                             .then((value) => setState(() {}));
                       },
                       trailing: ElevatedButton(
-                        
                         child: Text(
                           'Eliminar',
                           style: TextStyle(color: Colors.white),
@@ -67,8 +67,36 @@ class _GestionNivelesState extends State<GestionNiveles> {
                                     actions: [
                                       TextButton.icon(
                                         icon: Icon(MdiIcons.check),
-                                        label: Text("OK"),
-                                        onPressed: () {
+                                        label: Text("Si"),
+                                        onPressed: () async {
+                                          var cant = await AlumnosProvider()
+                                              .getCantidadXNivel(
+                                                  (nvl['cod_nivel']));
+
+                                          if (cant != 0) {
+                                            Navigator.pop(context);
+                                            showDialog(
+                                              context: context,
+                                              builder: (BuildContext context) {
+                                                return AlertDialog(
+                                                  title: Text("ERROR"),
+                                                  content: Text(
+                                                      'No se puede eliminar por que hay alumnos'),
+                                                  actions: [
+                                                    TextButton(
+                                                      child: new Text("OK"),
+                                                      onPressed: () {
+                                                        Navigator.of(context)
+                                                            .pop();
+                                                      },
+                                                    ),
+                                                  ],
+                                                );
+                                              },
+                                            );
+
+                                            return null;
+                                          }
                                           NivelProvider()
                                               .nivelBorrar(nvl['cod_nivel'])
                                               .then((borrado) {
