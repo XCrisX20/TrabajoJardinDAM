@@ -112,7 +112,7 @@ class _FormAgregarAlumnosPageState extends State<FormAgregarAlumnosPage> {
     return TextFormField(
       controller: rutCtrl,
       decoration: InputDecoration(
-        labelText: 'Rut del alumno',
+        labelText: 'Rut del alumno. sin punto y sin guion',
       ),
       validator: (valor) {
         if (valor == null || valor.isEmpty) {
