@@ -21,6 +21,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 Route::get('/educadores/niv/{nivel}', [EducadoresController::class, 'getXNivel']);
 Route::get('/alumnos/niv/{nivel}', [AlumnosController::class, 'getXNivel']);
+Route::get('/alumnos/niv/cantidad/{nivel}', [AlumnosController::class, 'getCantAlumnos']);
 Route::get('/historial/rut/{rut_alumno}', [HistorialController::class, 'getXRut']);
 Route::apiResource('/alumnos',AlumnosController::class);
 Route::apiResource('/educadores',EducadoresController::class);

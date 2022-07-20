@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\AlumnosRequest;
 use App\Models\Alumnos;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AlumnosController extends Controller
 {
@@ -29,6 +30,11 @@ class AlumnosController extends Controller
     public function create()
     {
         //
+    }
+
+    public function getCantAlumnos(int $cod_nivel){
+        return Alumnos::join('nivel', 'nivel.cod_nivel', '=', 'alumnos.cod_nivel')
+        ->select(DB::raw('count(*) as cantidad'))->get();
     }
 
     /**
